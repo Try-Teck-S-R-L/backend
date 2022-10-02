@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Preinscripcion extends Model
 {
     use HasFactory;
+    protected $fillable = ['categorias', 'nombreDelegado', 'fecha', 'nombreEquipo', 'paisEquipo'];
 }

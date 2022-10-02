@@ -18,9 +18,8 @@ return new class extends Migration
             $table->string('categorias');
             $table->string('nombreDelegado');
             $table->date('fecha');
-            $table->string('nombreDelegado');
             $table->string('nombreEquipo');
-            $table->string('pais');
+            $table->string('paisEquipo');
             $table->timestamps();
         });
     }
