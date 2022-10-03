@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
 
 class PreinscripcionController extends Controller
@@ -13,7 +14,8 @@ class PreinscripcionController extends Controller
      */
     public function index()
     {
-        //
+        $preinscripciones = Preinscripcion::all();
+        return $preinscripciones;
     }
 
     /**
@@ -34,7 +36,14 @@ class PreinscripcionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $preinscripciones = new Preinscripcion();
+        $preinscripciones->categorias = $request->categorias;
+        $preinscripciones->nombreDelegado = $request->nombreDelegado;
+        $preinscripciones->fecha = $request->fecha;
+        $preinscripciones->nombreEquipo = $request->nombreEquipo;
+        $preinscripciones->paisEquipo = $request->paisEquipo;
+
+        $preinscripciones->save();
     }
 
     /**
