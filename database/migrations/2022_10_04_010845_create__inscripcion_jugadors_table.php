@@ -16,6 +16,14 @@ return new class extends Migration
         Schema::create('_inscripcion_jugadors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('categoria');
+            $table->string('nombresJugador');
+            $table->string('apellidosJugador');
+            $table->string('nacionalidadJugador');
+            $table->string('tallaJugador');
+            $table->integer('nroCamisetaJugador');
+            $table->integer('edadJugador');
+            $table->String('posicionJugador');
         });
     }
 
