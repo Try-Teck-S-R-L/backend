@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/preinscripciones', 'App\Http\Controllers\PreinscripcionController@index');
 Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionController@store');
+Route::get('/jugador','App\Http\Controllers\jugadorController@index'); //para tener todos los registros y mostrarlos
+Route::post('/jugador','App\Http\Controllers\jugadorController@store'); //crear un registro
+Route::put('/jugador/{id}','App\Http\Controllers\jugadorController@update'); //actualizar un registro
+Route::delete('/jugador','App\Http\Controllers\jugadorController@destroy'); //borrar un registro
