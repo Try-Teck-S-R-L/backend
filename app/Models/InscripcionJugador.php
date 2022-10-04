@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class InscripcionJugador extends Model
 {
     use HasFactory;
+    protected $fillable = ["categoria","nombresJugador","apellidosJugador","nacionalidadJugador","tallaJugador",
+                            "nroCamisetaJugador","edadJugador","posicionJugador"];
 }
