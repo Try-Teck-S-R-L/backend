@@ -25,4 +25,5 @@ Route::get('/jugador', 'App\Http\Controllers\jugadorController@index'); //para t
 Route::post('/jugador', 'App\Http\Controllers\jugadorController@store'); //crear un registro
 Route::put('/jugador/{id}', 'App\Http\Controllers\jugadorController@update'); //actualizar un registro
 Route::delete('/jugador', 'App\Http\Controllers\jugadorController@destroy'); //borrar un registro
-Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
+Route::get('/jugadores', 'App\Http\Controllers\InscripcionjugadorController@index');
+Route::post('/jugadores', 'App\Http\Controllers\InscripcionjugadorController@store');

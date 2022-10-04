@@ -14,7 +14,7 @@ class jugadorController extends Controller
      */
     public function index()
     {
-        $jugador=jugador::all(); //trae todos los registros
+        $jugador = jugador::all(); //trae todos los registros
         return $jugador;
     }
 
@@ -36,7 +36,7 @@ class jugadorController extends Controller
      */
     public function store(Request $request)
     {
-        $jugador=new jugador();
+        $jugador = new jugador();
         $jugador->nombreJugador = $request->nombreJugador;
         $jugador->telefonoJug = $request->telefonoJug;
         $jugador->fec_nac_jug = $request->fec_nac_jug;
@@ -97,7 +97,7 @@ class jugadorController extends Controller
      */
     public function destroy($id)
     {
-        $jugador = jugador::destroy($request->id);
+        $jugador = jugador::destroy($id);
 
         return $jugador;
     }

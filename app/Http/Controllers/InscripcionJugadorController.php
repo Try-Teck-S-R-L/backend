@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inscripcionjugador;
 use Illuminate\Http\Request;
-use App\Models\InscripcionJugador;
 
-class InscripcionJugadorController extends Controller
+class InscripcionjugadorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function index()
     {
-        $inscripcionJugador = InscripcionJugador::all();
+        $inscripcionJugador = Inscripcionjugador::all();
         return $inscripcionJugador;
     }
 
@@ -36,24 +33,19 @@ class InscripcionJugadorController extends Controller
      */
     public function store(Request $request)
     {
-        $inscripcionJugador = new InscripcionJugador();
-        $inscripcionJugador -> categoria = $request->categoria;
-        $inscripcionJugador -> nombresJugador = $request->categoria;
-        $inscripcionJugador -> apellidosJugador = $request->categoria;
-        $inscripcionJugador -> nacionalidadJugador = $request->categoria;
-        $inscripcionJugador -> tallaJugador = $request->categoria;
-        $inscripcionJugador -> nroCamisetaJugador = $request->categoria;
-        $inscripcionJugador -> edadJugador = $request->categoria;
-        $inscripcionJugador -> posicionJugador = $request->categoria;
-        $inscripcionJugador -> save();
+        $inscripcionJugador = new Inscripcionjugador();
+        $inscripcionJugador->categoria = $request->categoria;
+        $inscripcionJugador->nombresJugador = $request->nombresJugador;
+        $inscripcionJugador->apellidosJugador = $request->apellidosJugador;
+        $inscripcionJugador->nacionalidadJugador = $request->nacionalidadJugador;
+        $inscripcionJugador->tallaJugador = $request->tallaJugador;
+        $inscripcionJugador->nroCamisetaJugador = $request->nroCamisetaJugador;
+        $inscripcionJugador->edadJugador = $request->edadJugador;
+        $inscripcionJugador->posicionJugador = $request->posicionJugador;
+        $inscripcionJugador->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
@@ -79,7 +71,6 @@ class InscripcionJugadorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
     }
 
     /**
