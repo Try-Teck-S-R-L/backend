@@ -43,7 +43,7 @@ class PreinscripcionController extends Controller
         $preinscripciones->fechaPreinscripcion = $request->fechaPreinscripcion;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
         $preinscripciones->paisEquipo = $request->paisEquipo;
-        $preinscripciones->voucherPreinscripcion = $request->voucherPreinscripcion;
+        //$preinscripciones->voucherPreinscripcion = $request->voucherPreinscripcion;
 
         $preinscripciones->save();
     }
