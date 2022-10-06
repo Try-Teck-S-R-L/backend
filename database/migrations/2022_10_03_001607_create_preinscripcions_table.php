@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('preinscripcions', function (Blueprint $table) {
             $table->id();
-            $table->string('categorias');
+            $table->string('categoria');
             $table->string('nombreDelegado');
-            $table->date('fecha');
+            $table->string('emailDelegado');
+            $table->date('fechaPreinscripcion');
             $table->string('nombreEquipo');
             $table->string('paisEquipo');
+            $table->File('voucherPreinscripcion');
             $table->timestamps();
         });
     }

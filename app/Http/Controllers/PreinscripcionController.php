@@ -37,11 +37,13 @@ class PreinscripcionController extends Controller
     public function store(Request $request)
     {
         $preinscripciones = new Preinscripcion();
-        $preinscripciones->categorias = $request->categorias;
+        $preinscripciones->categoria = $request->categoria;
+        $preinscripciones->emailDelegado = $request->emailDelegado;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
-        $preinscripciones->fecha = $request->fecha;
+        $preinscripciones->fechaPreinscripcion = $request->fechaPreinscripcion;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
         $preinscripciones->paisEquipo = $request->paisEquipo;
+        $preinscripciones->voucherPreinscripcion = $request->voucherPreinscripcion;
 
         $preinscripciones->save();
     }

@@ -17,13 +17,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('categoria');
-            $table->string('nombresJugador');
-            $table->string('apellidosJugador');
+            $table->string('nombreJugador');
+            $table->string('apellidoJugador');
             $table->string('nacionalidadJugador');
             $table->string('tallaJugador');
-            $table->integer('nroCamisetaJugador');
+            $table->integer('numeroCamiseta');
             $table->integer('edadJugador');
             $table->String('posicionJugador');
+            $table->File('fotoPerfilJugador');
         });
     }
 
