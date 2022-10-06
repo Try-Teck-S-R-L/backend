@@ -16,10 +16,15 @@ return new class extends Migration
         Schema::create('jugador', function (Blueprint $table) {
             $table->id();
             $table->string('nombreJugador');
-            $table->integer('telefonoJug');
-            $table->date('fec_nac_jug');
-            $table->string('nacionalidad');
-            $table->string('equipo');
+            $table->string('apellidoJugador');
+            $table->integer('numeroCamiseta');
+            $table->string('categoria');
+            $table->integer('edadJugador');
+            $table->file('fotoPerfilJugador');
+            $table->file('fotoCiJugador');
+            $table->string('nacionalidadJugador');
+            $table->string('posicionJugador');
+            $table->string('tallaJugador');
             $table->timestamps();
         });
     }
