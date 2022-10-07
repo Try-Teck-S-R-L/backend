@@ -14,7 +14,7 @@ class jugadorController extends Controller
      */
     public function index()
     {
-        $jugador=jugador::all(); //trae todos los registros
+        $jugador = jugador::all(); //trae todos los registros
         return $jugador;
     }
 
@@ -36,14 +36,14 @@ class jugadorController extends Controller
      */
     public function store(Request $request)
     {
-        $jugador=new jugador();
+        $jugador = new jugador();
         $jugador->nombreJugador = $request->nombreJugador;
         $jugador->apellidoJugador = $request->apellidoJugador;
         $jugador->numeroCamiseta = $request->numeroCamiseta;
         $jugador->categoria = $request->categoria;
         $jugador->edadJugador = $request->edadJugador;
-        $jugador->fotoPerfilJugador = $request->fotoPerfilJugador;
-        $jugador->fotoCiJugador = $request->fotoCiJugador;
+        //$jugador->fotoPerfilJugador = $request->fotoPerfilJugador;
+        //$jugador->fotoCiJugador = $request->fotoCiJugador;
         $jugador->nacionalidadJugador = $request->nacionalidadJugador;
         $jugador->posicionJugador = $request->posicionJugador;
         $jugador->tallaJugador = $request->tallaJugador;
@@ -88,8 +88,8 @@ class jugadorController extends Controller
         $jugador->numeroCamiseta = $request->numeroCamiseta;
         $jugador->categoria = $request->categoria;
         $jugador->edadJugador = $request->edadJugador;
-        $jugador->fotoPerfilJugador = $request->fotoPerfilJugador;
-        $jugador->fotoCiJugador = $request->fotoCiJugador;
+        // $jugador->fotoPerfilJugador = $request->fotoPerfilJugador;
+        //$jugador->fotoCiJugador = $request->fotoCiJugador;
         $jugador->nacionalidadJugador = $request->nacionalidadJugador;
         $jugador->posicionJugador = $request->posicionJugador;
         $jugador->tallaJugador = $request->tallaJugador;
@@ -107,7 +107,7 @@ class jugadorController extends Controller
      */
     public function destroy($id)
     {
-        $jugador = jugador::destroy($request->id);
+        $jugador = jugador::destroy($id);
 
         return $jugador;
     }
