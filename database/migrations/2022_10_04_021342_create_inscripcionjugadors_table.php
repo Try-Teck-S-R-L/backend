@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('numeroCamiseta');
             $table->integer('edadJugador');
             $table->String('posicionJugador');
-            $table->File('fotoPerfilJugador');
+            //$table->File('fotoPerfilJugador');
         });
     }
 

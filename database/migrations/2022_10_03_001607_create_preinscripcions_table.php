@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('fechaPreinscripcion');
             $table->string('nombreEquipo');
             $table->string('paisEquipo');
-            $table->File('voucherPreinscripcion');
+            //$table->File('voucherPreinscripcion');
             $table->timestamps();
         });
     }
