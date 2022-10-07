@@ -38,10 +38,15 @@ class jugadorController extends Controller
     {
         $jugador = new jugador();
         $jugador->nombreJugador = $request->nombreJugador;
-        $jugador->telefonoJug = $request->telefonoJug;
-        $jugador->fec_nac_jug = $request->fec_nac_jug;
-        $jugador->nacionalidad = $request->nacionalidad;
-        $jugador->equipo = $request->equipo;
+        $jugador->apellidoJugador = $request->apellidoJugador;
+        $jugador->numeroCamiseta = $request->numeroCamiseta;
+        $jugador->categoria = $request->categoria;
+        $jugador->edadJugador = $request->edadJugador;
+        //$jugador->fotoPerfilJugador = $request->fotoPerfilJugador;
+        //$jugador->fotoCiJugador = $request->fotoCiJugador;
+        $jugador->nacionalidadJugador = $request->nacionalidadJugador;
+        $jugador->posicionJugador = $request->posicionJugador;
+        $jugador->tallaJugador = $request->tallaJugador;
 
         $jugador->save();
     }
@@ -79,10 +84,15 @@ class jugadorController extends Controller
     {
         $jugador = jugador::findOrFail($request->id);
         $jugador->nombreJugador = $request->nombreJugador;
-        $jugador->telefonoJug = $request->telefonoJug;
-        $jugador->fec_nac_jug = $request->fec_nac_jug;
-        $jugador->nacionalidad = $request->nacionalidad;
-        $jugador->equipo = $request->equipo;
+        $jugador->apellidoJugador = $request->apellidoJugador;
+        $jugador->numeroCamiseta = $request->numeroCamiseta;
+        $jugador->categoria = $request->categoria;
+        $jugador->edadJugador = $request->edadJugador;
+        // $jugador->fotoPerfilJugador = $request->fotoPerfilJugador;
+        //$jugador->fotoCiJugador = $request->fotoCiJugador;
+        $jugador->nacionalidadJugador = $request->nacionalidadJugador;
+        $jugador->posicionJugador = $request->posicionJugador;
+        $jugador->tallaJugador = $request->tallaJugador;
 
         $jugador->save();
 
