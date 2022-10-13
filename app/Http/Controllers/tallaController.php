@@ -14,7 +14,7 @@ class tallaController extends Controller
      */
     public function index()
     {
-        $talla=talla::all(); //trae todos los registros
+        $talla = talla::all(); //trae todos los registros
         return $talla;
     }
 
@@ -36,7 +36,7 @@ class tallaController extends Controller
      */
     public function store(Request $request)
     {
-        $talla=new talla();
+        $talla = new talla();
         $talla->nombreValor = $request->nombreValor;
 
         $talla->save();
@@ -73,7 +73,7 @@ class tallaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $talla=new talla();
+        $talla = new talla();
         $talla->nombreValor = $request->nombreValor;
 
         $talla->save();
@@ -88,7 +88,7 @@ class tallaController extends Controller
      */
     public function destroy($id)
     {
-        $talla = talla::destroy($request->id);
+        $talla = talla::destroy($id);
         return $talla;
     }
 }

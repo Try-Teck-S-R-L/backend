@@ -14,7 +14,7 @@ class posicionsController extends Controller
      */
     public function index()
     {
-        $posicions=posicions::all(); //trae todos los registros
+        $posicions = posicions::all(); //trae todos los registros
         return $posicions;
     }
 
@@ -36,7 +36,7 @@ class posicionsController extends Controller
      */
     public function store(Request $request)
     {
-        $posicions=new posicions();
+        $posicions = new posicions();
         $posicions->nombreValor = $request->nombreValor;
 
         $posicions->save();
@@ -73,7 +73,7 @@ class posicionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $posicions=new posicions();
+        $posicions = new posicions();
         $posicions->nombreValor = $request->nombreValor;
 
         $posicions->save();
@@ -88,7 +88,7 @@ class posicionsController extends Controller
      */
     public function destroy($id)
     {
-        $posicions = posicions::destroy($request->id);
+        $posicions = posicions::destroy($id);
         return $posicions;
     }
 }

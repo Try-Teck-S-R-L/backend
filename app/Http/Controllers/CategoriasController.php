@@ -14,7 +14,7 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        $categorias=Categorias::all(); //trae todos los registros
+        $categorias = Categorias::all(); //trae todos los registros
         return $categorias;
     }
 
@@ -36,7 +36,7 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        $categorias=new Categorias();
+        $categorias = new Categorias();
         $categorias->nombreValor = $request->nombreValor;
 
         $categorias->save();
@@ -89,7 +89,7 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        $categorias = Categorias::destroy($request->id);
+        $categorias = Categorias::destroy($id);
 
         return $categorias;
     }

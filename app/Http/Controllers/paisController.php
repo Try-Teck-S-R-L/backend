@@ -14,7 +14,7 @@ class paisController extends Controller
      */
     public function index()
     {
-        $pais=pais::all(); //trae todos los registros
+        $pais = pais::all(); //trae todos los registros
         return $pais;
     }
 
@@ -36,7 +36,7 @@ class paisController extends Controller
      */
     public function store(Request $request)
     {
-        $pais=new pais();
+        $pais = new pais();
         $pais->nombreValor = $request->nombreValor;
 
         $pais->save();
@@ -73,7 +73,7 @@ class paisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pais=new pais();
+        $pais = new pais();
         $pais->nombreValor = $request->nombreValor;
 
         $pais->save();
@@ -88,7 +88,7 @@ class paisController extends Controller
      */
     public function destroy($id)
     {
-        $pais = pais::destroy($request->id);
+        $pais = pais::destroy($id);
         return $pais;
     }
 }
