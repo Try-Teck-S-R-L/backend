@@ -26,10 +26,10 @@ Route::post('/jugador', 'App\Http\Controllers\jugadorController@store'); //crear
 Route::put('/jugador/{id}', 'App\Http\Controllers\jugadorController@update'); //actualizar un registro
 Route::delete('/jugador', 'App\Http\Controllers\jugadorController@destroy'); //borrar un registro
 Route::get('/categorias', 'App\Http\Controllers\CategoriasController@index'); //para tener todos los registros y mostrarlos
-Route::post('/categorias', 'App\Http\Controllers\CategoriasController@index'); //crear un registro
+Route::post('/categorias', 'App\Http\Controllers\CategoriasController@store'); //crear un registro
 Route::get('/paises', 'App\Http\Controllers\paisController@index'); //para tener todos los registros y mostrarlos
-Route::post('/paises', 'App\Http\Controllers\paisController@index'); //crear un registro
+Route::post('/paises', 'App\Http\Controllers\paisController@store'); //crear un registro
 Route::get('/posiciones', 'App\Http\Controllers\posicionsController@index'); //para tener todos los registros y mostrarlos
-Route::post('/posiciones', 'App\Http\Controllers\posicionsController@index'); //crear un registro
+Route::post('/posiciones', 'App\Http\Controllers\posicionsController@store'); //crear un registro
 Route::get('/tallas', 'App\Http\Controllers\tallasController@index'); //para tener todos los registros y mostrarlos
-Route::post('/tallas', 'App\Http\Controllers\tallasController@index'); //crear un registro
+Route::post('/tallas', 'App\Http\Controllers\tallasController@store'); //crear un registro
