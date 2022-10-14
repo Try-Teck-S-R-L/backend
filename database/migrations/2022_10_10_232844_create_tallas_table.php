@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('talla', function (Blueprint $table) {
+        Schema::create('tallass', function (Blueprint $table) {
             $table->id();
             $table->string('nombreValor');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('talla');
+        Schema::dropIfExists('tallas');
     }
 };

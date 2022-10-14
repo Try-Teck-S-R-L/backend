@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\talla;
+use App\Models\tallas;
 
-class tallaController extends Controller
+class tallasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class tallaController extends Controller
      */
     public function index()
     {
-        $talla = talla::all(); //trae todos los registros
-        return $talla;
+        $tallas = tallas::all(); //trae todos los registros
+        return $tallas;
     }
 
     /**
@@ -36,10 +36,10 @@ class tallaController extends Controller
      */
     public function store(Request $request)
     {
-        $talla = new talla();
-        $talla->nombreValor = $request->nombreValor;
+        $tallas = new tallas();
+        $tallas->nombreValor = $request->nombreValor;
 
-        $talla->save();
+        $tallas->save();
     }
 
     /**
@@ -73,11 +73,11 @@ class tallaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $talla = new talla();
-        $talla->nombreValor = $request->nombreValor;
+        $tallas = new tallas();
+        $tallas->nombreValor = $request->nombreValor;
 
-        $talla->save();
-        return $talla;
+        $tallas->save();
+        return $tallas;
     }
 
     /**
@@ -88,7 +88,7 @@ class tallaController extends Controller
      */
     public function destroy($id)
     {
-        $talla = talla::destroy($id);
-        return $talla;
+        $tallas = tallas::destroy($id);
+        return $tallas;
     }
 }

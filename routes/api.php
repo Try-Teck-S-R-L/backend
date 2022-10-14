@@ -31,5 +31,5 @@ Route::get('/paises', 'App\Http\Controllers\paisController@index'); //para tener
 Route::post('/paises', 'App\Http\Controllers\paisController@index'); //crear un registro
 Route::get('/posiciones', 'App\Http\Controllers\posicionsController@index'); //para tener todos los registros y mostrarlos
 Route::post('/posiciones', 'App\Http\Controllers\posicionsController@index'); //crear un registro
-Route::get('/tallas', 'App\Http\Controllers\tallaController@index'); //para tener todos los registros y mostrarlos
-Route::post('/tallas', 'App\Http\Controllers\tallaController@index'); //crear un registro
+Route::get('/tallas', 'App\Http\Controllers\tallasController@index'); //para tener todos los registros y mostrarlos
+Route::post('/tallas', 'App\Http\Controllers\tallasController@index'); //crear un registro
