@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tallass', function (Blueprint $table) {
+        Schema::create('tallas', function (Blueprint $table) {
             $table->id();
             $table->string('nombreValor');
             $table->timestamps();
