@@ -55,12 +55,17 @@ class PreinscripcionController extends Controller
             $extension = $request->file('voucherPreinscription')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
             $path = $request->file('voucherPreinscription')->storeAs('public/posts', $compPic);
+            $preinscripciones->voucherPreinscription = $compPic;
         }
-
+        if ($preinscripciones->save()) {
+            return ['status' => true, 'message' => 'POST guardado'];
+        } else {
+            return ['status' => false, 'message' => 'algo salio mal'];
+        }
 
         //$preinscripciones->voucherPreinscripcion = $request->voucherPreinscripcion;
 
-        $preinscripciones->save();
+        //$preinscripciones->save();
     }
 
     /**
