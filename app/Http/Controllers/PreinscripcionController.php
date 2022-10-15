@@ -44,18 +44,19 @@ class PreinscripcionController extends Controller
         $preinscripciones->fechaPreinscripcion = $request->fechaPreinscripcion;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
         $preinscripciones->paisEquipo = $request->paisEquipo;
+        //$preinscripciones->voucherPreinscripcion = 'aea';
         //$imagen = $request->voucherPreinscripcion;
         //$size = $imagen->getSize();
         //$size = $request->file('voucherPreinscripcion')->getSize();
         //$name = $request->file('voucherPreinscripcion')->getClientOriginalName();
-        if ($request->hasFile('voucherPreinscription')) {
+        if ($request->hasFile('voucherPreinscripcion')) {
 
-            $completeFileName = $request->file('voucherPreinscription')->getClientOriginalName();
+            $completeFileName = $request->file('voucherPreinscripcion')->getClientOriginalName();
             $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
-            $extension = $request->file('voucherPreinscription')->getClientOriginalExtension();
+            $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
-            $path = $request->file('voucherPreinscription')->storeAs('public/posts', $compPic);
-            $preinscripciones->voucherPreinscription = $compPic;
+            $path = $request->file('voucherPreinscripcion')->storeAs('public/posts', $compPic);
+            $preinscripciones->voucherPreinscripcion = $compPic;
         }
         if ($preinscripciones->save()) {
             return ['status' => true, 'message' => 'POST guardado'];
