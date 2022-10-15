@@ -37,12 +37,27 @@ class PreinscripcionController extends Controller
     public function store(Request $request)
     {
         $preinscripciones = new Preinscripcion();
+
         $preinscripciones->categoria = $request->categoria;
         $preinscripciones->emailDelegado = $request->emailDelegado;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
         $preinscripciones->fechaPreinscripcion = $request->fechaPreinscripcion;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
         $preinscripciones->paisEquipo = $request->paisEquipo;
+        //$imagen = $request->voucherPreinscripcion;
+        //$size = $imagen->getSize();
+        //$size = $request->file('voucherPreinscripcion')->getSize();
+        //$name = $request->file('voucherPreinscripcion')->getClientOriginalName();
+        if ($request->hasFile('voucherPreinscription')) {
+
+            $completeFileName = $request->file('voucherPreinscription')->getClientOriginalName();
+            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+            $extension = $request->file('voucherPreinscription')->getClientOriginalExtension();
+            $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+            $path = $request->file('voucherPreinscription')->storeAs('public/posts', $compPic);
+        }
+
+
         //$preinscripciones->voucherPreinscripcion = $request->voucherPreinscripcion;
 
         $preinscripciones->save();
