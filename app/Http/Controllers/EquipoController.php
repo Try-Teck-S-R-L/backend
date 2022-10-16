@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipo;
 use Illuminate\Http\Request;
-use App\Models\InscripcionEquipo;
 
-class InscripcionEquipoController extends Controller
+class EquipoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class InscripcionEquipoController extends Controller
      */
     public function index()
     {
-        $EquiposInscritos = InscripcionEquipo::all();
-        return $EquiposInscritos;
+        $equipo = Equipo::all();
+        return $equipo;
     }
 
     /**
@@ -25,7 +25,7 @@ class InscripcionEquipoController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -36,13 +36,11 @@ class InscripcionEquipoController extends Controller
      */
     public function store(Request $request)
     {
-        $InscripcionEquipo = new InscripcionEquipo();
-        $InscripcionEquipo->Nombre_del_delegado = $request->Nombre_del_Delegado;
-        $InscripcionEquipo->Nombre_del_equipo = $request->Nombre_del_equipo;
-        $InscripcionEquipo->Categoria = $request->Categoria;
-        $InscripcionEquipo->Pais = $request->Pais;
+        $equipo = new Equipo();
+        $equipo->nombreEquipo = $request->nombreEquipo;
+        $equipo -> procedenciaEquipo = $request->procedenciaEquipo;
 
-        $InscripcionEquipo->save();
+        $equipo->save();
     }
 
     /**
@@ -76,7 +74,12 @@ class InscripcionEquipoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $equipo = Equipo::findOrFail($request->id);
+        $equipo->nombreEquipo = $request->nombreEquipo;
+        $equipo -> procedenciaEquipo = $request->procedenciaEquipo;
+
+        $equipo->save();
+        return $equipo;
     }
 
     /**
@@ -85,8 +88,9 @@ class InscripcionEquipoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $equipo = Equipo::destroy($request->id);
+        return $equipo;
     }
 }
