@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('inscripcion_equipos', function (Blueprint $table) {
+        Schema::create('equipo', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nombreEquipo');
+            $table->string('procedenciaEquipo');
         });
     }
 
