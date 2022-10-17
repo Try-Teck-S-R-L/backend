@@ -51,12 +51,13 @@ class PreinscripcionController extends Controller
         //$name = $request->file('voucherPreinscripcion')->getClientOriginalName();
         if ($request->hasFile('voucherPreinscripcion')) {
 
+            $voucher = $request->file('voucherPreinscripcion');
             $completeFileName = $request->file('voucherPreinscripcion')->getClientOriginalName();
             $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
             $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
-            $path = $request->file('voucherPreinscripcion')->storeAs('public/posts', $compPic);
-            $preinscripciones->voucherPreinscripcion = $compPic;
+            $path = $voucher->move('preinscripcionesImg/', $compPic);
+            $preinscripciones->voucherPreinscripcion = $path;
         }
         if ($preinscripciones->save()) {
             return ['status' => true, 'message' => 'POST guardado'];
