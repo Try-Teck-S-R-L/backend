@@ -56,7 +56,7 @@ class jugadorController extends Controller
             $extension = $request->file('fotoPerfilJugador')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
             $path = $voucher->move('fotosPerfiles/', $compPic);
-            $jugador->voucherPreinscripcion = $path;
+            $jugador->fotoPerfilJugador = $path;
         }
 
         if ($request->hasFile('fotoCiJugador')) {
@@ -67,7 +67,7 @@ class jugadorController extends Controller
             $extension = $request->file('fotoCiJugador')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
             $path = $voucher->move('fotosCis/', $compPic);
-            $jugador->voucherPreinscripcion = $path;
+            $jugador->fotoCiJugador = $path;
         }
 
 
