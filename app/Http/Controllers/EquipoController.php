@@ -38,7 +38,8 @@ class EquipoController extends Controller
     {
         $equipo = new Equipo();
         $equipo->nombreEquipo = $request->nombreEquipo;
-        $equipo -> procedenciaEquipo = $request->procedenciaEquipo;
+        $equipo->paisEquipo = $request->paisEquipo;
+        $equipo->categoria = $request->categoria;
 
         $equipo->save();
     }
@@ -76,7 +77,7 @@ class EquipoController extends Controller
     {
         $equipo = Equipo::findOrFail($request->id);
         $equipo->nombreEquipo = $request->nombreEquipo;
-        $equipo -> procedenciaEquipo = $request->procedenciaEquipo;
+        $equipo->procedenciaEquipo = $request->procedenciaEquipo;
 
         $equipo->save();
         return $equipo;
