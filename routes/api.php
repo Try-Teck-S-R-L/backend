@@ -33,3 +33,9 @@ Route::get('/posiciones', 'App\Http\Controllers\posicionsController@index'); //p
 Route::post('/posiciones', 'App\Http\Controllers\posicionsController@store'); //crear un registro
 Route::get('/tallas', 'App\Http\Controllers\tallasController@index'); //para tener todos los registros y mostrarlos
 Route::post('/tallas', 'App\Http\Controllers\tallasController@store'); //crear un registro
+Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
+
+Route::get('/equipo', 'App\Http\Controllers\EquipoController@index');
+Route::post('/equipo', 'App\Http\Controllers\EquipoController@store');
+Route::put('/equipo/{id}', 'App\Http\Controllers\EquipoController@update');
+Route::delete('/equipo/{id}', 'App\Http\Controllers\EquipoController@detroy');
