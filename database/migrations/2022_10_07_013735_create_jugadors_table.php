@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('numeroCamiseta');
             $table->string('categoria');
             $table->integer('edadJugador');
-            //$table->file('fotoPerfilJugador');
-            //$table->file('fotoCiJugador');
+            $table->string('fotoPerfilJugador');
+            $table->string('fotoCiJugador');
             $table->string('nacionalidadJugador');
             $table->string('posicionJugador');
             $table->string('tallaJugador');

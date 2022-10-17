@@ -48,6 +48,29 @@ class jugadorController extends Controller
         $jugador->posicionJugador = $request->posicionJugador;
         $jugador->tallaJugador = $request->tallaJugador;
 
+        if ($request->hasFile('fotoPerfilJugador')) {
+
+            $voucher = $request->file('fotoPerfilJugador');
+            $completeFileName = $request->file('fotoPerfilJugador')->getClientOriginalName();
+            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+            $extension = $request->file('fotoPerfilJugador')->getClientOriginalExtension();
+            $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+            $path = $voucher->move('fotosPerfiles/', $compPic);
+            $jugador->voucherPreinscripcion = $path;
+        }
+
+        if ($request->hasFile('fotoCiJugador')) {
+
+            $voucher = $request->file('fotoCiJugador');
+            $completeFileName = $request->file('fotoCiJugador')->getClientOriginalName();
+            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+            $extension = $request->file('fotoCiJugador')->getClientOriginalExtension();
+            $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+            $path = $voucher->move('fotosCis/', $compPic);
+            $jugador->voucherPreinscripcion = $path;
+        }
+
+
         $jugador->save();
     }
 
