@@ -24,7 +24,7 @@ Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionController@
 Route::get('/jugador', 'App\Http\Controllers\jugadorController@index'); //para tener todos los registros y mostrarlos
 Route::post('/jugador', 'App\Http\Controllers\jugadorController@store'); //crear un registro
 Route::put('/jugador/{id}', 'App\Http\Controllers\jugadorController@update'); //actualizar un registro
-Route::delete('/jugador', 'App\Http\Controllers\jugadorController@destroy'); //borrar un registro
+Route::delete('/jugador/{id}', 'App\Http\Controllers\jugadorController@destroy'); //borrar un registro
 Route::get('/categorias', 'App\Http\Controllers\CategoriasController@index'); //para tener todos los registros y mostrarlos
 Route::post('/categorias', 'App\Http\Controllers\CategoriasController@store'); //crear un registro
 Route::get('/paises', 'App\Http\Controllers\paisController@index'); //para tener todos los registros y mostrarlos
