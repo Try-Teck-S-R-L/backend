@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/preinscripciones', 'App\Http\Controllers\PreinscripcionController@index');
 Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionController@store');
 Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
+
+Route::get('/equipos', 'App\Http\Controllers\InscripcionEquipoController@index');

@@ -14,6 +14,7 @@ class InscripcionEquipoController extends Controller
      */
     public function index()
     {
+        
         $EquiposInscritos = InscripcionEquipo::all();
         return $EquiposInscritos;
     }
@@ -88,5 +89,6 @@ class InscripcionEquipoController extends Controller
     public function destroy($id)
     {
         InscripcionEquipo::destroy($id);
+        
     }
 }
