@@ -87,6 +87,6 @@ class InscripcionEquipoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        InscripcionEquipo::destroy($id);
     }
 }

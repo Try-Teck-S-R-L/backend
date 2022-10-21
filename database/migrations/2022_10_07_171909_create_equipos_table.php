@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('inscripcion_equipos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string("NombreDelegado");
+            $table->string("NombreEquipo");
+            $table->string("Categoria");
+            $table->string("Pais");
         });
     }
 
