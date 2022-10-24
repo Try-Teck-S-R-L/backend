@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('delegado', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nombreDelegado');
+            $table->string('apellidoDelegado');
+            $table->string('nacionalidadDelegado');
+            $table->integer('edadDelegado');
         });
     }
 
