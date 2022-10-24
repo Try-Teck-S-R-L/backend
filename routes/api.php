@@ -26,7 +26,11 @@ Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionController@
 Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
 
 //rutas equipos
-Route::get('/equipos', 'App\Http\Controllers\InscripcionEquipoController@index');
+Route::get('/equipos', 'App\Http\Controllers\EquipoController@index'); //mostrar todos los registros
+Route::post('/equipos', 'App\Http\Controllers\EquipoController@store'); //crear un registro
+Route::put('/equipos/{id}', 'App\Http\Controllers\EquipoController@update'); //actualizar un registro
+Route::delete('/equipos/{id}', 'App\Http\Controllers\EquipoController@destroy'); //destruir un registro
+
 
 
 //rutas delegados
