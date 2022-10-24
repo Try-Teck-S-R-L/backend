@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('procedenciaEquipo');
             $table->string('qrEquipo');
             //llaves foraneas
-            $table->integer('delegado_idDelegado');
-            $table->intger('categoria_idCategoria');
-            $table->integer('preInscripcion_idPreinscripcion');
+            $table->unsignedBigInteger('delegado_idDelegado');
+            $table->unsignedBigInteger('categoria_idCategoria');
+            $table->unsignedBigInteger('preInscripcion_idPreinscripcion');
 
             $table->foreign('delegado_idDelegado')->references('idDelegado')
             ->on('delegado');
