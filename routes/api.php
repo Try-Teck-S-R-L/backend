@@ -30,7 +30,7 @@ Route::get('/equipos', 'App\Http\Controllers\InscripcionEquipoController@index')
 
 
 //rutas delegados
-Route::get('/delegado', 'App\Http\Controllers\DelegadoController@index');
-Route::post('/delegado', 'App\Http\Controllers\DelegadoController@store');
-Route::put('/delegado/{id}', 'App\Http\Controllers\DelegadoController@update');
-Route::delete('/delegado/{id}', 'App\Http\Controllers\DelegadoController@destroy');
+Route::get('/delegado', 'App\Http\Controllers\DelegadoController@index'); //mostrar todos los registros
+Route::post('/delegado', 'App\Http\Controllers\DelegadoController@store'); //crear un registro
+Route::put('/delegado/{id}', 'App\Http\Controllers\DelegadoController@update'); //actualizar un registro
+Route::delete('/delegado/{id}', 'App\Http\Controllers\DelegadoController@destroy'); //destruir un registro
