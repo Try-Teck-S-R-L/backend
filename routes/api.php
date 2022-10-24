@@ -40,3 +40,9 @@ Route::get('/admin', 'App\Http\Controllers\AdministradorController@index'); //mo
 Route::post('/admin', 'App\Http\Controllers\AdministradorController@store'); //crear un registro
 Route::put('/admin/{id}', 'App\Http\Controllers\AdministradorController@update'); //actualizar un registro
 Route::delete('/admin/{id}', 'App\Http\Controllers\AdministradorController@destroy'); //destruir un registro
+
+//rutas de categorias
+Route::get('/categoria', 'App\Http\Controllers\CategoriaController@index'); //mostrar todos los registros
+Route::post('/categoria', 'App\Http\Controllers\CategoriaController@store'); //crear un registro
+Route::put('/categoria/{id}', 'App\Http\Controllers\CategoriaController@update'); //actualizar un registro
+Route::delete('/categoria/{id}', 'App\Http\Controllers\CategoriaController@destroy'); //destruir un registro
