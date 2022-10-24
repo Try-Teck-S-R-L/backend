@@ -41,6 +41,9 @@ class DelegadoController extends Controller
         $delegados->apellidoDelegado = $request->apellidoDelegado;
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
         $delegados->edadDelegado = $request->edadDelegado;
+        $delegados->correoDelegado = $request->correoDelegado;
+        $delegados->contraseniaDelegado = $request ->contraseniaDeleado;
+
 
         $delegados->save();
     }
@@ -81,6 +84,8 @@ class DelegadoController extends Controller
         $delegados->apellidoDelegado = $request->apellidoDelegado;
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
         $delegados->edadDelegado = $request->edadDelegado;
+        $delegados->correoDelegado = $request->correoDelegado;
+        $delegados->contraseniaDelegado = $request ->contraseniaDeleado;
 
         $delegados->save();
         return $delegados;

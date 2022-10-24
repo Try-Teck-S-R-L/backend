@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('apellidoDelegado');
             $table->string('nacionalidadDelegado');
             $table->integer('edadDelegado');
+            $table->string('correoDelegado');
+            $table->string('contraseniaDelegado');
         });
     }
 
