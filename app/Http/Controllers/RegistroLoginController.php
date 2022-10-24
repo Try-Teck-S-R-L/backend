@@ -24,4 +24,11 @@ class RegistroLoginController extends Controller
             }
         }
     }
+
+    function logout()
+    {
+        if (session()->has('LoggedUser')) {
+            session()->pull('LoggedUser');
+        }
+    }
 }
