@@ -16,9 +16,14 @@ return new class extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nombreEquipo');
+            $table->string('nombreEquipo')->unsigned();
             $table->string('paisEquipo');
             $table->string('categoria');
+
+            //foreign keys 
+            $table->foreign('nombreEquipo')->references('nombreEquipo')->on('preincripcions')->
+            onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 
