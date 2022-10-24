@@ -34,3 +34,9 @@ Route::get('/delegado', 'App\Http\Controllers\DelegadoController@index'); //most
 Route::post('/delegado', 'App\Http\Controllers\DelegadoController@store'); //crear un registro
 Route::put('/delegado/{id}', 'App\Http\Controllers\DelegadoController@update'); //actualizar un registro
 Route::delete('/delegado/{id}', 'App\Http\Controllers\DelegadoController@destroy'); //destruir un registro
+
+//rutas administrador
+Route::get('/admin', 'App\Http\Controllers\AdministradorController@index'); //mostrar todos los registros
+Route::post('/admin', 'App\Http\Controllers\AdministradorController@store'); //crear un registro
+Route::put('/admin/{id}', 'App\Http\Controllers\AdministradorController@update'); //actualizar un registro
+Route::delete('/admin/{id}', 'App\Http\Controllers\AdministradorController@destroy'); //destruir un registro
