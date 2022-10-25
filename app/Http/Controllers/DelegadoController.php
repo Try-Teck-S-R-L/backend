@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Equipo;
-use App\Models\Preinscripcion;
+use App\Models\Delegado;
 
-class EquipoController extends Controller
+class DelegadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        $equipo = Equipo::all();
-        return $equipo;
+        $delegados = Delegado::all();
+        return $delegados;
     }
 
     /**
@@ -37,15 +36,16 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        $equipo = new Equipo();
-        $equipo->nombreEquipo = $request->nombreEquipo;
-        $equipo->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipo->qrEquipo = $request->qrEquipo;
-        $equipo->delegado_idDelegado = $request->delegado_idDelegado;
-        $equipo->categoria_idCategoria = $request->categoria_idCategoria;
-        $equipo->preInscripcion_idPreinscripcion = $request->preInscripcion_idPreinscripcion;
+        $delegados = new Delegado();
+        $delegados->nombreDelegado = $request->nombreDelegado;
+        $delegados->apellidoDelegado = $request->apellidoDelegado;
+        $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
+        $delegados->edadDelegado = $request->edadDelegado;
+        $delegados->correoDelegado = $request->correoDelegado;
+        $delegados->contraseniaDelegado = $request ->contraseniaDeleado;
 
-        $equipo->save();
+
+        $delegados->save();
     }
 
     /**
@@ -79,16 +79,16 @@ class EquipoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $equipo = Equipo::findOrFail($request->id);
-        $equipo->nombreEquipo = $request->nombreEquipo;
-        $equipo->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipo->qrEquipo = $request->qrEquipo;
-        $equipo->delegado_idDelegado = $request->delegado_idDelegado;
-        $equipo->categoria_idCategoria = $request->categoria_idCategoria;
-        $equipo->preInscripcion_idPreinscripcion = $request->preInscripcion_idPreinscripcion;
+        $delegados = Delegado::findOrFail($request->id);
+        $delegados->nombreDelegado = $request->nombreDelegado;
+        $delegados->apellidoDelegado = $request->apellidoDelegado;
+        $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
+        $delegados->edadDelegado = $request->edadDelegado;
+        $delegados->correoDelegado = $request->correoDelegado;
+        $delegados->contraseniaDelegado = $request ->contraseniaDeleado;
 
-        $equipo->save();
-        return $equipo;
+        $delegados->save();
+        return $delegados;
     }
 
     /**
@@ -99,7 +99,7 @@ class EquipoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $equipo = Equipo::destroy($request->id);
-        return $equipo;
+        $delegados = Delegado::destroy($request->id);
+        return $delegados;
     }
 }

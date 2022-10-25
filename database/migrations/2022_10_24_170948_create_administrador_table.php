@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('equipos', function (Blueprint $table) {
+        Schema::create('administrador', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nombreEquipo');
-            $table->string('paisEquipo');
-            $table->string('categoria');
+            $table->string('usernameAdministrador');
+            $table->string('contraseniaAdministrador');
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inscripcion_equipos');
+        Schema::dropIfExists('administrador');
     }
 };

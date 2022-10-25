@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administrador;
 use Illuminate\Http\Request;
-use App\Models\Equipo;
-use App\Models\Preinscripcion;
 
-class EquipoController extends Controller
+class AdministradorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        $equipo = Equipo::all();
-        return $equipo;
+        $administrador = Administrador::all();
+        return $administrador;
     }
 
     /**
@@ -37,15 +36,10 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        $equipo = new Equipo();
-        $equipo->nombreEquipo = $request->nombreEquipo;
-        $equipo->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipo->qrEquipo = $request->qrEquipo;
-        $equipo->delegado_idDelegado = $request->delegado_idDelegado;
-        $equipo->categoria_idCategoria = $request->categoria_idCategoria;
-        $equipo->preInscripcion_idPreinscripcion = $request->preInscripcion_idPreinscripcion;
-
-        $equipo->save();
+        $administrador = New Administrador();
+        $administrador->usernameAdministrador = $request ->usernameAdministrador;
+        $administrador->contraseniaAdministrador = $request ->contraseniaAdministrador;
+        $administrador->save();
     }
 
     /**
@@ -79,16 +73,11 @@ class EquipoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $equipo = Equipo::findOrFail($request->id);
-        $equipo->nombreEquipo = $request->nombreEquipo;
-        $equipo->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipo->qrEquipo = $request->qrEquipo;
-        $equipo->delegado_idDelegado = $request->delegado_idDelegado;
-        $equipo->categoria_idCategoria = $request->categoria_idCategoria;
-        $equipo->preInscripcion_idPreinscripcion = $request->preInscripcion_idPreinscripcion;
-
-        $equipo->save();
-        return $equipo;
+        $administrador = Administrador::findOrFail($request->id);
+        $administrador->usernameAdministrador = $request->usernameAdministrador;
+        $administrador->contraseniaAdministrador = $request->contraseniaAdministrador;
+        $administrador->save();
+        return $administrador;
     }
 
     /**
@@ -99,7 +88,7 @@ class EquipoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $equipo = Equipo::destroy($request->id);
-        return $equipo;
+        $administrador = Administrador::destro($request->id);
+        return $administrador;
     }
 }
