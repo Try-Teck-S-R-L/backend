@@ -38,9 +38,11 @@ class EquipoController extends Controller
     public function store(Request $request)
     {
         $equipo = new Equipo();
+        $equipo->id = $request->id;
         $equipo->nombreEquipo = $request->nombreEquipo;
         $equipo->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipo->qrEquipo = $request ->qrEquipo;
+        $equipo->colorCamiseta = $request ->colorCamiseta;
+        $equipo->logoEquipo = $request ->logoEquipo;
         $equipo->delegado_idDelegado= $request->delegado_idDelegado;
         $equipo->categoria_idCategoria = $request -> categoria_idCategoria;
         $equipo->preInscripcion_idPreinscripcion = $request->preInscripcion_idPreinscripcion;
@@ -80,13 +82,15 @@ class EquipoController extends Controller
     public function update(Request $request, $id)
     {
         $equipo = Equipo::findOrFail($request->id);
+        $equipo->id = $request->id;
         $equipo->nombreEquipo = $request->nombreEquipo;
         $equipo->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipo->qrEquipo = $request ->qrEquipo;
+        $equipo->colorCamiseta = $request ->colorCamiseta;
+        $equipo->logoEquipo = $request ->logoEquipo;
         $equipo->delegado_idDelegado= $request->delegado_idDelegado;
         $equipo->categoria_idCategoria = $request -> categoria_idCategoria;
         $equipo->preInscripcion_idPreinscripcion = $request->preInscripcion_idPreinscripcion;
-
+        
         $equipo->save();
         return $equipo;
     }

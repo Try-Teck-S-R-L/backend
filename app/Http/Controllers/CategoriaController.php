@@ -37,6 +37,7 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $categoria = new Categoria();
+        $categoria->id = $request->idCategoria;
         $categoria->nombreCategoria = $request->nombreCategoria;
         $categoria->save();
     }
@@ -44,10 +45,10 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idCategoria
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idCategoria)
     {
         //
     }
@@ -73,6 +74,7 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {
         $categoria = Categoria::findOrFail($request->id);
+        $categoria->idCategoria = $request->idCategoria;
         $categoria->nombreCategoria = $request->nombreCategoria;
         $categoria->save();
         return $categoria;
