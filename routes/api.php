@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegistroLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -68,3 +69,10 @@ Route::get('/categoria', 'App\Http\Controllers\CategoriaController@index'); //mo
 Route::post('/categoria', 'App\Http\Controllers\CategoriaController@store'); //crear un registro
 Route::put('/categoria/{id}', 'App\Http\Controllers\CategoriaController@update'); //actualizar un registro
 Route::delete('/categoria/{id}', 'App\Http\Controllers\CategoriaController@destroy'); //destruir un registro
+
+
+//rutas de login 
+
+Route::post('/auth/verificar', [RegistroLoginController::class, 'verificar']);
+Route::get('/auth/logout', [RegistroLoginController::class, 'logout']);
+Route::post('/auth/prueba', [RegistroLoginController::class, 'prueba']);

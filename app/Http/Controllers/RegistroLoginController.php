@@ -4,31 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Models\Delegado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RegistroLoginController extends Controller
 {
     //function registrar(){}
 
-    function iniciar(Request $request)
+    public function verificar(Request $request)
     {
+
+        if (Session::has('loginId')) {
+            Session::pull('loginId');
+        }
 
         $userInfo = Delegado::where('correoDelegado', '=', $request->correoDelegado)->first();
 
-        if (!$userInfo) {
-            return back()->with('fail', 'No reconocemos tu correo electronico');
+        if ($userInfo) {
+            //if (Hash::check($request->password, $userInfo->password)) {
+            if ($request->contraseniaDelegado == $userInfo->contraseniaDelegado) {
+                $request->session()->put('loginId', $userInfo->id);
+                return response(['success', Session::get('loginId')]);
+                //return redirect('dashboard');
+            } else {
+                return back()->with('fail', 'contrasena no coincide');
+            }
+        } else {
+            return back()->with('fail', 'este email no esta registrado');
+        }
+        /*if (!$userInfo) {
+            //return back()->with('fail', 'No reconocemos tu correo electronico');
+            return response(['message' => 'credencial invalida']);
         } else {
             if ($request->contrasenaDelegado == $userInfo->contrasenaDelegado) {
                 $request->session()->put('LoggedUser', $userInfo->idDelegado);
             } else {
-                return back()->with('fail', 'Contrasena incorrecta');
+                //return response(['user' => session()->get()]);
             }
+        }*/
+    }
+
+    public function logout()
+    {
+        if (Session::has('loginId')) {
+            Session::pull('loginId');
         }
     }
 
-    function logout()
+
+    public function prueba()
     {
-        if (session()->has('LoggedUser')) {
-            session()->pull('LoggedUser');
-        }
+        return response(['message', Session::get('loginId')]);
     }
 }

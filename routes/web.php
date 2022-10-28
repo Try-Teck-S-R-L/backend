@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistroLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::post('/auth/verificar', [RegistroLoginController::class, 'verificar']);
+Route::get('/auth/logout', [RegistroLoginController::class, 'logout']);
+Route::post('/auth/prueba', [RegistroLoginController::class, 'prueba']);
