@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('preinscripcions', function (Blueprint $table) {
-            $table->id();
-            $table->string('categoria');
+            $table->engine = 'InnoDB';
+            $table->increments('idpreInscipcion');
             $table->string('nombreDelegado');
             $table->string('emailDelegado');
             $table->date('fechaPreinscripcion');

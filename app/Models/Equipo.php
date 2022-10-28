@@ -9,6 +9,6 @@ class Equipo extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nombreEquipo', 'procedenciaEquipo', 'qrEquipo', 'delegado_idDelegado', 'categoria_idCategoria', 'preInscripcion_idPreinscripcion'
+        'id', 'nombreEquipo', 'procedenciaEquipo', 'colorCamiseta', 'logoEquipo', 'delegado_idDelegado', 'categoria_idCategoria', 'preInscripcion_idPreinscripcion'
     ];
 }

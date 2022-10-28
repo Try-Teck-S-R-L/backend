@@ -37,6 +37,7 @@ class DelegadoController extends Controller
     public function store(Request $request)
     {
         $delegados = new Delegado();
+        $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;
         $delegados->apellidoDelegado = $request->apellidoDelegado;
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
@@ -80,6 +81,7 @@ class DelegadoController extends Controller
     public function update(Request $request, $id)
     {
         $delegados = Delegado::findOrFail($request->id);
+        $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;
         $delegados->apellidoDelegado = $request->apellidoDelegado;
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;

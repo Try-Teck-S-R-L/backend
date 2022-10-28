@@ -37,37 +37,14 @@ class PreinscripcionController extends Controller
     public function store(Request $request)
     {
         $preinscripciones = new Preinscripcion();
-
-        $preinscripciones->categoria = $request->categoria;
-        $preinscripciones->emailDelegado = $request->emailDelegado;
+        $preinscripciones->idpreInscipcion = $request->idpreInscipcion;
+        $preinscripciones->categorias = $request->categorias;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
         $preinscripciones->fechaPreinscripcion = $request->fechaPreinscripcion;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
         $preinscripciones->paisEquipo = $request->paisEquipo;
-        //$preinscripciones->voucherPreinscripcion = 'aea';
-        //$imagen = $request->voucherPreinscripcion;
-        //$size = $imagen->getSize();
-        //$size = $request->file('voucherPreinscripcion')->getSize();
-        //$name = $request->file('voucherPreinscripcion')->getClientOriginalName();
-        if ($request->hasFile('voucherPreinscripcion')) {
 
-            $voucher = $request->file('voucherPreinscripcion');
-            $completeFileName = $request->file('voucherPreinscripcion')->getClientOriginalName();
-            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
-            $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
-            $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
-            $path = $voucher->move('preinscripcionesImg/', $compPic);
-            $preinscripciones->voucherPreinscripcion = $path;
-        }
-        if ($preinscripciones->save()) {
-            return ['status' => true, 'message' => 'POST guardado'];
-        } else {
-            return ['status' => false, 'message' => 'algo salio mal'];
-        }
-
-        //$preinscripciones->voucherPreinscripcion = $request->voucherPreinscripcion;
-
-        //$preinscripciones->save();
+        $preinscripciones->save();
     }
 
     /**
