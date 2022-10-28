@@ -23,13 +23,13 @@ class RegistroLoginController extends Controller
             //if (Hash::check($request->password, $userInfo->password)) {
             if ($request->contraseniaDelegado == $userInfo->contraseniaDelegado) {
                 $request->session()->put('loginId', $userInfo->id);
-                return response(['success', Session::get('loginId')]);
+                return response(['exito', Session::get('loginId')]);
                 //return redirect('dashboard');
             } else {
-                return back()->with('fail', 'contrasena no coincide');
+                return response(['fail', 'contrasena no coincide']);
             }
         } else {
-            return back()->with('fail', 'este email no esta registrado');
+            return response(['fail', $request->correoDelegado, 'este email no esta registrado']);
         }
         /*if (!$userInfo) {
             //return back()->with('fail', 'No reconocemos tu correo electronico');
