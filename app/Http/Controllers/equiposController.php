@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
+use App\Models\equipos;
 
-class PreinscripcionController extends Controller
+class equiposController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PreinscripcionController extends Controller
      */
     public function index()
     {
-        $preinscripciones = Preinscripcion::all();
-        return $preinscripciones;
+        $equipos = equipos::all();
+        return $equipos;
     }
 
     /**
@@ -36,15 +36,18 @@ class PreinscripcionController extends Controller
      */
     public function store(Request $request)
     {
-        $preinscripciones = new Preinscripcion();
-        $preinscripciones->idpreInscipcion = $request->idpreInscipcion;
-        $preinscripciones->categorias = $request->categorias;
-        $preinscripciones->nombreDelegado = $request->nombreDelegado;
-        $preinscripciones->fecha = $request->fecha;
-        $preinscripciones->nombreEquipo = $request->nombreEquipo;
-        $preinscripciones->paisEquipo = $request->paisEquipo;
+        $equipos = new equipos();
+        $equipos->idEquipo = $request->idEquipo;
+        $equipos->nombreEquipo = $request->nombreEquipo;
+        $equipos->procedenciaEquipo = $request->procedenciaEquipo;
+        $equipos->colorCamiseta = $request ->colorCamiseta;
+        $equipos->logoEquipo = $request ->logoEquipo;
+        $equipos->idDelegado= $request->idDelegado;
+        $equipos->idCategoria = $request -> idCategoria;
+        $equipos->idPreinscripcion = $request->idPreinscripcion;
 
-        $preinscripciones->save();
+        $equipos->save();
+
     }
 
     /**
@@ -78,7 +81,18 @@ class PreinscripcionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $equipos = equipos::findOrFail($request->id);
+        $equipos->idEquipo = $request->idEquipo;
+        $equipos->nombreEquipo = $request->nombreEquipo;
+        $equipos->procedenciaEquipo = $request->procedenciaEquipo;
+        $equipos->colorCamiseta = $request ->colorCamiseta;
+        $equipos->logoEquipo = $request ->logoEquipo;
+        $equipos->idDelegado= $request->idDelegado;
+        $equipos->idCategoria = $request -> idCategoria;
+        $equipos->idPreinscripcion = $request->idPreinscripcion;
+
+        $equipos->save();
+        return $equipos;
     }
 
     /**
@@ -89,6 +103,7 @@ class PreinscripcionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $equipos = equipos::destroy($request->id);
+        return $equipos;
     }
 }

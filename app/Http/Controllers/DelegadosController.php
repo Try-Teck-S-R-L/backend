@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Delegado;
+use App\Models\delegados;
 
-class DelegadoController extends Controller
+class DelegadosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class DelegadoController extends Controller
      */
     public function index()
     {
-        $delegados = Delegado::all();
+        $delegados = Delegados::all();
         return $delegados;
     }
 
@@ -36,7 +36,7 @@ class DelegadoController extends Controller
      */
     public function store(Request $request)
     {
-        $delegados = new Delegado();
+        $delegados = new Delegados();
         $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;
         $delegados->apellidoDelegado = $request->apellidoDelegado;
@@ -80,7 +80,7 @@ class DelegadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $delegados = Delegado::findOrFail($request->id);
+        $delegados = Delegados::findOrFail($request->id);
         $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;
         $delegados->apellidoDelegado = $request->apellidoDelegado;
@@ -101,7 +101,7 @@ class DelegadoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $delegados = Delegado::destroy($request->id);
+        $delegados = Delegados::destroy($request->id);
         return $delegados;
     }
 }
