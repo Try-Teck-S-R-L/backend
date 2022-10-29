@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Equipo;
 use App\Models\Preinscripcion;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class EquipoController extends Controller
 {
@@ -15,8 +17,26 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        $equipo = Equipo::all();
+        //$equipo = Equipo::all()->where('delegado_idDelegado', Session::get('loginId'))->get();
+        $equipo = DB::table('equipos')->get();
+        $idAux =  Session::get('loginId');
+        //$equipo = DB::table('equipos')->where('delegado_idDelegado', $idAux)->get();
         return $equipo;
+    }
+
+    public function obtener(Request $request)
+    {
+        //$equipo = Equipo::all()->where('delegado_idDelegado', Session::get('loginId'))->get();
+        //$equipo = DB::table('equipos')->get();
+        //$idAux =  Session::get('loginId');
+        $equipo = DB::table('equipos')->where('delegado_idDelegado', $request->idDelegado)->get();
+        return $equipo;
+        return response(['message', $request->all()]);
+    }
+
+    public function prueba2()
+    {
+        return response(['message', Session::get('loginId')]);
     }
 
     /**

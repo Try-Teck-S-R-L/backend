@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\RegistroLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +50,8 @@ Route::get('/equipos', 'App\Http\Controllers\EquipoController@index'); //mostrar
 Route::post('/equipos', 'App\Http\Controllers\EquipoController@store'); //crear un registro
 Route::put('/equipos/{id}', 'App\Http\Controllers\EquipoController@update'); //actualizar un registro
 Route::delete('/equipos/{id}', 'App\Http\Controllers\EquipoController@destroy'); //destruir un registro
-
+Route::post('/pedirequipos', [EquipoController::class, 'obtener']); //mostrar todos los registros
+//Route::get('/prueba2', 'App\Http\Controllers\EquipoController@prueba2');
 
 
 //rutas delegados
@@ -75,4 +77,5 @@ Route::delete('/categoria/{id}', 'App\Http\Controllers\CategoriaController@destr
 
 Route::post('/auth/verificar', [RegistroLoginController::class, 'verificar']);
 Route::get('/auth/logout', [RegistroLoginController::class, 'logout']);
-Route::post('/auth/prueba', [RegistroLoginController::class, 'prueba']);
+Route::get('/auth/prueba', [RegistroLoginController::class, 'prueba']);
+Route::get('/auth/prueba2', [EquipoController::class, 'prueba2']);

@@ -23,6 +23,7 @@ class RegistroLoginController extends Controller
             //if (Hash::check($request->password, $userInfo->password)) {
             if ($request->contraseniaDelegado == $userInfo->contraseniaDelegado) {
                 $request->session()->put('loginId', $userInfo->id);
+                Session::save();
                 return response(['exito', Session::get('loginId')]);
                 //return redirect('dashboard');
             } else {

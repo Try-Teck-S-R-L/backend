@@ -26,11 +26,11 @@ return new class extends Migration
             $table->integer('preInscripcion_idPreinscripcion')->unsigned();
 
             $table->foreign('delegado_idDelegado')->references('idDelegado')
-            ->on('delegado');
+                ->on('delegado');
             $table->foreign('categoria_idCategoria')->references('idCategoria')
-            ->on('categoria');
+                ->on('categoria');
             $table->foreign('preInscripcion_idPreinscripcion')->references('idpreInscipcion')
-            ->on('preinscripcions');
+                ->on('preinscripcions');
             $table->timestamps();
         });
     }
