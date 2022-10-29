@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EquipoController;
+use App\Http\Controllers\PreinscripcionController;
 use App\Http\Controllers\RegistroLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //rutas preincripciones
 Route::get('/preinscripciones', 'App\Http\Controllers\PreinscripcionController@index');
 Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionController@store');
+Route::post('/preinscripcionBuscada', [PreinscripcionController::class, 'obtenerEquipo']); //mostrar todos los registros
 Route::get('/jugador', 'App\Http\Controllers\jugadorController@index'); //para tener todos los registros y mostrarlos
 Route::post('/jugador', 'App\Http\Controllers\jugadorController@store'); //crear un registro
 Route::put('/jugador/{id}', 'App\Http\Controllers\jugadorController@update'); //actualizar un registro

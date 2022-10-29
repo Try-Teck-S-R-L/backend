@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PreinscripcionController extends Controller
 {
@@ -18,6 +19,15 @@ class PreinscripcionController extends Controller
         return $preinscripciones;
     }
 
+
+    public function obtenerEquipo(Request $request)
+    {
+        $equipo = DB::table('preinscripcions')->where(
+            ['delegado_idDelegado', $request->idDelegado],
+            ['idpreInscipcion', $request->idpreInscipcion]
+        )->first();
+        return $equipo;
+    }
     /**
      * Show the form for creating a new resource.
      *

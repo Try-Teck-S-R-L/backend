@@ -34,6 +34,7 @@ class EquipoController extends Controller
         return response(['message', $request->all()]);
     }
 
+
     public function prueba2()
     {
         return response(['message', Session::get('loginId')]);
