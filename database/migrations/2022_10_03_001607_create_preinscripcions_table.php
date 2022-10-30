@@ -18,6 +18,7 @@ return new class extends Migration
             $table->increments('idpreInscipcion');
             $table->string('nombreDelegado');
             $table->string('emailDelegado');
+            $table->string('categoria');
             $table->date('fechaPreinscripcion');
             $table->string('nombreEquipo');
             $table->string('paisEquipo');
