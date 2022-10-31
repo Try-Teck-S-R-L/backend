@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\preinscripciones;
+use Illuminate\Support\Facades\DB;
 
 class PreinscripcionesController extends Controller
 {
@@ -16,6 +17,14 @@ class PreinscripcionesController extends Controller
     {
         $preinscripciones = preinscripciones::all();
         return $preinscripciones;
+    }
+
+    public function obtenerEquipo(Request $request)
+    {
+        $equipo = DB::table('preinscripcions')->where(
+            ['idpreInscipcion', $request->id]
+        )->first();
+        return $equipo;
     }
 
     /**

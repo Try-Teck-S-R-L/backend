@@ -13,11 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-<<<<<<< HEAD:database/migrations/2022_10_10_225712_create_categorias_table.php
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombreValor');
-=======
         Schema::create('preinscripciones', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('idPreinscripcion');
@@ -25,13 +20,19 @@ return new class extends Migration
             $table->string('email');
             $table->string('nombreEquipo');
             $table->string('pais');
-            $table->string('categoria');
             $table->string('numeroComprobante');
             $table->integer('montoPago');
             $table->date('fechaPago');
             $table->string('fotoComprobante');
->>>>>>> delegado:database/migrations/2022_10_28_203927_create_preinscripciones_table.php
             $table->timestamps();
+
+            $table->integer('idDelegado')->unsigned();
+            $table->integer('idCategoria')->unsigned();
+
+            $table->foreign('idDelegado')->references('idDelegado')
+                ->on('delegados');
+            $table->foreign('idCategoria')->references('idCategoria')
+                ->on('categorias');
         });
     }
 

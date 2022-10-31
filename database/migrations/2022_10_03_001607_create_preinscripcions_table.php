@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('preinscripcions', function (Blueprint $table) {
+        /*Schema::create('preinscripcions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('idpreInscipcion');
             $table->string('nombreDelegado');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('paisEquipo');
             $table->string('voucherPreinscripcion');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**

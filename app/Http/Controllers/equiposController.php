@@ -19,6 +19,9 @@ class EquiposController extends Controller
         return $equipos;
     }
 
+    public function leerEquipoXid(Request $request)
+    {
+    }
 
     public function obtenerEquipo(Request $request)
     {
@@ -28,6 +31,19 @@ class EquiposController extends Controller
         )->first();
         return $equipo;
     }
+
+    public function obtener(Request $request)
+    {
+        //$equipo = Equipo::all()->where('delegado_idDelegado', Session::get('loginId'))->get();
+        //$equipo = DB::table('equipos')->get();
+        //$idAux =  Session::get('loginId');
+        //$equipo = DB::table('equipos')->where('delegado_idDelegado', $request->idDelegado)->get();
+        $equipo = DB::table('equipos')->join('categoria', 'equipos.categoria_idCategoria', '=', 'categoria.idCategoria')
+            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categoria.nombreCategoria', 'equipos.procedenciaEquipo')->get();
+        return $equipo;
+        return response(['message', $request->all()]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

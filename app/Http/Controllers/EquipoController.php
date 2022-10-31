@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Equipo;
-use App\Models\Preinscripcion;
+use App\Models\equipos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -60,7 +60,7 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        $equipo = new Equipo();
+        $equipo = new equipos();
         $equipo->id = $request->id;
         $equipo->nombreEquipo = $request->nombreEquipo;
         $equipo->procedenciaEquipo = $request->procedenciaEquipo;
@@ -104,7 +104,7 @@ class EquipoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $equipo = Equipo::findOrFail($request->id);
+        $equipo = equipos::findOrFail($request->id);
         $equipo->id = $request->id;
         $equipo->nombreEquipo = $request->nombreEquipo;
         $equipo->procedenciaEquipo = $request->procedenciaEquipo;
@@ -126,7 +126,7 @@ class EquipoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $equipo = Equipo::destroy($request->id);
+        $equipo = equipos::destroy($request->id);
         return $equipo;
     }
 }
