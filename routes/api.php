@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\EquiposController;
-use App\Http\Controllers\PreinscripcionController;
 use App\Http\Controllers\PreinscripcionesController;
 use App\Http\Controllers\RegistroLoginController;
 use Illuminate\Http\Request;
@@ -48,6 +47,8 @@ Route::get('/preinscripciones', 'App\Http\Controllers\PreinscripcionesController
 Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionesController@store');
 Route::put('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@update'); //actualizar un registro
 Route::get('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@obtenerPreinscIndiviidual');
+Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obtenerPreinscIndiviidual']);
+
 
 //rutas jugadores
 Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');

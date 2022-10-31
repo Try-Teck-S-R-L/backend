@@ -32,7 +32,7 @@ class EquiposController extends Controller
         $equipo = DB::table('preinscripciones')->where(
             ['delegado_idDelegado', $request->idDelegado],
             ['idpreInscipcion', $request->idpreInscipcion]
-        )->first();
+        )->get();
         return $equipo;
     }
 

@@ -29,7 +29,7 @@ class PreinscripcionesController extends Controller
     {
         $equipo = DB::table('preinscripciones')->where(
             ['idpreInscipcion', $request->id]
-        )->first();
+        )->get();
         return $equipo;
     }
 
