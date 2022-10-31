@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Categorias extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombreValor'];
+    protected $fillable = ['idCategoria', 'nombreCategoria'];
 }

@@ -15,22 +15,22 @@ return new class extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->increments('idEquipo');
             $table->string('nombreEquipo');
             $table->string('procedenciaEquipo');
             $table->string('colorCamiseta');
             $table->string('logoEquipo');
             //llaves foraneas
-            $table->integer('delegado_idDelegado')->unsigned();
-            $table->integer('categoria_idCategoria')->unsigned();
-            $table->integer('preInscripcion_idPreinscripcion')->unsigned();
+            $table->integer('idDelegado')->unsigned();
+            $table->integer('idCategoria')->unsigned();
+            $table->integer('idPreinscripcion')->unsigned();
 
-            $table->foreign('delegado_idDelegado')->references('idDelegado')
-                ->on('delegado');
-            $table->foreign('categoria_idCategoria')->references('idCategoria')
-                ->on('categoria');
-            $table->foreign('preInscripcion_idPreinscripcion')->references('idpreInscipcion')
-                ->on('preinscripcions');
+            $table->foreign('idDelegado')->references('idDelegado')
+                ->on('delegados');
+            $table->foreign('idCategoria')->references('idCategoria')
+                ->on('categorias');
+            $table->foreign('idPreinscripcion')->references('idPreinscripcion')
+                ->on('preinscripciones');
             $table->timestamps();
         });
     }
