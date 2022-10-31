@@ -39,7 +39,7 @@ class CategoriasController extends Controller
         //validaciones de categorias
         $validated = $request->validate([
             'id' => 'bail|required|unique:categorias',
-            'nombreCategoria => required'
+            'nombreCategoria' => 'required'
         ]);
         
         $categoria = new Categorias();
