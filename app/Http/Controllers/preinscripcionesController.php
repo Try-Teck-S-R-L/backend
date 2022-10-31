@@ -19,12 +19,31 @@ class PreinscripcionesController extends Controller
         return $preinscripciones;
     }
 
+
+
+
+
+
+
     public function obtenerEquipo(Request $request)
     {
-        $equipo = DB::table('preinscripcions')->where(
+        $equipo = DB::table('preinscripciones')->where(
             ['idpreInscipcion', $request->id]
         )->first();
         return $equipo;
+    }
+
+    public function obtenerPreinscIndiviidual(Request $request)
+    {
+        //$equipo = Equipo::all()->where('delegado_idDelegado', Session::get('loginId'))->get();
+        //$equipo = DB::table('equipos')->get();
+        //$idAux =  Session::get('loginId');
+        $equipo = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)->first();
+        /*$equipo = DB::table('preinscripciones')->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
+            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.procedenciaEquipo')->get();
+        */
+        return $equipo;
+        return response(['message', $request->all()]);
     }
 
     /**
@@ -48,15 +67,15 @@ class PreinscripcionesController extends Controller
         $preinscripciones = new preinscripciones();
         $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
-        $preinscripciones->email = $request->email;
-        $preinscripciones->fecha = $request->fecha;
+        $preinscripciones->email = $request->emailDelegado;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
-        $preinscripciones->pais = $request->pais;
-        $preinscripciones->categoria = $request->categoria;
+        $preinscripciones->pais = $request->paisEquipo;
         $preinscripciones->numeroComprobante = $request->numeroComprobante;
         $preinscripciones->montoPago = $request->montoPago;
-        $preinscripciones->fechaPago = $request->fechaPago;
-        $preinscripciones->fotoComprobante = $request->fotoComprobante;
+        $preinscripciones->fechaPreinscripcion = $request->fechaPreinscripcion;
+        $preinscripciones->fotoComprobante = $request->voucherPreinscripcion;
+        $preinscripciones->idDelegado = $request->idDelegado;
+        $preinscripciones->idCategoria = $request->idCategoria;
 
         $preinscripciones->save();
     }

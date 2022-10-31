@@ -19,18 +19,35 @@ class EquiposController extends Controller
         return $equipos;
     }
 
-    public function leerEquipoXid(Request $request)
-    {
-    }
+
+
+
+
+
+
+
 
     public function obtenerEquipo(Request $request)
     {
-        $equipo = DB::table('preinscripcions')->where(
+        $equipo = DB::table('preinscripciones')->where(
             ['delegado_idDelegado', $request->idDelegado],
             ['idpreInscipcion', $request->idpreInscipcion]
         )->first();
         return $equipo;
     }
+
+    public function filtrarLista(Request $request)
+    {
+        //$equipo = DB::table('equipos')->get();
+        /*$equipo = DB::table('equipos')->select('equipos.idPreinscripcion')
+            ->get();*/
+        $equipo = DB::table('equipos')->where('idDelegado', '=', $request->idDelegado)->get();
+        return $equipo;
+    }
+
+
+
+
 
     public function obtener(Request $request)
     {
@@ -38,11 +55,27 @@ class EquiposController extends Controller
         //$equipo = DB::table('equipos')->get();
         //$idAux =  Session::get('loginId');
         //$equipo = DB::table('equipos')->where('delegado_idDelegado', $request->idDelegado)->get();
-        $equipo = DB::table('equipos')->join('categoria', 'equipos.categoria_idCategoria', '=', 'categoria.idCategoria')
-            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categoria.nombreCategoria', 'equipos.procedenciaEquipo')->get();
+        $equipo = DB::table('equipos')->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
+            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.procedenciaEquipo')->get();
         return $equipo;
         return response(['message', $request->all()]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

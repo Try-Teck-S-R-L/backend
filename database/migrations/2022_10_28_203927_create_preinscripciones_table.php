@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('pais');
             $table->string('numeroComprobante');
             $table->integer('montoPago');
-            $table->date('fechaPago');
+            $table->date('fechaPreinscripcion');
             $table->string('fotoComprobante');
             $table->timestamps();
 

@@ -30,8 +30,8 @@ class EquipoController extends Controller
         //$equipo = DB::table('equipos')->get();
         //$idAux =  Session::get('loginId');
         //$equipo = DB::table('equipos')->where('delegado_idDelegado', $request->idDelegado)->get();
-        $equipo = DB::table('equipos')->join('categoria', 'equipos.categoria_idCategoria', '=', 'categoria.idCategoria')
-            ->select('equipos.nombreEquipo', 'categoria.nombreCategoria', 'equipos.procedenciaEquipo')->get();
+        $equipo = DB::table('equipos')->join('categorias', 'equipos.categoria_idCategoria', '=', 'categorias.idCategoria')
+            ->select('equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.procedenciaEquipo')->get();
         return $equipo;
         return response(['message', $request->all()]);
     }
