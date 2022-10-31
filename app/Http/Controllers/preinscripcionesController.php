@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\preinscripciones;
 
-class preinscripcionesController extends Controller
+class PreinscripcionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -83,7 +83,7 @@ class preinscripcionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
+        /* $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
         $preinscripciones->email = $request->email;
         $preinscripciones->fecha = $request->fecha;
@@ -96,7 +96,7 @@ class preinscripcionesController extends Controller
         $preinscripciones->fotoComprobante = $request->fotoComprobante;
         
         $preinscripciones->save();
-        return $preinscripciones;
+        return $preinscripciones;*/
     }
 
     /**

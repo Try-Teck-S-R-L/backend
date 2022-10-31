@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\equipos;
 use Illuminate\Support\Facades\DB;
 
-class equiposController extends Controller
+class EquiposController extends Controller
 {
     /**
      * Display a listing of the resource.

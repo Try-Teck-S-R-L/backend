@@ -13,11 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-<<<<<<< HEAD:database/migrations/2022_10_10_225712_create_categorias_table.php
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombreValor');
-=======
         Schema::create('preinscripciones', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('idPreinscripcion');
@@ -30,7 +25,6 @@ return new class extends Migration
             $table->integer('montoPago');
             $table->date('fechaPago');
             $table->string('fotoComprobante');
->>>>>>> delegado:database/migrations/2022_10_28_203927_create_preinscripciones_table.php
             $table->timestamps();
         });
     }

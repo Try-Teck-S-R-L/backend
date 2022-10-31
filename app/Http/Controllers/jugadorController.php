@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\jugador;
 
-class jugadorController extends Controller
+class JugadorController extends Controller
 {
     /**
      * Display a listing of the resource.
