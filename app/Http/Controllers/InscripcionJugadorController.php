@@ -37,7 +37,7 @@ class InscripcionJugadorController extends Controller
     public function store(Request $request)
     {
         //validaciones jugador
-        $validated = $request->validate([
+        $request->validate([
                 'ciJugador'=> 'bail|required|unique:jugadores',
                 'categoria' => 'required',
                 'nombresJugador' => 'required',
@@ -48,7 +48,7 @@ class InscripcionJugadorController extends Controller
                 'edadJugador' => 'required|numeric',
                 'posicionJugador' => 'required|numeric'
         ]); 
-        
+
         $inscripcionJugador = new InscripcionJugador();
         $inscripcionJugador -> ciJugador = $request->ciJugador;
         $inscripcionJugador -> categoria = $request->categoria;

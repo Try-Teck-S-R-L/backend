@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\preinscripciones;
+use DateTime;
 
 class preinscripcionesController extends Controller
 {
@@ -35,12 +36,24 @@ class preinscripcionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+         //validaciones preinscripciones
+        $request->validate([
+            'idPreinscripcion'=> 'bail|required|unique:preinscripcion',
+            'nombreDelegado' => 'required',
+            'email' => 'required|email',
+            'nombreEquipo' => 'required|unique:equipos',
+            'pais' => 'required', 
+            'categoria' => 'required',
+            'numeroComprobante' => 'required|numeric',
+            'montoPago' => 'required|numeric',
+            'fechaPago' => 'required|before_or_equal:2022/12/12',
+            'fotoComprobante' => 'required|image'
+    ]); 
         $preinscripciones = new preinscripciones();
         $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
         $preinscripciones->email = $request->email;
-        $preinscripciones->fecha = $request->fecha;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
         $preinscripciones->pais = $request->pais;
         $preinscripciones->categoria = $request->categoria;
@@ -83,6 +96,7 @@ class preinscripcionesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $preinscripciones = preinscripciones::findOrFail($request->id);
         $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
         $preinscripciones->email = $request->email;

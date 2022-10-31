@@ -37,7 +37,7 @@ class DelegadosController extends Controller
     public function store(Request $request)
     {
          //validaciones delegado
-         $validated = $request->validate([
+        $request->validate([
             'idDelegado'=> 'bail|required|unique:delegado',
             'nombreDelegado' => 'required',
             'apellidoDelegado' => 'required',

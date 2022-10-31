@@ -37,7 +37,7 @@ class CategoriasController extends Controller
     public function store(Request $request)
     {
         //validaciones de categorias
-        $validated = $request->validate([
+        $request->validate([
             'id' => 'bail|required|unique:categorias',
             'nombreCategoria' => 'required'
         ]);

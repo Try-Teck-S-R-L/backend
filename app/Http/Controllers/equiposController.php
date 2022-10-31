@@ -36,6 +36,14 @@ class equiposController extends Controller
      */
     public function store(Request $request)
     {
+         //validaciones jugador
+         $request->validate([
+            'idEquipo'=> 'bail|required|unique:equipos',
+            'nombreEquipo' => 'required|unique:equipos',
+            'procedenciaEquipo' => 'required',
+            'colorCamiseta' => 'nullable',
+            'logoEquipo' => 'nullable', 
+    ]); 
         $equipos = new equipos();
         $equipos->idEquipo = $request->idEquipo;
         $equipos->nombreEquipo = $request->nombreEquipo;
@@ -101,7 +109,7 @@ class equiposController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         $equipos = equipos::destroy($request->id);
         return $equipos;
