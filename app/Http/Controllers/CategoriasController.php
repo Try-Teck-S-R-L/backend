@@ -36,6 +36,12 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
+        //validaciones de categorias
+        $validated = $request->validate([
+            'id' => 'bail|required|unique:categorias',
+            'nombreCategoria => required'
+        ]);
+        
         $categoria = new Categorias();
         $categoria->id = $request->idCategoria;
         $categoria->nombreCategoria = $request->nombreCategoria;
