@@ -47,20 +47,24 @@ class PreinscripcionesController extends Controller
         return response(['message', $request->all()]);
     }
 
-    public function aceptarPreinscripcion($request)
+    public function aceptarPreinscripcion(Request $request)
     {
-        //$preinscripcion = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)->first();
+        $preinscripcion = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)
+            ->update(array('habilitado' => 1));
+
+        $preinscripcion = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)->first();
         //$preinscripcion->estaHabilitado = 'true';
 
-        $preinscripcion = preinscripciones::find($request->idPreinscripcion);
-        $preinscripcion->habilitado = 'true';
-        $preinscripcion->save();
+        //$preinscripcion = preinscripciones::find($request->idPreinscripcion);
+        //$preinscripcion->habilitado = true;
+        //$preinscripcion->save();
         return $preinscripcion;
     }
 
-    public function rechazarPreinscripcion($request)
+    public function rechazarPreinscripcion(Request $request)
     {
-        $preinscripciones = preinscripciones::destroy($request->idpreInscripcion);
+        //$preinscripciones = preinscripciones::destroy($request->idpreInscripcion);
+        $preinscripciones = DB::table('preinscripciones')->where('idPreinscripcion', '=', $request->idPreinscripcion)->delete();
         return $preinscripciones;
     }
     /**
@@ -83,7 +87,7 @@ class PreinscripcionesController extends Controller
     {
         $preinscripciones = new preinscripciones();
         $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
-        $preinscripciones->habilitado = false;
+        $preinscripciones->habilitado = 0;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
         $preinscripciones->email = $request->emailDelegado;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
