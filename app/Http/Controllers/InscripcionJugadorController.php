@@ -33,15 +33,29 @@ class InscripcionjugadorController extends Controller
      */
     public function store(Request $request)
     {
-        $inscripcionJugador = new Inscripcionjugador();
+        //validaciones jugador
+        $request->validate([
+            'ciJugador' => 'bail|required|unique:jugadores',
+            'categoria' => 'required',
+            'nombresJugador' => 'required',
+            'apellidosJugador' => 'required',
+            'nacionalidadJugador' => 'required',
+            'tallaJugador' => 'required',
+            'nroCamisetaJugador' => 'required|numeric',
+            'edadJugador' => 'required|numeric',
+            'posicionJugador' => 'required|numeric'
+        ]);
+
+        $inscripcionJugador = new InscripcionJugador();
+        $inscripcionJugador->ciJugador = $request->ciJugador;
         $inscripcionJugador->categoria = $request->categoria;
-        $inscripcionJugador->nombresJugador = $request->nombresJugador;
-        $inscripcionJugador->apellidosJugador = $request->apellidosJugador;
-        $inscripcionJugador->nacionalidadJugador = $request->nacionalidadJugador;
-        $inscripcionJugador->tallaJugador = $request->tallaJugador;
-        $inscripcionJugador->nroCamisetaJugador = $request->nroCamisetaJugador;
-        $inscripcionJugador->edadJugador = $request->edadJugador;
-        $inscripcionJugador->posicionJugador = $request->posicionJugador;
+        $inscripcionJugador->nombresJugador = $request->categoria;
+        $inscripcionJugador->apellidosJugador = $request->categoria;
+        $inscripcionJugador->nacionalidadJugador = $request->categoria;
+        $inscripcionJugador->tallaJugador = $request->categoria;
+        $inscripcionJugador->nroCamisetaJugador = $request->categoria;
+        $inscripcionJugador->edadJugador = $request->categoria;
+        $inscripcionJugador->posicionJugador = $request->categoria;
         $inscripcionJugador->save();
     }
 
