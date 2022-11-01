@@ -48,6 +48,9 @@ Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionesControlle
 Route::put('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@update'); //actualizar un registro
 Route::get('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@obtenerPreinscIndiviidual');
 Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obtenerPreinscIndiviidual']);
+Route::post('/aceptarpreinscripcion', [PreinscripcionesController::class, 'aceptarPreinscripcion']);
+Route::post('/rechazarpreinscripcion', [PreinscripcionesController::class, 'rechazarPreinscripcion']);
+
 
 
 //rutas jugadores

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
 use App\Models\preinscripciones;
 use Illuminate\Support\Facades\DB;
@@ -46,6 +47,22 @@ class PreinscripcionesController extends Controller
         return response(['message', $request->all()]);
     }
 
+    public function aceptarPreinscripcion($request)
+    {
+        //$preinscripcion = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)->first();
+        //$preinscripcion->estaHabilitado = 'true';
+
+        $preinscripcion = preinscripciones::find($request->idPreinscripcion);
+        $preinscripcion->habilitado = 'true';
+        $preinscripcion->save();
+        return $preinscripcion;
+    }
+
+    public function rechazarPreinscripcion($request)
+    {
+        $preinscripciones = preinscripciones::destroy($request->idpreInscripcion);
+        return $preinscripciones;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -66,6 +83,7 @@ class PreinscripcionesController extends Controller
     {
         $preinscripciones = new preinscripciones();
         $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
+        $preinscripciones->habilitado = false;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
         $preinscripciones->email = $request->emailDelegado;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
@@ -73,9 +91,23 @@ class PreinscripcionesController extends Controller
         $preinscripciones->numeroComprobante = $request->numeroComprobante;
         $preinscripciones->montoPago = $request->montoPago;
         $preinscripciones->fechaPreinscripcion = $request->fechaPreinscripcion;
-        $preinscripciones->fotoComprobante = $request->voucherPreinscripcion;
+        //$preinscripciones->fotoComprobante = $request->voucherPreinscripcion;
         $preinscripciones->idDelegado = $request->idDelegado;
         $preinscripciones->idCategoria = $request->idCategoria;
+
+        if ($request->hasFile('voucherPreinscripcion')) {
+
+            $voucher = $request->file('voucherPreinscripcion');
+            $completeFileName = $request->file('voucherPreinscripcion')->getClientOriginalName();
+            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+            $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
+            $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+            $cad1 = public_path();
+            $cad2 = '/fotosVoucher/';
+            $resultado = $cad1 . '' . $cad2;
+            $path = $voucher->move($resultado, $compPic);
+            $preinscripciones->fotoComprobante = $path;
+        }
 
         $preinscripciones->save();
     }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('preinscripciones', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('idPreinscripcion');
+            $table->boolean('habilitado');
             $table->string('nombreDelegado');
             $table->string('email');
             $table->string('nombreEquipo');
