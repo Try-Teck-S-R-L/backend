@@ -84,7 +84,7 @@ class PreinscripcionesController extends Controller
     {
         //validaciones preinscripciones
         $request->validate([
-            'idPreinscripcion' => 'bail|required|unique:preinscripcion',
+            /*'idPreinscripcion' => 'bail|required|unique:preinscripcion',
             'nombreDelegado' => 'required',
             'email' => 'required|email',
             'nombreEquipo' => 'required|unique:equipos',
@@ -93,13 +93,12 @@ class PreinscripcionesController extends Controller
             'numeroComprobante' => 'required|numeric',
             'montoPago' => 'required|numeric',
             'fechaPago' => 'required|before_or_equal:2022/12/12',
-            'fotoComprobante' => 'required|image'
-        ]);
+            'fotoComprobante' => 'required|image'*/]);
         $preinscripciones = new preinscripciones();
         $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
         $preinscripciones->habilitado = false;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
-        $preinscripciones->email = $request->email;
+        $preinscripciones->email = $request->emailPreinscripcion;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
         $preinscripciones->pais = $request->paisEquipo;
         $preinscripciones->numeroComprobante = $request->numeroComprobante;

@@ -34,18 +34,12 @@ class DelegadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+
+
     public function store(Request $request)
     {
-         //validaciones delegado
-        $request->validate([
-            'idDelegado'=> 'bail|required|unique:delegado',
-            'nombreDelegado' => 'required',
-            'apellidoDelegado' => 'required',
-            'nacionalidadDelegado' => 'required', 
-            'edadelegadod' => 'required',
-            'correoDelegado' => 'required|email',
-            'contraseniaDelegado' => 'required|current_password',
-    ]); 
         $delegados = new Delegados();
         $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;
@@ -53,7 +47,7 @@ class DelegadosController extends Controller
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
         $delegados->edadDelegado = $request->edadDelegado;
         $delegados->correoDelegado = $request->correoDelegado;
-        $delegados->contraseniaDelegado = $request ->contraseniaDeleado;
+        $delegados->contraseniaDelegado = $request->contraseniaDeleado;
 
 
         $delegados->save();
@@ -97,7 +91,7 @@ class DelegadosController extends Controller
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
         $delegados->edadDelegado = $request->edadDelegado;
         $delegados->correoDelegado = $request->correoDelegado;
-        $delegados->contraseniaDelegado = $request ->contraseniaDeleado;
+        $delegados->contraseniaDelegado = $request->contraseniaDeleado;
 
         $delegados->save();
         return $delegados;
