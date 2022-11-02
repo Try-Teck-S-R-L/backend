@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\jugador;
+use Illuminate\Support\Facades\DB;
 
 class JugadorController extends Controller
 {
@@ -18,6 +19,16 @@ class JugadorController extends Controller
         return $jugador;
     }
 
+
+    public function obtenerJugadoresDeUnEquipo(Request $request)
+    {
+        //$equipo = Equipo::all()->where('delegado_idDelegado', Session::get('loginId'))->get();
+        //$equipo = DB::table('equipos')->get();
+        //$idAux =  Session::get('loginId');
+        $jugadores = DB::table('jugadors')->where('idEquipo', $request->idEquipo)->get();
+
+        return $jugadores;
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -26,6 +26,11 @@ return new class extends Migration
             $table->string('posicionJugador');
             $table->string('tallaJugador');
             $table->timestamps();
+
+            $table->integer('idEquipo')->unsigned();
+
+            $table->foreign('idEquipo')->references('idEquipo')
+                ->on('equipos');
         });
     }
 

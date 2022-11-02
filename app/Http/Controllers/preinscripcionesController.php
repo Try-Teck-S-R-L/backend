@@ -16,7 +16,13 @@ class PreinscripcionesController extends Controller
      */
     public function index()
     {
-        $preinscripciones = preinscripciones::all();
+        //$preinscripciones = preinscripciones::all();
+        $noHabilitado = 0;
+        $preinscripciones = DB::table('preinscripciones')->where(
+            'habilitado',
+            '=',
+            $noHabilitado
+        )->get();
         return $preinscripciones;
     }
 

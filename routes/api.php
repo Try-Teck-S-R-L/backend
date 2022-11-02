@@ -3,6 +3,7 @@
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\PreinscripcionesController;
 use App\Http\Controllers\RegistroLoginController;
+use App\Http\Controllers\JugadorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,7 @@ Route::post('/posiciones', 'App\Http\Controllers\posicionsController@store'); //
 Route::get('/tallas', 'App\Http\Controllers\tallasController@index'); //para tener todos los registros y mostrarlos
 Route::post('/tallas', 'App\Http\Controllers\tallasController@store'); //crear un registro
 Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
+Route::post('/buscarjugadores', [JugadorController::class, 'obtenerJugadoresDeUnEquipo']);
 
 Route::get('/equipo', 'App\Http\Controllers\EquiposController@index');
 Route::post('/equipo', 'App\Http\Controllers\EquiposController@store');

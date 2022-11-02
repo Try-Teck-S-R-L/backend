@@ -41,7 +41,9 @@ class EquiposController extends Controller
         //$equipo = DB::table('equipos')->get();
         /*$equipo = DB::table('equipos')->select('equipos.idPreinscripcion')
             ->get();*/
-        $equipo = DB::table('equipos')->where('idDelegado', '=', $request->idDelegado)->get();
+        $equipo = DB::table('equipos')->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
+            ->where('idDelegado', '=', $request->idDelegado)
+            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.procedenciaEquipo')->get();
         return $equipo;
     }
 
