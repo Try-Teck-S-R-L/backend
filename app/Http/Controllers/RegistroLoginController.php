@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delegado;
+use App\Models\delegados;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -17,7 +18,7 @@ class RegistroLoginController extends Controller
             Session::pull('loginId');
         }
 
-        $userInfo = Delegado::where('correoDelegado', '=', $request->correoDelegado)->first();
+        $userInfo = delegados::where('correoDelegado', '=', $request->correoDelegado)->first();
 
         if ($userInfo) {
             //if (Hash::check($request->password, $userInfo->password)) {
