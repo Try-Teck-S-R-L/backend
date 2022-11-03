@@ -53,6 +53,14 @@ class PreinscripcionesController extends Controller
         return response(['message', $request->all()]);
     }
 
+    public function obtenerPreinscripcionesAprobadas(Request $request)
+    {
+        $preinscripciones = DB::table('preinscripciones')->where('idDelegado', '=', $request->idDelegado)
+            ->where('habilitado', '=', 1)->get();
+
+        return $preinscripciones;
+    }
+
     public function aceptarPreinscripcion(Request $request)
     {
         $preinscripcion = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)
@@ -122,52 +130,7 @@ class PreinscripcionesController extends Controller
         $preinscripciones->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        /* $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
-        $preinscripciones->nombreDelegado = $request->nombreDelegado;
-        $preinscripciones->email = $request->email;
-        $preinscripciones->fecha = $request->fecha;
-        $preinscripciones->nombreEquipo = $request->nombreEquipo;
-        $preinscripciones->pais = $request->pais;
-        $preinscripciones->categoria = $request->categoria;
-        $preinscripciones->numeroComprobante = $request->numeroComprobante;
-        $preinscripciones->montoPago = $request->montoPago;
-        $preinscripciones->fechaPago = $request->fechaPago;
-        $preinscripciones->fotoComprobante = $request->fotoComprobante;
-        
-        $preinscripciones->save();
-        return $preinscripciones;*/
-    }
 
     /**
      * Remove the specified resource from storage.

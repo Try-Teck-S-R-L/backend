@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DelegadosController;
 use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\PreinscripcionesController;
 use App\Http\Controllers\RegistroLoginController;
@@ -52,6 +53,8 @@ Route::get('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesContr
 Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obtenerPreinscIndiviidual']);
 Route::post('/aceptarpreinscripcion', [PreinscripcionesController::class, 'aceptarPreinscripcion']);
 Route::post('/rechazarpreinscripcion', [PreinscripcionesController::class, 'rechazarPreinscripcion']);
+Route::post('/preinscripcionesAprobadas', [PreinscripcionesController::class, 'obtenerPreinscripcionesAprobadas']);
+
 
 
 
@@ -78,12 +81,14 @@ Route::get('/admin', 'App\Http\Controllers\AdministradorController@index'); //mo
 Route::post('/admin', 'App\Http\Controllers\AdministradorController@store'); //crear un registro
 Route::put('/admin/{id}', 'App\Http\Controllers\AdministradorController@update'); //actualizar un registro
 Route::delete('/admin/{id}', 'App\Http\Controllers\AdministradorController@destroy'); //destruir un registro
+Route::post('/delegadoInfo', [DelegadosController::class, 'obtenerInfoDelegado']);
 
 //rutas de categorias
 Route::get('/categoria', 'App\Http\Controllers\CategoriaController@index'); //mostrar todos los registros
 Route::post('/categoria', 'App\Http\Controllers\CategoriaController@store'); //crear un registro
 Route::put('/categoria/{id}', 'App\Http\Controllers\CategoriaController@update'); //actualizar un registro
 Route::delete('/categoria/{id}', 'App\Http\Controllers\CategoriaController@destroy'); //destruir un registro
+
 
 
 //rutas de login 

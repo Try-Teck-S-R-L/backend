@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\delegados;
+use Illuminate\Support\Facades\DB;
 
 class DelegadosController extends Controller
 {
@@ -20,13 +21,20 @@ class DelegadosController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     *@param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function obtenerInfoDelegado(Request $request)
     {
-        //
+        $delegado = DB::table('delegados')->where(
+            'idDelegado',
+            '=',
+            $request->idDelegado
+        )->first();
+
+        return $delegado;
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,7 +51,7 @@ class DelegadosController extends Controller
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
         $delegados->edadDelegado = $request->edadDelegado;
         $delegados->correoDelegado = $request->correoDelegado;
-        $delegados->contraseniaDelegado = $request ->contraseniaDeleado;
+        $delegados->contraseniaDelegado = $request->contraseniaDeleado;
 
 
         $delegados->save();
@@ -87,7 +95,7 @@ class DelegadosController extends Controller
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
         $delegados->edadDelegado = $request->edadDelegado;
         $delegados->correoDelegado = $request->correoDelegado;
-        $delegados->contraseniaDelegado = $request ->contraseniaDeleado;
+        $delegados->contraseniaDelegado = $request->contraseniaDeleado;
 
         $delegados->save();
         return $delegados;
