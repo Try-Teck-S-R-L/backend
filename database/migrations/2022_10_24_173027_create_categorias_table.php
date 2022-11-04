@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('preinscripcions', function (Blueprint $table) {
-            $table->id();
-            $table->string('categorias');
-            $table->string('nombreDelegado');
-            $table->date('fecha');
-            $table->string('nombreEquipo');
-            $table->string('paisEquipo');
+        Schema::create('categorias', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('idCategoria');
             $table->timestamps();
+            $table->string('nombreCategoria');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('preinscripcions');
+        Schema::dropIfExists('categorias');
     }
 };

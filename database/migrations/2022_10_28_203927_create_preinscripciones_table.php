@@ -14,12 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('preinscripciones', function (Blueprint $table) {
-            $table->id();
-            $table->string('categorias');
+            $table->engine = 'InnoDB';
+            $table->increments('idPreinscripcion');
             $table->string('nombreDelegado');
-            $table->date('fecha');
+            $table->string('email');
             $table->string('nombreEquipo');
-            $table->string('paisEquipo');
+            $table->string('pais');
+            $table->string('categoria');
+            $table->string('numeroComprobante');
+            $table->integer('montoPago');
+            $table->date('fechaPago');
+            $table->string('fotoComprobante');
             $table->timestamps();
         });
     }

@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('delegado', function (Blueprint $table) {
-            $table->id();
+        Schema::create('delegados', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('idDelegado');
             $table->timestamps();
             $table->string('nombreDelegado');
             $table->string('apellidoDelegado');
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delegado');
+        Schema::dropIfExists('delegados');
     }
 };

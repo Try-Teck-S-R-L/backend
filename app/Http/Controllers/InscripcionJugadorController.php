@@ -36,7 +36,21 @@ class InscripcionJugadorController extends Controller
      */
     public function store(Request $request)
     {
+        //validaciones jugador
+        $request->validate([
+                'ciJugador'=> 'bail|required|unique:jugadores',
+                'categoria' => 'required',
+                'nombresJugador' => 'required',
+                'apellidosJugador' => 'required',
+                'nacionalidadJugador' => 'required', 
+                'tallaJugador' => 'required',
+                'nroCamisetaJugador' => 'required|numeric',
+                'edadJugador' => 'required|numeric|gt:35|new ValidacionesEdad()',
+                'posicionJugador' => 'required|numeric'
+        ]); 
+
         $inscripcionJugador = new InscripcionJugador();
+        $inscripcionJugador -> ciJugador = $request->ciJugador;
         $inscripcionJugador -> categoria = $request->categoria;
         $inscripcionJugador -> nombresJugador = $request->categoria;
         $inscripcionJugador -> apellidosJugador = $request->categoria;

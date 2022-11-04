@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
-use Illuminate\Http\Request;
-<<<<<<<< HEAD:app/Http/Controllers/CategoriaController.php
-
-class CategoriaController extends Controller
-========
 use App\Models\Categorias;
+use Illuminate\Http\Request;
 
 class CategoriasController extends Controller
->>>>>>>> sprint2back:app/Http/Controllers/CategoriasController.php
 {
     /**
      * Display a listing of the resource.
@@ -20,13 +14,8 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-<<<<<<<< HEAD:app/Http/Controllers/CategoriaController.php
-        $categoria = Categoria::all();
+        $categoria = Categorias::all();
         return $categoria;
-========
-        $categorias = Categorias::all(); //trae todos los registros
-        return $categorias;
->>>>>>>> sprint2back:app/Http/Controllers/CategoriasController.php
     }
 
     /**
@@ -47,25 +36,25 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<<< HEAD:app/Http/Controllers/CategoriaController.php
-        $categoria = new Categoria();
+        //validaciones de categorias
+        $request->validate([
+            'id' => 'bail|required|unique:categorias',
+            'nombreCategoria' => 'required'
+        ]);
+        
+        $categoria = new Categorias();
+        $categoria->id = $request->idCategoria;
         $categoria->nombreCategoria = $request->nombreCategoria;
         $categoria->save();
-========
-        $categorias = new Categorias();
-        $categorias->nombreValor = $request->nombreValor;
-
-        $categorias->save();
->>>>>>>> sprint2back:app/Http/Controllers/CategoriasController.php
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idCategoria
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idCategoria)
     {
         //
     }
@@ -90,19 +79,11 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<<< HEAD:app/Http/Controllers/CategoriaController.php
-        $categoria = Categoria::findOrFail($request->id);
+        $categoria = Categorias::findOrFail($request->id);
+        $categoria->idCategoria = $request->idCategoria;
         $categoria->nombreCategoria = $request->nombreCategoria;
         $categoria->save();
         return $categoria;
-========
-        $categorias = Categorias::findOrFail($request->id);
-        $categorias->nombreValor = $request->nombreValor;
-
-        $categorias->save();
-
-        return $categorias;
->>>>>>>> sprint2back:app/Http/Controllers/CategoriasController.php
     }
 
     /**
@@ -113,13 +94,7 @@ class CategoriasController extends Controller
      */
     public function destroy(Request $request)
     {
-<<<<<<<< HEAD:app/Http/Controllers/CategoriaController.php
-        $categoria = Categoria::destro($request->id);
+        $categoria = Categorias::destro($request->id);
         return $categoria;
-========
-        $categorias = Categorias::destroy($id);
-
-        return $categorias;
->>>>>>>> sprint2back:app/Http/Controllers/CategoriasController.php
     }
 }
