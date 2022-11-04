@@ -45,7 +45,7 @@ class InscripcionJugadorController extends Controller
                 'nacionalidadJugador' => 'required', 
                 'tallaJugador' => 'required',
                 'nroCamisetaJugador' => 'required|numeric',
-                'edadJugador' => 'required|numeric',
+                'edadJugador' => 'required|numeric|gt:35|new ValidacionesEdad()',
                 'posicionJugador' => 'required|numeric'
         ]); 
 
