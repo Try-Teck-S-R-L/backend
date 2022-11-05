@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('inscripcionjugadors', function (Blueprint $table) {
-            $table->id();
+            $table->id('ciJugador');
             $table->timestamps();
             $table->string('categoria');
             $table->string('nombreJugador');
