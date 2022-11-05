@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Preinscripcion;
 use Illuminate\Http\Request;
 use App\Models\preinscripciones;
-use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class PreinscripcionesController extends Controller
 {
@@ -98,25 +98,26 @@ class PreinscripcionesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-         //validaciones preinscripciones
+    {
+        //validaciones preinscripciones
         $request->validate([
-            'idPreinscripcion'=> 'bail|required|unique:preinscripcion',
+            'idPreinscripcion' => 'bail|required|unique:preinscripcion',
             'nombreDelegado' => 'required',
             'email' => 'required|email',
             'nombreEquipo' => 'required|unique:equipos',
-            'pais' => 'required', 
+            'pais' => 'required',
             'categoria' => 'required',
             'numeroComprobante' => 'required|numeric',
             'montoPago' => 'required|numeric',
             'fechaPago' => 'required|before_or_equal:2022/12/12',
             'fotoComprobante' => 'required|image'
-    ]); 
+        ]);
         $preinscripciones = new preinscripciones();
         $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
         $preinscripciones->habilitado = 0;
         $preinscripciones->nombreDelegado = $request->nombreDelegado;
         $preinscripciones->email = $request->email;
+        $preinscripciones->fecha = $request->fecha;
         $preinscripciones->nombreEquipo = $request->nombreEquipo;
         $preinscripciones->pais = $request->paisEquipo;
         $preinscripciones->numeroComprobante = $request->numeroComprobante;
@@ -133,6 +134,8 @@ class PreinscripcionesController extends Controller
             $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
             $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+        }
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -152,23 +155,7 @@ class PreinscripcionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $preinscripciones = preinscripciones::findOrFail($request->id);
-        $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
-        $preinscripciones->nombreDelegado = $request->nombreDelegado;
-        $preinscripciones->email = $request->email;
-        $preinscripciones->fecha = $request->fecha;
-        $preinscripciones->nombreEquipo = $request->nombreEquipo;
-        $preinscripciones->pais = $request->pais;
-        $preinscripciones->categoria = $request->categoria;
-        $preinscripciones->numeroComprobante = $request->numeroComprobante;
-        $preinscripciones->montoPago = $request->montoPago;
-        $preinscripciones->fechaPago = $request->fechaPago;
-        $preinscripciones->fotoComprobante = $request->fotoComprobante;
-        
-        $preinscripciones->save();
-    }
+
 
 
 
