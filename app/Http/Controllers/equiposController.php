@@ -102,6 +102,21 @@ class EquiposController extends Controller
         $equipo->idCategoria = $request->cidCategoria;
         $equipo->idPreinscripcion = $request->idPreinscripcion;
 
+
+        if ($request->hasFile('logoEquipo')) {
+
+            $logo = $request->file('logoEquipo');
+            $completeFileName = $request->file('logoEquipo')->getClientOriginalName();
+            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+            $extension = $request->file('logoEquipo')->getClientOriginalExtension();
+            $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+
+            $carpetas = 'logosEquipos/';
+            $path = $logo->move($carpetas, $compPic);
+            $equipo->logo = $path;
+        }
+
+
         $equipo->save();
     }
 

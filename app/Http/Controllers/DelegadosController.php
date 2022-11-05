@@ -88,17 +88,17 @@ class DelegadosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $delegados = Delegados::findOrFail($request->id);
-        $delegados->idDelegado = $request->idDelegado;
-        $delegados->nombreDelegado = $request->nombreDelegado;
-        $delegados->apellidoDelegado = $request->apellidoDelegado;
-        $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
-        $delegados->edadDelegado = $request->edadDelegado;
-        $delegados->correoDelegado = $request->correoDelegado;
-        $delegados->contraseniaDelegado = $request->contraseniaDeleado;
+        $delegado = Delegados::findOrFail($request->id);
+        $delegado->idDelegado = $request->idDelegado;
+        $delegado->nombreDelegado = $request->nombreDelegado;
+        $delegado->apellidoDelegado = $request->apellidoDelegado;
+        $delegado->nacionalidadDelegado = $request->nacionalidadDelegado;
+        $delegado->edadDelegado = $request->edadDelegado;
+        $delegado->correoDelegado = $request->correoDelegado;
+        $delegado->contraseniaDelegado = $request->contraseniaDeleado;
 
-        $delegados->save();
-        return $delegados;
+        $delegado->save();
+        return $delegado;
     }
 
     /**
