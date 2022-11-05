@@ -120,10 +120,9 @@ class PreinscripcionesController extends Controller
             $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
             $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
-            $cad1 = public_path();
-            $cad2 = '/fotosVoucher/';
-            $resultado = $cad1 . '' . $cad2;
-            $path = $voucher->move($resultado, $compPic);
+
+            $carpetas = 'fotosVoucher/';
+            $path = $voucher->move($carpetas, $compPic);
             $preinscripciones->fotoComprobante = $path;
         }
 

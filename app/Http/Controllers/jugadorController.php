@@ -68,10 +68,10 @@ class JugadorController extends Controller
             $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
             $extension = $request->file('fotoPerfilJugador')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
-            $cad1 = public_path();
-            $cad2 = '/fotosPerfiles/';
-            $resultado = $cad1 . '' . $cad2;
-            $path = $voucher->move($resultado, $compPic);
+            //$cad1 = public_path();
+            $carpetas = 'fotosPerfiles/';
+            //$resultado = $cad1 . '' . $cad2;
+            $path = $voucher->move($carpetas, $compPic);
             $jugador->fotoPerfilJugador = $path;
         }
 
@@ -82,10 +82,10 @@ class JugadorController extends Controller
             $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
             $extension = $request->file('fotoCiJugador')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
-            $cad1 = public_path();
-            $cad2 = '/fotosPerfiles/';
-            $resultado = $cad1 . '' . $cad2;
-            $path = $voucher->move($resultado, $compPic);
+            //$cad1 = public_path();
+            $carpetas = 'fotosPerfiles/';
+            //$resultado = $cad1 . '' . $cad2;
+            $path = $voucher->move($carpetas, $compPic);
             $jugador->fotoCiJugador = $path;
         }
 
