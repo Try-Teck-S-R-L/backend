@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tallas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombreValor');
+        Schema::create('administradors', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('idAdministrador');
+            $table->string('nombreAdministrador');
+            $table->string('correoAdministrador');
+            $table->string('contraseniaAdministrador');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tallas');
+        Schema::dropIfExists('administradors');
     }
 };

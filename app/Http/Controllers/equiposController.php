@@ -21,29 +21,21 @@ class EquiposController extends Controller
 
 
 
-
-
-
-
-
-
     public function obtenerEquipo(Request $request)
     {
         $equipo = DB::table('preinscripciones')->where(
-            ['delegado_idDelegado', $request->idDelegado],
-            ['idpreInscipcion', $request->idpreInscipcion]
+            ['idDelegado', $request->idDelegado],
+            ['idPreinscipcion', $request->idPreinscipcion]
         )->get();
         return $equipo;
     }
 
     public function filtrarLista(Request $request)
     {
-        //$equipo = DB::table('equipos')->get();
-        /*$equipo = DB::table('equipos')->select('equipos.idPreinscripcion')
-            ->get();*/
+
         $equipo = DB::table('equipos')->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
             ->where('idDelegado', '=', $request->idDelegado)
-            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.procedenciaEquipo')->get();
+            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.paisEquipo')->get();
         return $equipo;
     }
 
@@ -58,7 +50,7 @@ class EquiposController extends Controller
         //$idAux =  Session::get('loginId');
         //$equipo = DB::table('equipos')->where('delegado_idDelegado', $request->idDelegado)->get();
         $equipo = DB::table('equipos')->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
-            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.procedenciaEquipo')->get();
+            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.paisEquipo')->get();
         return $equipo;
         return response(['message', $request->all()]);
     }
@@ -115,7 +107,7 @@ class EquiposController extends Controller
         $equipos->idCategoria = $request->idCategoria;
         $equipos->idPreinscripcion = $request->idPreinscripcion;
 
-        $equipos->save();
+        $equipo->save();
     }
 
     /**
@@ -149,18 +141,21 @@ class EquiposController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $equipos = equipos::findOrFail($request->id);
-        $equipos->idEquipo = $request->idEquipo;
-        $equipos->nombreEquipo = $request->nombreEquipo;
-        $equipos->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipos->colorCamiseta = $request->colorCamiseta;
-        $equipos->logoEquipo = $request->logoEquipo;
-        $equipos->idDelegado = $request->idDelegado;
-        $equipos->idCategoria = $request->idCategoria;
-        $equipos->idPreinscripcion = $request->idPreinscripcion;
+        $equipo = equipos::findOrFail($request->id);
+        $equipo->idEquipo = $request->idEquipo;
+        $equipo->nombreEquipo = $request->nombreEquipo;
+        $equipo->paisEquipo = $request->paisEquipo;
 
-        $equipos->save();
-        return $equipos;
+        $equipo->logoEquipo = $request->logoEquipo;
+        $equipo->colorCamisetaPrincipal = $request->colorCamisetaPrincipal;
+        $equipo->colorCamisetaSecundario = $request->colorCamisetaSecundario;
+
+        $equipo->idDelegado = $request->idDelegado;
+        $equipo->idCategoria = $request->idCategoria;
+        $equipo->idPreinscripcion = $request->idPreinscripcion;
+
+        $equipo->save();
+        return $equipo;
     }
 
     /**

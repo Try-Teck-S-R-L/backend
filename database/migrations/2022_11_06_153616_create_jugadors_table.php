@@ -15,22 +15,27 @@ return new class extends Migration
     {
         Schema::create('jugadors', function (Blueprint $table) {
             $table->id();
+            $table->integer('ciJugador');
             $table->string('nombreJugador');
             $table->string('apellidoJugador');
             $table->integer('numeroCamiseta');
-            $table->string('categoria');
             $table->integer('edadJugador');
             $table->string('fotoPerfilJugador');
             $table->string('fotoCiJugador');
             $table->string('nacionalidadJugador');
             $table->string('posicionJugador');
             $table->string('tallaJugador');
-            $table->timestamps();
-
+            
+            //foreign keys
             $table->integer('idEquipo')->unsigned();
+            $table->integer('idCategoria')->unsigned();
 
             $table->foreign('idEquipo')->references('idEquipo')
-                ->on('equipos');
+            ->on('equipos');
+            $table->foreign('idCategoria')->references('idCategoria')
+            ->on('categorias');
+
+            $table->timestamps();
         });
     }
 
@@ -41,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jugador');
+        Schema::dropIfExists('jugadors');
     }
 };

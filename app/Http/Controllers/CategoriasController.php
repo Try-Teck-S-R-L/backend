@@ -45,29 +45,9 @@ class CategoriasController extends Controller
                 $categoria = new Categorias();
                 $categoria->id = $request->idCategoria;
                 $categoria->nombreCategoria = $request->nombreCategoria;
+                $categoria->edadMinima = $request->edadMinima;
+                $categoria->edadMaxima = $request->edadMaxima;
                 $categoria->save();
-        }
-
-        /**
-         * Display the specified resource.
-         *
-         * @param  int  $idCategoria
-         * @return \Illuminate\Http\Response
-         */
-        public function show($idCategoria)
-        {
-                //
-        }
-
-        /**
-         * Show the form for editing the specified resource.
-         *
-         * @param  int  $id
-         * @return \Illuminate\Http\Response
-         */
-        public function edit($id)
-        {
-                //
         }
 
         /**
@@ -82,6 +62,8 @@ class CategoriasController extends Controller
                 $categoria = Categorias::findOrFail($request->id);
                 $categoria->idCategoria = $request->idCategoria;
                 $categoria->nombreCategoria = $request->nombreCategoria;
+                $categoria->edadMinima = $request->edadMinima;
+                $categoria->edadMaxima = $request->edadMaxima;
                 $categoria->save();
                 return $categoria;
         }

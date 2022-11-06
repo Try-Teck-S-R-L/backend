@@ -37,6 +37,7 @@ class posicionsController extends Controller
     public function store(Request $request)
     {
         $posicions = new posicions();
+        $posicions->idPosicion = $request->idPosicion;
         $posicions->nombreValor = $request->nombreValor;
 
         $posicions->save();
@@ -74,6 +75,7 @@ class posicionsController extends Controller
     public function update(Request $request, $id)
     {
         $posicions = new posicions();
+        $posicions->idPosicion = $request->idPosicion;
         $posicions->nombreValor = $request->nombreValor;
 
         $posicions->save();

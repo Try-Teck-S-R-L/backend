@@ -37,6 +37,7 @@ class tallasController extends Controller
     public function store(Request $request)
     {
         $tallas = new tallas();
+        $tallas->idTalla = $request->idTalla;
         $tallas->nombreValor = $request->nombreValor;
 
         $tallas->save();
@@ -74,6 +75,7 @@ class tallasController extends Controller
     public function update(Request $request, $id)
     {
         $tallas = new tallas();
+        $tallas->idTalla = $request->idTalla;
         $tallas->nombreValor = $request->nombreValor;
 
         $tallas->save();

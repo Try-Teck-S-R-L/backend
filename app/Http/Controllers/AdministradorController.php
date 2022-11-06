@@ -37,8 +37,11 @@ class AdministradorController extends Controller
     public function store(Request $request)
     {
         $administrador = New Administrador();
-        $administrador->usernameAdministrador = $request ->usernameAdministrador;
+        $administrador->idAdministrador = $request ->idAdministrador;
+        $administrador->nombreAdministrador = $request ->nombreAdministrador;
+        $administrador->correoAdministrador = $request ->correoAdministrador;
         $administrador->contraseniaAdministrador = $request ->contraseniaAdministrador;
+
         $administrador->save();
     }
 
@@ -74,8 +77,10 @@ class AdministradorController extends Controller
     public function update(Request $request, $id)
     {
         $administrador = Administrador::findOrFail($request->id);
-        $administrador->usernameAdministrador = $request->usernameAdministrador;
-        $administrador->contraseniaAdministrador = $request->contraseniaAdministrador;
+        $administrador->idAdministrador = $request ->idAdministrador;
+        $administrador->nombreAdministrador = $request ->nombreAdministrador;
+        $administrador->correoAdministrador = $request ->correoAdministrador;
+        $administrador->contraseniaAdministrador = $request ->contraseniaAdministrador;
         $administrador->save();
         return $administrador;
     }

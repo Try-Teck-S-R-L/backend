@@ -57,12 +57,11 @@ class DelegadosController extends Controller
         $delegados = new Delegados();
         $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;
-        $delegados->apellidoDelegado = $request->apellidoDelegado;
-        $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
-        $delegados->edadDelegado = $request->edadDelegado;
+        $delegados->apellidoDelegado = $request->apellidoDelegado;        
         $delegados->correoDelegado = $request->correoDelegado;
         $delegados->contraseniaDelegado = $request->contraseniaDeleado;
-
+        $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
+        $delegados->edadDelegado = $request->edadDelegado;
 
         $delegados->save();
     }
@@ -98,17 +97,17 @@ class DelegadosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $delegados = Delegados::findOrFail($request->id);
+        $delegado = Delegados::findOrFail($request->id);
         $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;
-        $delegados->apellidoDelegado = $request->apellidoDelegado;
-        $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
-        $delegados->edadDelegado = $request->edadDelegado;
+        $delegados->apellidoDelegado = $request->apellidoDelegado;        
         $delegados->correoDelegado = $request->correoDelegado;
         $delegados->contraseniaDelegado = $request->contraseniaDeleado;
+        $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
+        $delegados->edadDelegado = $request->edadDelegado;
 
-        $delegados->save();
-        return $delegados;
+        $delegado->save();
+        return $delegado;
     }
 
     /**

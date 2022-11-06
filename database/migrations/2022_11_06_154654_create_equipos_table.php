@@ -13,27 +13,28 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('preinscripciones', function (Blueprint $table) {
+        Schema::create('equipos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idPreinscripcion');
-            $table->boolean('habilitado');
-            $table->string('nombreDelegado');
-            $table->string('email');
+            $table->increments('idEquipo');
             $table->string('nombreEquipo');
-            $table->string('pais');
-            $table->string('numeroComprobante');
-            $table->integer('montoPago');
-            $table->date('fechaPreinscripcion');
-            $table->string('fotoComprobante');
-            $table->timestamps();
+            $table->string('paisEquipo');
+            $table->string('logoEquipo');
+            $table->string('colorCamisetaPrincipal');
+            $table->string('colorCamisetaSecundario');
 
+            //foreign keys
             $table->integer('idDelegado')->unsigned();
             $table->integer('idCategoria')->unsigned();
+            $table->integer('idPreinscripcion')->unsigned();
 
             $table->foreign('idDelegado')->references('idDelegado')
-                ->on('delegados');
+            ->on('delegados');
             $table->foreign('idCategoria')->references('idCategoria')
-                ->on('categorias');
+            ->on('categorias');
+            $table->foreign('idPreinscripcion')->references('idPreinscripcion')
+            ->on('preinscripcions');
+
+            $table->timestamps();
         });
     }
 
@@ -44,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('equipos');
     }
 };

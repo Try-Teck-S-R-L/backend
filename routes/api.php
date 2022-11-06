@@ -5,6 +5,7 @@ use App\Http\Controllers\EquiposController;
 use App\Http\Controllers\PreinscripcionesController;
 use App\Http\Controllers\RegistroLoginController;
 use App\Http\Controllers\JugadorController;
+use App\Http\Controllers\CategoriasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -84,10 +85,10 @@ Route::delete('/admin/{id}', 'App\Http\Controllers\AdministradorController@destr
 Route::post('/delegadoInfo', [DelegadosController::class, 'obtenerInfoDelegado']);
 
 //rutas de categorias
-Route::get('/categoria', 'App\Http\Controllers\CategoriaController@index'); //mostrar todos los registros
-Route::post('/categoria', 'App\Http\Controllers\CategoriaController@store'); //crear un registro
-Route::put('/categoria/{id}', 'App\Http\Controllers\CategoriaController@update'); //actualizar un registro
-Route::delete('/categoria/{id}', 'App\Http\Controllers\CategoriaController@destroy'); //destruir un registro
+Route::get('/Categorias', 'App\Http\Controllers\CategoriasController@index'); //mostrar todos los registros
+Route::post('/Categorias', 'App\Http\Controllers\CategoriasController@store'); //crear un registro
+Route::put('/Categorias/{id}', 'App\Http\Controllers\CategoriasController@update'); //actualizar un registro
+Route::delete('/Categorias/{id}', 'App\Http\Controllers\CategoriasController@destroy'); //destruir un registro
 
 
 

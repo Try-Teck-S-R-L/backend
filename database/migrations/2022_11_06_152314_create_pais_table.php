@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('pais', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idCategoria');
+            $table->increments('idPais');
+            $table->string('nombreValor');
             $table->timestamps();
-            $table->string('nombreCategoria');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('pais');
     }
 };

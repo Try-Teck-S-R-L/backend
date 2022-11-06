@@ -37,6 +37,7 @@ class paisController extends Controller
     public function store(Request $request)
     {
         $pais = new pais();
+        $pais->idPais = $request->idPais;
         $pais->nombreValor = $request->nombreValor;
 
         $pais->save();
@@ -74,6 +75,7 @@ class paisController extends Controller
     public function update(Request $request, $id)
     {
         $pais = new pais();
+        $pais->idPais = $request->idPais;
         $pais->nombreValor = $request->nombreValor;
 
         $pais->save();

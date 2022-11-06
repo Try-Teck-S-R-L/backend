@@ -13,18 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        /*Schema::create('preinscripcions', function (Blueprint $table) {
+        Schema::create('delegados', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idpreInscipcion');
+            $table->increments('idDelegado');
             $table->string('nombreDelegado');
-            $table->string('emailDelegado');
-            $table->string('categoria');
-            $table->date('fechaPreinscripcion');
-            $table->string('nombreEquipo');
-            $table->string('paisEquipo');
-            $table->string('voucherPreinscripcion');
+            $table->string('apellidoDelegado');
+            $table->string('correoDelegado');
+            $table->string('contraseniaDelegado');
+            $table->string('nacionalidadDelegado');
+            $table->integer('edadDelegado');
             $table->timestamps();
-        });*/
+        });
     }
 
     /**
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('preinscripcions');
+        Schema::dropIfExists('delegados');
     }
 };
