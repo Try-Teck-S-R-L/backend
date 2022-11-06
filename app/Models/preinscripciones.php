@@ -9,7 +9,7 @@ class preinscripciones extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'idPreinscripcion', 'nombreDelegado', 'email', 'nombreEquipo', 'pais', 'categoria', 'numeroComprobante',
-        'montoPago', 'fechaPreinscripcion', 'fotoComprobante'
+        'idPreinscripcion', 'fechaPreinscripcion', 'voucherPreinscripcion', 'nombreEquipo', 'paisEquipo',
+        'idDelegado', 'idCategoria', 'montoPago', 'numeroComprobante'
     ];
 }

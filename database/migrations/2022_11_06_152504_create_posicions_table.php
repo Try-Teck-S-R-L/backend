@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('administrador', function (Blueprint $table) {
-            $table->id();
+        Schema::create('posicions', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('idPosicion');
+            $table->string('nombreValor');
             $table->timestamps();
-            $table->string('usernameAdministrador');
-            $table->string('contraseniaAdministrador');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('administrador');
+        Schema::dropIfExists('posicions');
     }
 };

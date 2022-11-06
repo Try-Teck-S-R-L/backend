@@ -99,7 +99,7 @@ class EquiposController extends Controller
         $equipo->colorCamisetaSecundario = $request->colorCamisetaSecundario;
 
         $equipo->idDelegado = $request->idDelegado;
-        $equipo->idCategoria = $request->cidCategoria;
+        $equipo->idCategoria = $request->idCategoria;
         $equipo->idPreinscripcion = $request->idPreinscripcion;
 
 
@@ -161,7 +161,7 @@ class EquiposController extends Controller
         $equipo->colorCamisetaSecundario = $request->colorCamisetaSecundario;
 
         $equipo->idDelegado = $request->idDelegado;
-        $equipo->idCategoria = $request->cidCategoria;
+        $equipo->idCategoria = $request->idCategoria;
         $equipo->idPreinscripcion = $request->idPreinscripcion;
 
         $equipo->save();

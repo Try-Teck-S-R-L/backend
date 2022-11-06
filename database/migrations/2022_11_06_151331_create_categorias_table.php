@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('delegados', function (Blueprint $table) {
+        Schema::create('categorias', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idDelegado');
+            $table->increments('idCategoria');
+            $table->string('nombreCategoria');
+            $table->integer('edadMinima');
+            $table->integer('edadMaxima');
             $table->timestamps();
-            $table->string('nombreDelegado');
-            $table->string('apellidoDelegado');
-            $table->string('nacionalidadDelegado');
-            $table->integer('edadDelegado');
-            $table->string('correoDelegado');
-            $table->string('contraseniaDelegado');
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delegados');
+        Schema::dropIfExists('categorias');
     }
 };

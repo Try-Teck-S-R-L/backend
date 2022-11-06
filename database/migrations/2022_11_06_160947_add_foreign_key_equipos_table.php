@@ -23,8 +23,7 @@ return new class extends Migration
             $table->foreign('idCategoria')->references('idCategoria')
             ->on('categorias');
             $table->foreign('idPreinscripcion')->references('idPreinscripcion')
-            ->on('preinscripciones');
-            $table->timestamps();
+            ->on('preinscripcions');
         });
     }
 
@@ -36,9 +35,10 @@ return new class extends Migration
     public function down()
     {
         Schema::table('equipos', function (Blueprint $table) {
-            $table->dropForeign('equipos_idDelegado_foreign');
+            $table->dropForeign('equipos_idEquipo_foreign');
             $table->dropForeign('equipos_idCategoria_foreign');
             $table->dropForeign('equipos_idPreinscripcion_foreign');
+        
         });
     }
 };

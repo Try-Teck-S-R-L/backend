@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pais', function (Blueprint $table) {
-            $table->id();
+        Schema::create('tallas', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('idTalla');
             $table->string('nombreValor');
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pais');
+        Schema::dropIfExists('tallas');
     }
 };

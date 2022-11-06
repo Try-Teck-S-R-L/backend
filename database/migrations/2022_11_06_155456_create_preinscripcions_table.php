@@ -13,24 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('equipos', function (Blueprint $table) {
+        Schema::create('preinscripcions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idEquipo');
+            $table->increments('idPreinscripcion');
+            $table->date('fechaPreinscripcion');
+            $table->string('voucherPreinscripcion');
             $table->string('nombreEquipo');
-            $table->string('procedenciaEquipo');
-            $table->string('colorCamiseta');
-            $table->string('logoEquipo');
-            //llaves foraneas
+            $table->string('paisEquipo');
+            $table->integer('montoPago');
+            $table->integer('numeroComprobante');
+
+            //foreign keys
             $table->integer('idDelegado')->unsigned();
             $table->integer('idCategoria')->unsigned();
-            $table->integer('idPreinscripcion')->unsigned();
 
             $table->foreign('idDelegado')->references('idDelegado')
-                ->on('delegados');
+            ->on('delegados');
             $table->foreign('idCategoria')->references('idCategoria')
-                ->on('categorias');
-            $table->foreign('idPreinscripcion')->references('idPreinscripcion')
-                ->on('preinscripciones');
+            ->on('categorias');
+
             $table->timestamps();
         });
     }
@@ -42,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('preinscripcions');
     }
 };
