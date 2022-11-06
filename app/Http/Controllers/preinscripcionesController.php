@@ -101,7 +101,7 @@ class PreinscripcionesController extends Controller
     {
         //validaciones preinscripciones
         $request->validate([
-            'idPreinscripcion' => 'bail|required|unique:preinscripcion',
+            //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
             'nombreDelegado' => 'required',
             'email' => 'required|email',
             'nombreEquipo' => 'required|unique:equipos',

@@ -97,14 +97,14 @@ class EquiposController extends Controller
      */
     public function store(Request $request)
     {
-         //validaciones jugador
-         $request->validate([
-            'idEquipo'=> 'bail|required|unique:equipos',
+        //validaciones jugador
+        $request->validate([
+            'idEquipo' => 'bail|required|unique:equipos',
             'nombreEquipo' => 'required|unique:equipos',
             'procedenciaEquipo' => 'required',
             'colorCamiseta' => 'nullable',
-            'logoEquipo' => 'nullable', 
-    ]); 
+            'logoEquipo' => 'nullable',
+        ]);
         $equipos = new equipos();
         $equipos->idEquipo = $request->idEquipo;
         $equipos->nombreEquipo = $request->nombreEquipo;
@@ -171,7 +171,7 @@ class EquiposController extends Controller
      */
     public function destroy(Request $request)
     {
-        $equipos = equipos::destroy($id);
+        $equipos = equipos::destroy($request->id);
         return $equipos;
     }
 }
