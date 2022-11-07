@@ -97,15 +97,15 @@ class EquiposController extends Controller
             'colorCamiseta' => 'nullable',
             'logoEquipo' => 'nullable',
         ]);
-        $equipos = new equipos();
-        $equipos->idEquipo = $request->idEquipo;
-        $equipos->nombreEquipo = $request->nombreEquipo;
-        $equipos->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipos->colorCamiseta = $request->colorCamiseta;
-        $equipos->logoEquipo = $request->logoEquipo;
-        $equipos->idDelegado = $request->idDelegado;
-        $equipos->idCategoria = $request->idCategoria;
-        $equipos->idPreinscripcion = $request->idPreinscripcion;
+        $equipo = new equipos();
+        $equipo->idEquipo = $request->idEquipo;
+        $equipo->nombreEquipo = $request->nombreEquipo;
+        $equipo->procedenciaEquipo = $request->procedenciaEquipo;
+        $equipo->colorCamiseta = $request->colorCamiseta;
+        $equipo->logoEquipo = $request->logoEquipo;
+        $equipo->idDelegado = $request->idDelegado;
+        $equipo->idCategoria = $request->idCategoria;
+        $equipo->idPreinscripcion = $request->idPreinscripcion;
 
         $equipo->save();
     }

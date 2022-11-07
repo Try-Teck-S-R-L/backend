@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jugadors', function (Blueprint $table) {
-            $table->id();
-            $table->integer('ciJugador');
+            $table->id('ciJugador');
             $table->string('nombreJugador');
             $table->string('apellidoJugador');
             $table->integer('numeroCamiseta');
@@ -25,15 +24,15 @@ return new class extends Migration
             $table->string('nacionalidadJugador');
             $table->string('posicionJugador');
             $table->string('tallaJugador');
-            
+
             //foreign keys
             $table->integer('idEquipo')->unsigned();
             $table->integer('idCategoria')->unsigned();
 
             $table->foreign('idEquipo')->references('idEquipo')
-            ->on('equipos');
+                ->on('equipos');
             $table->foreign('idCategoria')->references('idCategoria')
-            ->on('categorias');
+                ->on('categorias');
 
             $table->timestamps();
         });
