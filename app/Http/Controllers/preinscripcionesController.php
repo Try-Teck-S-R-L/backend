@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\preinscripciones;
+use App\Models\preinscripcions;
 use Illuminate\Support\Facades\DB;
 
 class PreinscripcionesController extends Controller
@@ -94,30 +94,31 @@ class PreinscripcionesController extends Controller
         //validaciones preinscripciones
         $request->validate([
             //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
-            'nombreDelegado' => 'required',
-            'email' => 'required|email',
+            //'nombreDelegado' => 'required',
+            //'email' => 'required|email',
             'nombreEquipo' => 'required|unique:equipos',
-            'pais' => 'required',
-            'categoria' => 'required',
-            'numeroComprobante' => 'required|numeric',
+            'paisEquipo' => 'required',
+            'nroComprobante' => 'required|numeric',
             'montoPago' => 'required|numeric',
-            'fechaPago' => 'required|before_or_equal:2022/12/12',
-            'fotoComprobante' => 'required|image'
-        ]);
-        $preinscripciones = new preinscripciones();
-        $preinscripciones->idPreinscripcion = $request->idPreinscripcion;
-        $preinscripciones->habilitado = 0;
-        $preinscripciones->nombreDelegado = $request->nombreDelegado;
-        $preinscripciones->email = $request->email;
-        $preinscripciones->fecha = $request->fecha;
-        $preinscripciones->nombreEquipo = $request->nombreEquipo;
-        $preinscripciones->paisEquipo = $request->paisEquipo;
-        $preinscripciones->numeroComprobante = $request->numeroComprobante;
-        $preinscripciones->montoPago = $request->montoPago;
-        $preinscripciones->fechaPreinscripcion = $request->fechaPreinscripcion;
+            'fechaPreinscripcion' => 'required|before_or_equal:2022/12/12',
+            'voucherPreinscripcion' => 'required|image',
+            'idCategoria' => 'required',
+            'idDelegado' => 'required',
 
-        $preinscripciones->idDelegado = $request->idDelegado;
-        $preinscripciones->idCategoria = $request->idCategoria;
+        ]);
+        $preinscripcion = new preinscripcions();
+        //$preinscripcion->idPreinscripcion = $request->idPreinscripcion;
+        $preinscripcion->habilitado = 0;
+
+        $preinscripcion->fechaPreinscripcion = $request->fechaPreinscripcion;
+        $preinscripcion->nombreEquipo = $request->nombreEquipo;
+        $preinscripcion->paisEquipo = $request->paisEquipo;
+        $preinscripcion->nroComprobante = $request->nroComprobante;
+        $preinscripcion->montoPago = $request->montoPago;
+
+
+        $preinscripcion->idDelegado = $request->idDelegado;
+        $preinscripcion->idCategoria = $request->idCategoria;
 
         if ($request->hasFile('voucherPreinscripcion')) {
 
@@ -126,7 +127,13 @@ class PreinscripcionesController extends Controller
             $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
             $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+
+            $carpetas = 'fotosVoucher/';
+            $path = $voucher->move($carpetas, $compPic);
+            $preinscripcion->voucherPreinscripcion = $path;
         }
+
+        $preinscripcion->save();
     }
 
     /**
@@ -159,7 +166,7 @@ class PreinscripcionesController extends Controller
      */
     public function destroy($id)
     {
-        $preinscripciones = preinscripciones::destroy($id);
+        $preinscripciones = preinscripcions::destroy($id);
         return $preinscripciones;
     }
 }
