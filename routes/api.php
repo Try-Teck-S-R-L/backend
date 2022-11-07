@@ -55,6 +55,8 @@ Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obten
 Route::post('/aceptarpreinscripcion', [PreinscripcionesController::class, 'aceptarPreinscripcion']);
 Route::post('/rechazarpreinscripcion', [PreinscripcionesController::class, 'rechazarPreinscripcion']);
 Route::post('/preinscripcionesAprobadas', [PreinscripcionesController::class, 'obtenerPreinscripcionesAprobadas']);
+Route::post('/preinscripcion_inscribir', [PreinscripcionesController::class, 'obtenerDatosPreinscripcionAprobada']);
+
 
 
 

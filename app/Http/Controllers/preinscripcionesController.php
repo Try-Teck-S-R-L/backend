@@ -51,6 +51,17 @@ class PreinscripcionesController extends Controller
         return response(['message', $request->all()]);
     }
 
+    public function obtenerDatosPreinscripcionAprobada(Request $request)
+    {
+        $preinscripcion = DB::table('preinscripcions')
+            ->where('idPreinscripcion', $request->idPreinscripcion)
+            ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
+            ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
+            ->select('delegados.nombreDelegado', 'delegados.apellidoDelegado', 'preinscripcions.nombreEquipo', 'categorias.nombreCategoria')
+            ->first();
+        return $preinscripcion;
+    }
+
 
 
     public function obtenerPreinscripcionesAprobadas(Request $request)
