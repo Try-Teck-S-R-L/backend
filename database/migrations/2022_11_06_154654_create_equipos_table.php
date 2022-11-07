@@ -22,17 +22,7 @@ return new class extends Migration
             $table->string('colorCamisetaPrincipal');
             $table->string('colorCamisetaSecundario');
 
-            //foreign keys
-            $table->integer('idDelegado')->unsigned();
-            $table->integer('idCategoria')->unsigned();
-            $table->integer('idPreinscripcion')->unsigned();
 
-            $table->foreign('idDelegado')->references('idDelegado')
-            ->on('delegados');
-            $table->foreign('idCategoria')->references('idCategoria')
-            ->on('categorias');
-            $table->foreign('idPreinscripcion')->references('idPreinscripcion')
-            ->on('preinscripcions');
 
             $table->timestamps();
         });

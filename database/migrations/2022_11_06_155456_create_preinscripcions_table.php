@@ -23,14 +23,6 @@ return new class extends Migration
             $table->integer('montoPago');
             $table->integer('numeroComprobante');
 
-            //foreign keys
-            $table->integer('idDelegado')->unsigned();
-            $table->integer('idCategoria')->unsigned();
-
-            $table->foreign('idDelegado')->references('idDelegado')
-            ->on('delegados');
-            $table->foreign('idCategoria')->references('idCategoria')
-            ->on('categorias');
 
             $table->timestamps();
         });

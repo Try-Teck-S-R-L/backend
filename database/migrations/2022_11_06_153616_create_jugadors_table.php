@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('jugadors', function (Blueprint $table) {
             $table->id('ciJugador');
+            //$table->integer('ciJugador');
             $table->string('nombreJugador');
             $table->string('apellidoJugador');
             $table->integer('numeroCamiseta');
@@ -25,14 +26,6 @@ return new class extends Migration
             $table->string('posicionJugador');
             $table->string('tallaJugador');
 
-            //foreign keys
-            $table->integer('idEquipo')->unsigned();
-            $table->integer('idCategoria')->unsigned();
-
-            $table->foreign('idEquipo')->references('idEquipo')
-                ->on('equipos');
-            $table->foreign('idCategoria')->references('idCategoria')
-                ->on('categorias');
 
             $table->timestamps();
         });
