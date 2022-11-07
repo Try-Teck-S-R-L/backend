@@ -17,7 +17,7 @@ class PreinscripcionesController extends Controller
     {
         //$preinscripciones = preinscripciones::all();
         $noHabilitado = 0;
-        $preinscripciones = DB::table('preinscripciones')->where(
+        $preinscripciones = DB::table('preinscripcions')->where(
             'habilitado',
             '=',
             $noHabilitado
@@ -33,25 +33,29 @@ class PreinscripcionesController extends Controller
 
     public function obtenerEquipo(Request $request)
     {
-        $equipo = DB::table('preinscripciones')->where(
+        $equipo = DB::table('preinscripcions')->where(
             ['idPreinscipcion', $request->id]
         )->get();
         return $equipo;
     }
 
-    public function obtenerPreinscIndiviidual(Request $request)
+    public function obtenerPreinscIndividual(Request $request)
     {
-        $equipo = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)->first();
-        /*$equipo = DB::table('preinscripciones')->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
-            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.procedenciaEquipo')->get();
-        */
-        return $equipo;
+        //$equipo = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
+        $preinscripcion = DB::table('preinscripcions')
+            ->where('idPreinscripcion', $request->idPreinscripcion)
+            ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
+            ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
+            ->first();
+        return $preinscripcion;
         return response(['message', $request->all()]);
     }
 
+
+
     public function obtenerPreinscripcionesAprobadas(Request $request)
     {
-        $preinscripciones = DB::table('preinscripciones')->where('idDelegado', '=', $request->idDelegado)
+        $preinscripciones = DB::table('preinscripcions')->where('idDelegado', '=', $request->idDelegado)
             ->where('habilitado', '=', 1)->get();
 
         return $preinscripciones;
@@ -59,10 +63,10 @@ class PreinscripcionesController extends Controller
 
     public function aceptarPreinscripcion(Request $request)
     {
-        $preinscripcion = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)
+        $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
             ->update(array('habilitado' => 1));
 
-        $preinscripcion = DB::table('preinscripciones')->where('idPreinscripcion', $request->idPreinscripcion)->first();
+        $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
 
         return $preinscripcion;
     }
@@ -70,7 +74,7 @@ class PreinscripcionesController extends Controller
     public function rechazarPreinscripcion(Request $request)
     {
         //$preinscripciones = preinscripciones::destroy($request->idpreInscripcion);
-        $preinscripciones = DB::table('preinscripciones')->where('idPreinscripcion', '=', $request->idPreinscripcion)->delete();
+        $preinscripciones = DB::table('preinscripcions')->where('idPreinscripcion', '=', $request->idPreinscripcion)->delete();
         return $preinscripciones;
     }
     /**
