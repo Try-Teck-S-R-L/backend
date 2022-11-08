@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\equipos;
+use App\Models\preinscripcions;
 use Illuminate\Support\Facades\DB;
 
 class EquiposController extends Controller
@@ -91,21 +92,44 @@ class EquiposController extends Controller
     {
         //validaciones jugador
         $request->validate([
-            'idEquipo' => 'bail|required|unique:equipos',
-            'nombreEquipo' => 'required|unique:equipos',
-            'procedenciaEquipo' => 'required',
+            //'idEquipo' => 'bail|required|unique:equipos',
+            //'nombreEquipo' => 'required|unique:equipos',
+            //'procedenciaEquipo' => 'required',
             'colorCamiseta' => 'nullable',
-            'logoEquipo' => 'nullable',
+            //'logoEquipo' => 'nullable',
         ]);
+        $preinscripcion = DB::table('preinscripcions')
+            ->where('idPreinscripcion', $request->idPreinscripcion)->first();
+
+        //return $request;
+
+
         $equipo = new equipos();
-        $equipo->idEquipo = $request->idEquipo;
-        $equipo->nombreEquipo = $request->nombreEquipo;
-        $equipo->procedenciaEquipo = $request->procedenciaEquipo;
-        $equipo->colorCamiseta = $request->colorCamiseta;
-        $equipo->logoEquipo = $request->logoEquipo;
-        $equipo->idDelegado = $request->idDelegado;
-        $equipo->idCategoria = $request->idCategoria;
+        //$equipo->idEquipo = $request->idEquipo;
+        $equipo->nombreEquipo = $preinscripcion->nombreEquipo;
+        $equipo->paisEquipo = $preinscripcion->paisEquipo;
+
+        $equipo->colorCamisetaPrincipal = $request->colorCamisetaPrincipal;
+        $equipo->colorCamisetaSecundario = $request->colorCamisetaSecundario;
+        //$equipo->logoEquipo = $request->logoEquipo;
+
+        $equipo->idDelegado = $preinscripcion->idDelegado;
+        $equipo->idCategoria = $preinscripcion->idCategoria;
         $equipo->idPreinscripcion = $request->idPreinscripcion;
+
+
+        if ($request->hasFile('logoEquipo')) {
+
+            $logo = $request->file('logoEquipo');
+            $completeFileName = $request->file('logoEquipo')->getClientOriginalName();
+            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+            $extension = $request->file('logoEquipo')->getClientOriginalExtension();
+            $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+
+            $carpetas = 'logosEquipos/';
+            $path = $logo->move($carpetas, $compPic);
+            $equipo->logoEquipo = $path;
+        }
 
         $equipo->save();
     }

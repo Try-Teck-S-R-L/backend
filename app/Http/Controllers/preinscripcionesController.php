@@ -124,6 +124,9 @@ class PreinscripcionesController extends Controller
             'nombreEquipo.unique' => 'Este nombre es repetido',
             'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
         ]);
+
+        //return $request;
+
         $preinscripcion = new preinscripcions();
         //$preinscripcion->idPreinscripcion = $request->idPreinscripcion;
         $preinscripcion->habilitado = 0;
