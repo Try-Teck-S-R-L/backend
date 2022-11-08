@@ -111,7 +111,7 @@ class PreinscripcionesController extends Controller
             //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
             //'nombreDelegado' => 'required',
             //'email' => 'required|email',
-            'nombreEquipo' => 'required|unique:equipos',
+            'nombreEquipo' => 'required|unique:preinscripcions',
             'paisEquipo' => 'required',
             'nroComprobante' => 'required|numeric',
             'montoPago' => 'required|numeric',
@@ -120,6 +120,9 @@ class PreinscripcionesController extends Controller
             'idCategoria' => 'required',
             'idDelegado' => 'required',
 
+        ], [
+            'nombreEquipo.unique' => 'Este nombre es repetido',
+            'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
         ]);
         $preinscripcion = new preinscripcions();
         //$preinscripcion->idPreinscripcion = $request->idPreinscripcion;
