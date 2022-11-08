@@ -44,20 +44,20 @@ class DelegadosController extends Controller
      */
     public function store(Request $request)
     {
-         //validaciones delegado
+        //validaciones delegado
         $request->validate([
-            'idDelegado'=> 'bail|required|unique:delegado',
+            'idDelegado' => 'bail|required|unique:delegado',
             'nombreDelegado' => 'required',
             'apellidoDelegado' => 'required',
-            'nacionalidadDelegado' => 'required', 
+            'nacionalidadDelegado' => 'required',
             'edadelegadod' => 'required',
             'correoDelegado' => 'required|email',
             'contraseniaDelegado' => 'required|current_password',
-    ]); 
+        ]);
         $delegados = new Delegados();
         $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;
-        $delegados->apellidoDelegado = $request->apellidoDelegado;        
+        $delegados->apellidoDelegado = $request->apellidoDelegado;
         $delegados->correoDelegado = $request->correoDelegado;
         $delegados->contraseniaDelegado = $request->contraseniaDeleado;
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
@@ -98,13 +98,13 @@ class DelegadosController extends Controller
     public function update(Request $request, $id)
     {
         $delegado = Delegados::findOrFail($request->id);
-        $delegados->idDelegado = $request->idDelegado;
-        $delegados->nombreDelegado = $request->nombreDelegado;
-        $delegados->apellidoDelegado = $request->apellidoDelegado;        
-        $delegados->correoDelegado = $request->correoDelegado;
-        $delegados->contraseniaDelegado = $request->contraseniaDeleado;
-        $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
-        $delegados->edadDelegado = $request->edadDelegado;
+        $delegado->idDelegado = $request->idDelegado;
+        $delegado->nombreDelegado = $request->nombreDelegado;
+        $delegado->apellidoDelegado = $request->apellidoDelegado;
+        $delegado->correoDelegado = $request->correoDelegado;
+        $delegado->contraseniaDelegado = $request->contraseniaDeleado;
+        $delegado->nacionalidadDelegado = $request->nacionalidadDelegado;
+        $delegado->edadDelegado = $request->edadDelegado;
 
         $delegado->save();
         return $delegado;
