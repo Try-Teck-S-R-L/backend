@@ -131,6 +131,9 @@ class EquiposController extends Controller
             $equipo->logoEquipo = $path;
         }
 
+        $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
+            ->update(array('habilitado' => 4));
+
         $equipo->save();
     }
 
