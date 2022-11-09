@@ -9,7 +9,7 @@ class jugador extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'ciJugador', 'nombreJugador', 'apellidoJugador', 'numeroCamiseta', 'edadJugador', 'fotoPerfilJugador', 
-        'fotoCiJugador', 'nacionalidadJugador', 'posicionJugador', 'tallaJugador', 'idEquipo', 'idCategoria'
+        'ciJugador', 'nombreJugador', 'apellidoJugador', 'numeroCamiseta', 'edadJugador', 'fotoPerfilJugador',
+        'fotoCiJugador', 'nacionalidadJugador', 'posicionJugador', 'tallaJugador', 'idEquipo' //, 'idCategoria'
     ];
 }

@@ -51,6 +51,8 @@ class JugadorController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $jugador = new jugador();
 
         $jugador->ciJugador = $request->ciJugador;
@@ -64,6 +66,7 @@ class JugadorController extends Controller
         $jugador->nacionalidadJugador = $request->nacionalidadJugador;
         $jugador->posicionJugador = $request->posicionJugador;
         $jugador->tallaJugador = $request->tallaJugador;
+        $jugador->idEquipo = $request->idEquipo;
 
 
         if ($request->hasFile('fotoPerfilJugador')) {
