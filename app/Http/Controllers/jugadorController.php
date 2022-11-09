@@ -95,7 +95,7 @@ class JugadorController extends Controller
             $extension = $request->file('fotoCiJugador')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
 
-            $carpetas = 'fotosPerfiles/';
+            $carpetas = 'fotosCis/';
             $path = $fotoCi->move($carpetas, $compPic);
             $jugador->fotoCiJugador = $path;
         }
