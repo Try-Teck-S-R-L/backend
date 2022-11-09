@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class JugadorController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +24,8 @@ class JugadorController extends Controller
 
     public function obtenerJugadoresDeUnEquipo(Request $request)
     {
-        //$equipo = Equipo::all()->where('delegado_idDelegado', Session::get('loginId'))->get();
-        //$equipo = DB::table('equipos')->get();
-        //$idAux =  Session::get('loginId');
+
+        //$url = 'http://127.0.0.1:8000/';
         $jugadores = DB::table('jugadors')
             //->join('equipos', 'equipos.nombreEquipo', '=',  $request->idEquipo)
             //->join('categorias', 'categorias.idCategoria', 'jugadors.idCategoria')
@@ -77,9 +78,13 @@ class JugadorController extends Controller
             $extension = $request->file('fotoPerfilJugador')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
 
+            $url = 'http://127.0.0.1:8000/';
             $carpetas = 'fotosPerfiles/';
             $path = $fotoPerfil->move($carpetas, $compPic);
-            $jugador->fotoPerfilJugador = $path;
+            //$urlFinal = $url . '' . 'fotosPerfiles/' . '' . $compPic;
+            $urlFinal = $url . '' . $path;
+            $jugador->fotoPerfilJugador = $urlFinal;
+            //$jugador->fotoPerfilJugador = $path;
         }
 
         if ($request->hasFile('fotoCiJugador')) {

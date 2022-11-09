@@ -149,9 +149,11 @@ class PreinscripcionesController extends Controller
             $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
 
+            $url = 'http://127.0.0.1:8000/';
             $carpetas = 'fotosVoucher/';
             $path = $voucher->move($carpetas, $compPic);
-            $preinscripcion->voucherPreinscripcion = $path;
+            $urlFinal = $url . '' . $path;
+            $preinscripcion->voucherPreinscripcion = $urlFinal;
         }
 
         $preinscripcion->save();

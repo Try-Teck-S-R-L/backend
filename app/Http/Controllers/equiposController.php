@@ -138,9 +138,11 @@ class EquiposController extends Controller
             $extension = $request->file('logoEquipo')->getClientOriginalExtension();
             $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
 
+            $url = 'http://127.0.0.1:8000/';
             $carpetas = 'logosEquipos/';
             $path = $logo->move($carpetas, $compPic);
-            $equipo->logoEquipo = $path;
+            $urlFinal = $url . '' . $path;
+            $equipo->logoEquipo = $urlFinal;
         }
 
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
