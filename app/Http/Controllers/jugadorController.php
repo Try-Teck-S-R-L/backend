@@ -155,9 +155,11 @@ class JugadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function borrarJug(Request $request)
     {
-        $jugador = jugador::destroy($id);
+
+        //$jugador = jugador::destroy($id);
+        $jugador = DB::table('jugadors')->where('ciJugador', $request->ciJugador)->delete();
 
         return $jugador;
     }
