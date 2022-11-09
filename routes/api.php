@@ -71,6 +71,10 @@ Route::put('/equipos/{id}', 'App\Http\Controllers\EquiposController@update'); //
 Route::delete('/equipos/{id}', 'App\Http\Controllers\EquiposController@destroy'); //destruir un registro
 Route::post('/pedirequipos', [EquiposController::class, 'obtener']); //mostrar todos los registros
 Route::post('/filtrarequipos', [EquiposController::class, 'filtrarLista']);
+Route::post('/equipoId', [EquiposController::class, 'informacionEquipo']);
+
+
+
 //Route::get('/prueba2', 'App\Http\Controllers\EquipoController@prueba2');
 Route::get('/equipos{id}', 'App\Http\Controllers\EquiposController@index');
 //rutas delegados

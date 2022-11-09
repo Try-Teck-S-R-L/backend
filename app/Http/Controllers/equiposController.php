@@ -57,6 +57,18 @@ class EquiposController extends Controller
     }
 
 
+    public function informacionEquipo(Request $request)
+    {
+        $equipo = DB::table('equipos')
+            ->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
+            ->join('delegados', 'equipos.idDelegado', '=', 'delegados.idDelegado')
+            ->where('idEquipo', '=', $request->idEquipo)
+            ->select('equipos.*', 'delegados.nombreDelegado', 'delegados.apellidoDelegado', 'categorias.nombreCategoria')
+            ->first();
+
+        return $equipo;
+    }
+
 
 
 

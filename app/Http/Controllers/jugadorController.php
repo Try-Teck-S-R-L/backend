@@ -25,7 +25,11 @@ class JugadorController extends Controller
         //$equipo = Equipo::all()->where('delegado_idDelegado', Session::get('loginId'))->get();
         //$equipo = DB::table('equipos')->get();
         //$idAux =  Session::get('loginId');
-        $jugadores = DB::table('jugadors')->where('idEquipo', $request->idEquipo)->get();
+        $jugadores = DB::table('jugadors')
+            //->join('equipos', 'equipos.nombreEquipo', '=',  $request->idEquipo)
+            //->join('categorias', 'categorias.idCategoria', 'jugadors.idCategoria')
+            //->select('jugadors.*', 'categorias.nombreCategoria')
+            ->where('idEquipo', $request->idEquipo)->get();
 
         return $jugadores;
     }
