@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::table('jugadors', function (Blueprint $table) {
             $table->integer('idEquipo')->unsigned();
-            $table->integer('idCategoria')->unsigned();
+            //$table->integer('idCategoria')->unsigned();
 
             $table->foreign('idEquipo')->references('idEquipo')
-            ->on('equipos');
-            $table->foreign('idCategoria')->references('idCategoria')
-            ->on('categorias');
+                ->on('equipos');
+            /*$table->foreign('idCategoria')->references('idCategoria')
+            ->on('categorias');*/
         });
     }
 
@@ -33,7 +33,7 @@ return new class extends Migration
     {
         Schema::table('jugadors', function (Blueprint $table) {
             $table->dropForeign('jugadors_idEquipo_foreign');
-            $table->dropForeign('jugadors_idCategoria_foreign');
+            //$table->dropForeign('jugadors_idCategoria_foreign');
         });
     }
 };
