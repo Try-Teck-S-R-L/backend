@@ -17,11 +17,15 @@ class PreinscripcionesController extends Controller
     {
         //$preinscripciones = preinscripciones::all();
         $noHabilitado = 0;
-        $preinscripciones = DB::table('preinscripcions')->where(
-            'habilitado',
-            '=',
-            $noHabilitado
-        )->get();
+        $preinscripciones = DB::table('preinscripcions')
+            ->where(
+                'habilitado',
+                '=',
+                $noHabilitado
+            )
+            ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
+            ->select('preinscripcions.*', 'delegados.nombreDelegado')
+            ->get();
         return $preinscripciones;
     }
 
