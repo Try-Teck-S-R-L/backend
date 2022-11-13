@@ -111,7 +111,7 @@ class PreinscripcionesController extends Controller
     public function store(Request $request)
     {
         //validaciones preinscripciones
-        $request->validate([
+        $validator = validator($request->all(), [
             //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
             //'nombreDelegado' => 'required',
             //'email' => 'required|email',
@@ -129,6 +129,9 @@ class PreinscripcionesController extends Controller
             'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
         ]);
 
+        if ($validator->fails()) {
+            return $validator->errors()->all();
+        }
         //return $request;
 
         $preinscripcion = new preinscripcions();
