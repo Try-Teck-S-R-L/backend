@@ -118,9 +118,9 @@ class PreinscripcionesController extends Controller
             'nombreEquipo' => 'required|unique:preinscripcions',
             'paisEquipo' => 'required',
             'nroComprobante' => 'required|numeric',
-            'montoPago' => 'required|numeric',
+            'montoPago' => 'required|alpha_num',
             'fechaPreinscripcion' => 'required|before_or_equal:2022/12/12',
-            'voucherPreinscripcion' => 'required|image',
+            'voucherPreinscripcion' => 'required|image|dimensions:max_width=300,max_height=350',
             'idCategoria' => 'required',
             'idDelegado' => 'required',
 
