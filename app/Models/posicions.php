@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class posicions extends Model
 {
     use HasFactory;
-    protected $fillable = ['idPosicion','nombreValor'];
+    protected $fillable = ['idPosicion', 'nombreValor'];
 }

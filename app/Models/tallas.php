@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class tallas extends Model
 {
     use HasFactory;
-    protected $fillable = ['idTalla','nombreValor'];
+    protected $fillable = ['idTalla', 'nombreValor'];
 }
