@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('paisEquipo');
             $table->integer('montoPago');
             $table->boolean('habilitado');
-            $table->integer('nroComprobante');
+            $table->string('nroComprobante');
 
 
             $table->timestamps();
