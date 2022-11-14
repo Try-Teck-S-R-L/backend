@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inscripcionjugador;
 use Illuminate\Http\Request;
+use App\Rules\ValidacionesEdad;
 
 class InscripcionjugadorController extends Controller
 {

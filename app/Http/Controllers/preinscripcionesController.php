@@ -120,7 +120,7 @@ class PreinscripcionesController extends Controller
             'nroComprobante' => 'required',
             'montoPago' => 'required|numeric',
             'fechaPreinscripcion' => 'required|before_or_equal:2022/12/12',
-            'voucherPreinscripcion' => 'required|image',
+            'voucherPreinscripcion' => 'required|image|dimensions:max_width=300,max_height=350',
             'idCategoria' => 'required',
             'idDelegado' => 'required',
 
