@@ -76,6 +76,18 @@ class PreinscripcionesController extends Controller
         return $preinscripciones;
     }
 
+    public function obtenerPreinscripcionesDelegado(Request $request)
+    {
+        $preinscripciones = DB::table('preinscripcions')->where('idDelegado', '=', $request->idDelegado)
+            ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
+            ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
+            ->select('delegados.nombreDelegado', 'delegados.apellidoDelegado', 'preinscripcions.*', 'categorias.nombreCategoria')
+            ->get();
+
+        return $preinscripciones;
+    }
+
+
     public function aceptarPreinscripcion(Request $request)
     {
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
@@ -111,6 +123,55 @@ class PreinscripcionesController extends Controller
     public function store(Request $request)
     {
         //validaciones preinscripciones
+
+        //$endDate = date('Y-m-d', strtotime("01/08/2022"));
+        $fechasFin = DB::table('fechas')
+            ->where('id', '=', 3)
+            ->first();
+
+        $finalTorneo = $fechasFin->fechaLimite;
+
+        $fechasFin = DB::table('fechas')
+            ->where('id', '=', 1)
+            ->first();
+
+        $inicioTorneo = $fechasFin->fechaLimite;
+
+        $fechas = DB::table('fechas')
+            ->where('id', '=', 2)
+            ->first();
+
+
+        if ($request->fechaPreinscripcion <= $fechas->fechaLimite) {
+
+            //return 'hola';
+
+            $validator = validator($request->all(), [
+                //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
+                //'nombreDelegado' => 'required',
+                //'email' => 'required|email',
+                'nombreEquipo' => 'required|unique:preinscripcions',
+                'paisEquipo' => 'required',
+                'nroComprobante' => 'required',
+                'montoPago' => 'required| in:250',
+                'fechaPreinscripcion' => 'after:' . $inicioTorneo,
+                'voucherPreinscripcion' => 'required|image', //|dimensions:max_width=300,max_height=350
+                'idCategoria' => 'required',
+                'idDelegado' => 'required',
+
+
+            ], [
+                'nombreEquipo.unique' => 'Este nombre es repetido',
+                'montoPago' => 'Error en el monto 250',
+                'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones',
+                'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
+            ]);
+
+            if ($validator->fails()) {
+                return $validator->errors()->all();
+            }
+        }
+
         $validator = validator($request->all(), [
             //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
             //'nombreDelegado' => 'required',
@@ -118,14 +179,16 @@ class PreinscripcionesController extends Controller
             'nombreEquipo' => 'required|unique:preinscripcions',
             'paisEquipo' => 'required',
             'nroComprobante' => 'required',
-            'montoPago' => 'required|numeric',
-            'fechaPreinscripcion' => 'required|before_or_equal:2022/12/12',
+            'montoPago' => 'required| in:350',
+            'fechaPreinscripcion' => 'before:' . $finalTorneo,
             'voucherPreinscripcion' => 'required|image', //|dimensions:max_width=300,max_height=350
             'idCategoria' => 'required',
             'idDelegado' => 'required',
 
         ], [
             'nombreEquipo.unique' => 'Este nombre es repetido',
+            'montoPago' => 'Error en el monto 350',
+            'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones',
             'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
         ]);
 

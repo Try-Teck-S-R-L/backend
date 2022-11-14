@@ -110,10 +110,11 @@ class EquiposController extends Controller
             'colorCamisetaPrincipal' => 'required',
             //'colorCamisetaSecundario' => ['required', Rule::include([$request->colorCamisetaPrincipal])],
             'colorCamisetaSecundario' => 'required| not_in:' . $aux,
-            'logoEquipo' => 'required|image'
+            'logoEquipo' => 'required|image |dimensions:max_width=350,max_height=350'
         ], [
             'colorCamisetaSecundario.not_in' => 'No puede elegir el mismo color que la camiseta principal',
-            'logoEquipo' => 'Tiene que subir el logo del equipo'
+            'logoEquipo.required' => 'Tiene que subir el logo del equipo',
+            'logoEquipo.dimensions' => 'El tamaño de la imagen no debe exceder de 350 x 350 pixeles'
         ]);
 
         if ($validator->fails()) {
