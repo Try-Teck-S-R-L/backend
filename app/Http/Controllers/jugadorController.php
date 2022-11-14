@@ -53,6 +53,22 @@ class JugadorController extends Controller
     public function store(Request $request)
     {
 
+        $validator = validator($request->all(), [
+
+            'ciJugador' => 'required | unique:jugadors',
+            'fotoPerfilJugador' => 'required|image',
+            'fotoCiJugador' => 'required|image'
+
+        ], [
+            'ciJugador' => 'Este jugador ya esta registrado en el sistema',
+            'fotoPerfilJugador' => 'Debe subir  una foto de perfil',
+            'fotoCiJugador' => 'Debe subir una foto del documento de identidad'
+        ]);
+
+        if ($validator->fails()) {
+            return $validator->errors()->all();
+        }
+
 
         $jugador = new jugador();
 
