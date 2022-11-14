@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pais', function (Blueprint $table) {
+        Schema::create('fechas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreValor');
+            $table->string('etapa');
+            $table->date('fechaLimite');
+            $table->integer('monto');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pais');
+        Schema::dropIfExists('fechas');
     }
 };
