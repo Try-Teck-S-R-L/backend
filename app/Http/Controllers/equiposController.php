@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\equipos;
 use App\Models\preinscripcions;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 class EquiposController extends Controller
@@ -102,14 +103,23 @@ class EquiposController extends Controller
      */
     public function store(Request $request)
     {
+        $aux = $request->colorCamisetaPrincipal;
         //validaciones jugador
-        $request->validate([
-            //'idEquipo' => 'bail|required|unique:equipos',
-            //'nombreEquipo' => 'required|unique:equipos',
-            //'procedenciaEquipo' => 'required',
-            'colorCamiseta' => 'nullable',
-            //'logoEquipo' => 'nullable',
+        $validator = validator($request->all(), [
+
+            'colorCamisetaPrincipal' => 'required',
+            //'colorCamisetaSecundario' => ['required', Rule::include([$request->colorCamisetaPrincipal])],
+            'colorCamisetaSecundario' => 'required| not_in:' . $aux,
+            'logoEquipo' => 'required|image'
+        ], [
+            'colorCamisetaSecundario.not_in' => 'No puede elegir el mismo color que la camiseta principal',
+            'logoEquipo' => 'Tiene que subir el logo del equipo'
         ]);
+
+        if ($validator->fails()) {
+            return $validator->errors()->all();
+        }
+
         $preinscripcion = DB::table('preinscripcions')
             ->where('idPreinscripcion', $request->idPreinscripcion)->first();
 
