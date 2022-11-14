@@ -78,10 +78,11 @@ class PreinscripcionesController extends Controller
 
     public function obtenerPreinscripcionesDelegado(Request $request)
     {
-        $preinscripciones = DB::table('preinscripcions')->where('idDelegado', '=', $request->idDelegado)
+        $preinscripciones = DB::table('preinscripcions')
+            ->where('idDelegado', '=', $request->idDelegado)
             ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
-            ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
-            ->select('delegados.nombreDelegado', 'delegados.apellidoDelegado', 'preinscripcions.*', 'categorias.nombreCategoria')
+            //->join('delegados', 'delegados.idDelegado', '=', $request->idDelegado)
+            ->select('preinscripcions.*', 'categorias.nombreCategoria')
             ->get();
 
         return $preinscripciones;
