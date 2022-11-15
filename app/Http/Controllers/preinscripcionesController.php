@@ -16,7 +16,7 @@ class PreinscripcionesController extends Controller
     public function index()
     {
         //$preinscripciones = preinscripciones::all();
-        $noHabilitado = 0;
+        $noHabilitado = 'en espera';
         $preinscripciones = DB::table('preinscripcions')
             ->where(
                 'habilitado',
@@ -48,7 +48,7 @@ class PreinscripcionesController extends Controller
         //$equipo = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
         $preinscripcion = DB::table('preinscripcions')
             ->where('idPreinscripcion', $request->idPreinscripcion)
-            ->where('habilitado', '=', 0)
+            ->where('habilitado', '=', 'en espera')
             ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
             ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
             ->first();
@@ -60,7 +60,7 @@ class PreinscripcionesController extends Controller
     {
         $preinscripcion = DB::table('preinscripcions')
             ->where('idPreinscripcion', $request->idPreinscripcion)
-            ->where('habilitado', '=', 1)
+            ->where('habilitado', '=', 'aprobada')
             ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
             ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
             ->select('delegados.nombreDelegado', 'delegados.apellidoDelegado', 'preinscripcions.nombreEquipo', 'categorias.nombreCategoria')
@@ -73,7 +73,7 @@ class PreinscripcionesController extends Controller
     public function obtenerPreinscripcionesAprobadas(Request $request)
     {
         $preinscripciones = DB::table('preinscripcions')->where('idDelegado', '=', $request->idDelegado)
-            ->where('habilitado', '=', 1)->get();
+            ->where('habilitado', '=', 'aprobada')->get();
 
         return $preinscripciones;
     }
@@ -81,8 +81,8 @@ class PreinscripcionesController extends Controller
     public function obtenerPreinscripcionesEditables(Request $request)
     {
         $preinscripciones = DB::table('preinscripcions')->where('idDelegado', '=', $request->idDelegado)
-            ->where('habilitado', '=', 0)
-            ->where('habilitado', '=', 2)
+            ->where('habilitado', '=', 'rechazada')
+            ->orWhere('habilitado', '=', 'en espera')
             ->get();
 
         return $preinscripciones;
@@ -105,7 +105,7 @@ class PreinscripcionesController extends Controller
     public function aceptarPreinscripcion(Request $request)
     {
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
-            ->update(array('habilitado' => 1));
+            ->update(array('habilitado' => 'aprobada'));
 
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
 
@@ -117,7 +117,7 @@ class PreinscripcionesController extends Controller
         /*$preinscripciones = DB::table('preinscripcions')->where('idPreinscripcion', '=', $request->idPreinscripcion)->delete();
         return $preinscripciones;*/
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
-            ->update(array('habilitado' => 2));
+            ->update(array('habilitado' => 'rechazada'));
 
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
 
@@ -224,7 +224,7 @@ class PreinscripcionesController extends Controller
 
         $preinscripcion = new preinscripcions();
         //$preinscripcion->idPreinscripcion = $request->idPreinscripcion;
-        $preinscripcion->habilitado = 0;
+        $preinscripcion->habilitado = 'en espera';
 
         $preinscripcion->fechaPreinscripcion = $request->fechaPreinscripcion;
         $preinscripcion->nombreEquipo = $request->nombreEquipo;

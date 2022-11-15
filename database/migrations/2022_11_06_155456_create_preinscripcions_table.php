@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nombreEquipo');
             $table->string('paisEquipo');
             $table->integer('montoPago');
-            $table->boolean('habilitado');
+            $table->string('habilitado');
             $table->string('nroComprobante');
 
 

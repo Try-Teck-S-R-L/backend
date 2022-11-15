@@ -53,16 +53,47 @@ class JugadorController extends Controller
     public function store(Request $request)
     {
 
+        $categoria = DB::table('equipos')
+            ->where('idEquipo', $request->idEquipo)
+            ->join('categorias', 'categorias.idCategoria', '=', 'equipos.idCategoria')
+            ->first();
+
+
+
+
+        if ($request->edadJugador < 30 || $request->edadJugador > 70) {
+            $validator = validator($request->all(), [
+
+                'ciJugador' => 'required | unique:jugadors',
+                'fotoPerfilJugador' => 'required|image',
+                'fotoCiJugador' => 'required|image',
+                'edadJugador' => '|gt:30|lt:70',
+
+            ], [
+                'ciJugador' => 'Este jugador ya esta registrado en el sistema',
+                'fotoPerfilJugador' => 'Debe subir  una foto de perfil',
+                'fotoCiJugador' => 'Debe subir una foto del documento de identidad',
+                'edadJugador.gt' => 'El jugador debe ser mayor de 30 años para participar',
+                'edadJugador.lt' => 'El jugador debe ser menor de 70 años para participar'
+            ]);
+
+            if ($validator->fails()) {
+                return $validator->errors()->all();
+            }
+        }
+
         $validator = validator($request->all(), [
 
             'ciJugador' => 'required | unique:jugadors',
             'fotoPerfilJugador' => 'required|image',
-            'fotoCiJugador' => 'required|image'
+            'fotoCiJugador' => 'required|image',
+            'edadJugador' => '|gte:' . $categoria->edadMinima . '|lte:' . $categoria->edadMaxima,
 
         ], [
             'ciJugador' => 'Este jugador ya esta registrado en el sistema',
             'fotoPerfilJugador' => 'Debe subir  una foto de perfil',
-            'fotoCiJugador' => 'Debe subir una foto del documento de identidad'
+            'fotoCiJugador' => 'Debe subir una foto del documento de identidad',
+            'edadJugador' => 'El jugador no pertenece a esta categoria, es menor de ' . $categoria->edadMinima . ' años'
         ]);
 
         if ($validator->fails()) {
