@@ -59,6 +59,7 @@ Route::post('/preinscripcionesAprobadas', [PreinscripcionesController::class, 'o
 Route::post('/preinscripcionesEditables', [PreinscripcionesController::class, 'obtenerPreinscripcionesEditables']);
 Route::post('/preinscripcionesDelegado', [PreinscripcionesController::class, 'obtenerPreinscripcionesDelegado']);
 Route::post('/preinscripcion_inscribir', [PreinscripcionesController::class, 'obtenerDatosPreinscripcionAprobada']);
+Route::post('/borrarPreinscripcion', [PreinscripcionesController::class, 'eliminarPreinscripcion']);
 
 
 
