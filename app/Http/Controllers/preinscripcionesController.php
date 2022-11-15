@@ -78,6 +78,17 @@ class PreinscripcionesController extends Controller
         return $preinscripciones;
     }
 
+    public function obtenerPreinscripcionesEditables(Request $request)
+    {
+        $preinscripciones = DB::table('preinscripcions')->where('idDelegado', '=', $request->idDelegado)
+            ->where('habilitado', '=', 0)
+            ->where('habilitado', '=', 2)
+            ->get();
+
+        return $preinscripciones;
+    }
+
+
     public function obtenerPreinscripcionesDelegado(Request $request)
     {
         $preinscripciones = DB::table('preinscripcions')
@@ -111,6 +122,12 @@ class PreinscripcionesController extends Controller
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
 
         return $preinscripcion;
+    }
+
+    public function eliminarPreinscripcion(Request $request)
+    {
+        $preinscripciones = DB::table('preinscripcions')->where('idPreinscripcion', '=', $request->idPreinscripcion)->delete();
+        return $preinscripciones;
     }
     /**
      * Show the form for creating a new resource.

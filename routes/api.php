@@ -56,6 +56,7 @@ Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obten
 Route::post('/aceptarpreinscripcion', [PreinscripcionesController::class, 'aceptarPreinscripcion']);
 Route::post('/rechazarpreinscripcion', [PreinscripcionesController::class, 'rechazarPreinscripcion']);
 Route::post('/preinscripcionesAprobadas', [PreinscripcionesController::class, 'obtenerPreinscripcionesAprobadas']);
+Route::post('/preinscripcionesEditables', [PreinscripcionesController::class, 'obtenerPreinscripcionesEditables']);
 Route::post('/preinscripcionesDelegado', [PreinscripcionesController::class, 'obtenerPreinscripcionesDelegado']);
 Route::post('/preinscripcion_inscribir', [PreinscripcionesController::class, 'obtenerDatosPreinscripcionAprobada']);
 
