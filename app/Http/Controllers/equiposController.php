@@ -103,26 +103,30 @@ class EquiposController extends Controller
      */
     public function store(Request $request)
     {
+        $preinscripcion = DB::table('preinscripcions')
+            ->where('idPreinscripcion', $request->idPreinscripcion)->first();
+
+        //$request->nombreEquipo = $preinscripcion->nombreEquipo;
         $aux = $request->colorCamisetaPrincipal;
         //validaciones jugador
         $validator = validator($request->all(), [
 
             'colorCamisetaPrincipal' => 'required',
+            //'nombreEquipo' => 'unique:preinscripcions|unique:equipos',
             //'colorCamisetaSecundario' => ['required', Rule::include([$request->colorCamisetaPrincipal])],
             'colorCamisetaSecundario' => 'required| not_in:' . $aux,
             'logoEquipo' => 'required|image |dimensions:max_width=350,max_height=350'
         ], [
+            'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema',
             'colorCamisetaSecundario.not_in' => 'No puede elegir el mismo color que la camiseta principal',
-            'logoEquipo.required' => 'Tiene que subir el logo del equipo',
-            'logoEquipo.dimensions' => 'El tamaño de la imagen no debe exceder de 350 x 350 pixeles'
+            'logoEquipo' => 'Tiene que subir el logo del equipo',
+            'logoEquipo.dimensions' => 'El tamaño del logo no debe exceder de 350 x 350 pixeles'
         ]);
 
         if ($validator->fails()) {
             return $validator->errors()->all();
         }
 
-        $preinscripcion = DB::table('preinscripcions')
-            ->where('idPreinscripcion', $request->idPreinscripcion)->first();
 
         //return $request;
 
@@ -157,7 +161,7 @@ class EquiposController extends Controller
         }
 
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
-            ->update(array('habilitado' => 4));
+            ->update(array('habilitado' => 3));
 
         $equipo->save();
     }

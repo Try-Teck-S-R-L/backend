@@ -48,6 +48,7 @@ class PreinscripcionesController extends Controller
         //$equipo = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
         $preinscripcion = DB::table('preinscripcions')
             ->where('idPreinscripcion', $request->idPreinscripcion)
+            ->where('habilitado', '=', 0)
             ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
             ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
             ->first();
@@ -59,6 +60,7 @@ class PreinscripcionesController extends Controller
     {
         $preinscripcion = DB::table('preinscripcions')
             ->where('idPreinscripcion', $request->idPreinscripcion)
+            ->where('habilitado', '=', 1)
             ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
             ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
             ->select('delegados.nombreDelegado', 'delegados.apellidoDelegado', 'preinscripcions.nombreEquipo', 'categorias.nombreCategoria')
@@ -101,9 +103,14 @@ class PreinscripcionesController extends Controller
 
     public function rechazarPreinscripcion(Request $request)
     {
-        //$preinscripciones = preinscripciones::destroy($request->idpreInscripcion);
-        $preinscripciones = DB::table('preinscripcions')->where('idPreinscripcion', '=', $request->idPreinscripcion)->delete();
-        return $preinscripciones;
+        /*$preinscripciones = DB::table('preinscripcions')->where('idPreinscripcion', '=', $request->idPreinscripcion)->delete();
+        return $preinscripciones;*/
+        $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
+            ->update(array('habilitado' => 2));
+
+        $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
+
+        return $preinscripcion;
     }
     /**
      * Show the form for creating a new resource.
@@ -151,7 +158,7 @@ class PreinscripcionesController extends Controller
                 //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
                 //'nombreDelegado' => 'required',
                 //'email' => 'required|email',
-                'nombreEquipo' => 'required|unique:preinscripcions',
+                'nombreEquipo' => 'required|unique:preinscripcions|unique:equipos',
                 'paisEquipo' => 'required',
                 'nroComprobante' => 'required',
                 'montoPago' => 'required| in:250',
@@ -162,7 +169,7 @@ class PreinscripcionesController extends Controller
 
 
             ], [
-                'nombreEquipo.unique' => 'Este nombre es repetido',
+                'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema',
                 'montoPago' => 'Error en el monto 250',
                 'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones',
                 'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
@@ -177,7 +184,7 @@ class PreinscripcionesController extends Controller
             //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
             //'nombreDelegado' => 'required',
             //'email' => 'required|email',
-            'nombreEquipo' => 'required|unique:preinscripcions',
+            'nombreEquipo' => 'required|unique:preinscripcions|unique:equipos',
             'paisEquipo' => 'required',
             'nroComprobante' => 'required',
             'montoPago' => 'required| in:350',
@@ -187,7 +194,7 @@ class PreinscripcionesController extends Controller
             'idDelegado' => 'required',
 
         ], [
-            'nombreEquipo.unique' => 'Este nombre es repetido',
+            'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema',
             'montoPago' => 'Error en el monto 350',
             'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones',
             'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
