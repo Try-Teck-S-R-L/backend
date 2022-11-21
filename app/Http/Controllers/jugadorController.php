@@ -34,6 +34,21 @@ class JugadorController extends Controller
 
         return $jugadores;
     }
+
+
+
+    public function obtenerJugador(Request $request)
+    {
+
+        //$url = 'http://127.0.0.1:8000/';
+        $jugadores = DB::table('jugadors')
+            //->join('equipos', 'equipos.nombreEquipo', '=',  $request->idEquipo)
+            //->join('categorias', 'categorias.idCategoria', 'jugadors.idCategoria')
+            //->select('jugadors.*', 'categorias.nombreCategoria')
+            ->where('idJugador', $request->idJugador)->first();
+
+        return $jugadores;
+    }
     /**
      * Show the form for creating a new resource.
      *

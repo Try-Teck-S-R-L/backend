@@ -43,6 +43,7 @@ Route::get('/tallas', 'App\Http\Controllers\tallasController@index'); //para ten
 Route::post('/tallas', 'App\Http\Controllers\tallasController@store'); //crear un registro
 Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
 Route::post('/buscarjugadores', [JugadorController::class, 'obtenerJugadoresDeUnEquipo']);
+Route::post('/buscarJugador', [JugadorController::class, 'obtenerJugador']);
 Route::post('/borrarJugador', [JugadorController::class, 'borrarJug']);
 
 Route::get('/equipo', 'App\Http\Controllers\EquiposController@index');

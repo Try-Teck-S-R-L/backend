@@ -21,7 +21,7 @@ class generalController extends Controller
         $fechaActual = now()->format('y-m-d');
 
         $respuesta = 1;
-        if ($fechaActual > $finalTorneo) {
+        if ($fechaActual < $finalTorneo) {
 
             $respuesta = 0;
         }
