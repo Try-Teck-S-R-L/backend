@@ -161,7 +161,7 @@ class EquiposController extends Controller
         }
 
         $preinscripcion = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)
-            ->update(array('habilitado' => 3));
+            ->update(array('habilitado' => 'inscrita'));
 
         $equipo->save();
     }

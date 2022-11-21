@@ -6,6 +6,7 @@ use App\Http\Controllers\PreinscripcionesController;
 use App\Http\Controllers\RegistroLoginController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\generalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,7 @@ Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionesControlle
 Route::put('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@update'); //actualizar un registro
 Route::get('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@obtenerPreinscIndiviidual');
 Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obtenerPreinscIndividual']);
+Route::post('/preinscripcionGeneral', [PreinscripcionesController::class, 'obtenerPreinscGral']);
 Route::post('/aceptarpreinscripcion', [PreinscripcionesController::class, 'aceptarPreinscripcion']);
 Route::post('/rechazarpreinscripcion', [PreinscripcionesController::class, 'rechazarPreinscripcion']);
 Route::post('/preinscripcionesAprobadas', [PreinscripcionesController::class, 'obtenerPreinscripcionesAprobadas']);
@@ -60,6 +62,7 @@ Route::post('/preinscripcionesEditables', [PreinscripcionesController::class, 'o
 Route::post('/preinscripcionesDelegado', [PreinscripcionesController::class, 'obtenerPreinscripcionesDelegado']);
 Route::post('/preinscripcion_inscribir', [PreinscripcionesController::class, 'obtenerDatosPreinscripcionAprobada']);
 Route::post('/borrarPreinscripcion', [PreinscripcionesController::class, 'eliminarPreinscripcion']);
+Route::get('/fecha', [generalController::class, 'verificarFechaValida']);
 
 
 

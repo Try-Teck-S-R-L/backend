@@ -56,6 +56,18 @@ class PreinscripcionesController extends Controller
         return response(['message', $request->all()]);
     }
 
+    public function obtenerPreinscGral(Request $request)
+    {
+        //$equipo = DB::table('preinscripcions')->where('idPreinscripcion', $request->idPreinscripcion)->first();
+        $preinscripcion = DB::table('preinscripcions')
+            ->where('idPreinscripcion', $request->idPreinscripcion)
+            ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
+            ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
+            ->first();
+        return $preinscripcion;
+        return response(['message', $request->all()]);
+    }
+
     public function obtenerDatosPreinscripcionAprobada(Request $request)
     {
         $preinscripcion = DB::table('preinscripcions')
@@ -73,7 +85,9 @@ class PreinscripcionesController extends Controller
     public function obtenerPreinscripcionesAprobadas(Request $request)
     {
         $preinscripciones = DB::table('preinscripcions')->where('idDelegado', '=', $request->idDelegado)
-            ->where('habilitado', '=', 'aprobada')->get();
+            ->where('habilitado', '=', 'aprobada')
+            ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
+            ->get();
 
         return $preinscripciones;
     }
@@ -187,7 +201,7 @@ class PreinscripcionesController extends Controller
 
             ], [
                 'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema',
-                'montoPago' => 'Error en el monto 250',
+                'montoPago' => 'El monto de pago de esta fecha debe ser 250',
                 'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones',
                 'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
             ]);
@@ -197,31 +211,32 @@ class PreinscripcionesController extends Controller
             }
         }
 
-        $validator = validator($request->all(), [
-            //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
-            //'nombreDelegado' => 'required',
-            //'email' => 'required|email',
-            'nombreEquipo' => 'required|unique:preinscripcions|unique:equipos',
-            'paisEquipo' => 'required',
-            'nroComprobante' => 'required',
-            'montoPago' => 'required| in:350',
-            'fechaPreinscripcion' => 'before:' . $finalTorneo,
-            'voucherPreinscripcion' => 'required|image', //|dimensions:max_width=300,max_height=350
-            'idCategoria' => 'required',
-            'idDelegado' => 'required',
+        if ($request->fechaPreinscripcion > $fechas->fechaLimite) {
+            $validator = validator($request->all(), [
+                //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
+                //'nombreDelegado' => 'required',
+                //'email' => 'required|email',
+                'nombreEquipo' => 'required|unique:preinscripcions|unique:equipos',
+                'paisEquipo' => 'required',
+                'nroComprobante' => 'required',
+                'montoPago' => 'required| in:350',
+                'fechaPreinscripcion' => 'before:' . $finalTorneo,
+                'voucherPreinscripcion' => 'required|image', //|dimensions:max_width=300,max_height=350
+                'idCategoria' => 'required',
+                'idDelegado' => 'required',
 
-        ], [
-            'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema',
-            'montoPago' => 'Error en el monto 350',
-            'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones',
-            'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
-        ]);
+            ], [
+                'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema',
+                'montoPago' => 'El monto de pago de esta fecha debe ser 350',
+                'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones',
+                'voucherPreinscripcion' => 'Debe subir la imagen del voucher'
+            ]);
 
-        if ($validator->fails()) {
-            return $validator->errors()->all();
+            if ($validator->fails()) {
+                return $validator->errors()->all();
+            }
+            //return $request;
         }
-        //return $request;
-
         $preinscripcion = new preinscripcions();
         //$preinscripcion->idPreinscripcion = $request->idPreinscripcion;
         $preinscripcion->habilitado = 'en espera';
