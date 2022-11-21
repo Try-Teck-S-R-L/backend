@@ -45,7 +45,7 @@ class JugadorController extends Controller
             //->join('equipos', 'equipos.nombreEquipo', '=',  $request->idEquipo)
             //->join('categorias', 'categorias.idCategoria', 'jugadors.idCategoria')
             //->select('jugadors.*', 'categorias.nombreCategoria')
-            ->where('idJugador', $request->idJugador)->first();
+            ->where('ciJugador', $request->ciJugador)->first();
 
         return $jugadores;
     }
