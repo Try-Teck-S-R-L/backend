@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\RegistroController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroLoginController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/register ', function () {
+    return view('register');
+});
+Route::post('/register ',[RegistroController::class, 'store']);
+
+Route::get('/login ', function () {
+    return view('login');
+});
+Route::post('/login',[loginController::class, 'store']);
 /*
 Route::post('/auth/verificar', [RegistroLoginController::class, 'verificar']);
 Route::get('/auth/logout', [RegistroLoginController::class, 'logout']);

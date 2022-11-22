@@ -26,7 +26,8 @@ class RegistroRequest extends FormRequest
         return [
             'email' => 'required|unique:users,email',
             'password' => 'required|min:8',
-            'password_confirmation' => 'required|same:password'
+            'password_confirmation' => 'required|same:password',
+            'rol' => 'required'
         ];
     }
 }
