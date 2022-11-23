@@ -3,6 +3,8 @@
 use App\Http\Controllers\RegistroController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistroLoginController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Logoutcontroller;
 
 
 /*
@@ -28,7 +30,9 @@ Route::post('/register ',[RegistroController::class, 'store']);
 Route::get('/login ', function () {
     return view('login');
 });
-Route::post('/login',[loginController::class, 'store']);
+Route::post('/login',[LoginController::class, 'store']);
+
+Route::get('/logout',[LogoutController::class, 'logout']);
 /*
 Route::post('/auth/verificar', [RegistroLoginController::class, 'verificar']);
 Route::get('/auth/logout', [RegistroLoginController::class, 'logout']);
