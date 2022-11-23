@@ -7,6 +7,8 @@ use App\Http\Controllers\RegistroLoginController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\generalController;
+use App\Http\Controllers\loginController;
+use App\Http\Controllers\RegistroController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -90,6 +92,9 @@ Route::get('/delegados', 'App\Http\Controllers\DelegadosController@index'); //mo
 Route::post('/delegados', 'App\Http\Controllers\DelegadosController@store'); //crear un registro
 Route::put('/delegados/{id}', 'App\Http\Controllers\DelegadosController@update'); //actualizar un registro
 Route::delete('/delegados/{id}', 'App\Http\Controllers\DelegadosController@destroy'); //destruir un registro
+Route::post('/registrarDelegado', [RegistroController::class, 'store']);
+Route::post('/loginDelegado', [loginController::class, 'store']);
+
 
 //rutas administrador
 Route::get('/admin', 'App\Http\Controllers\AdministradorController@index'); //mostrar todos los registros

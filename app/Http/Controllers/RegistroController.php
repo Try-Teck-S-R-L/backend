@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RegistroRequest;
+use App\Models\delegados;
 use App\Models\User;
 
 class RegistroController extends Controller
@@ -36,7 +37,28 @@ class RegistroController extends Controller
      */
     public function store(RegistroRequest $request)
     {
-        $usuario = User::create($request->validated());
+        //$usuario
+
+        $usuario = new User();
+
+        $usuario->name = $request->nombreDelegado;
+        $usuario->email = $request->correoDelegado;
+        $usuario->password = $request->contraseniaDelegado;
+
+        $usuario->save();
+
+
+        $delegado = new delegados();
+
+        $delegado->nombreDelegado = $request->nombreDelegado;
+        $delegado->apellidoDelegado = $request->apellidoDelegado;
+        $delegado->correoDelegado = $request->correoDelegado;
+        $delegado->contraseniaDelegado = $request->contraseniaDelegado;
+        $delegado->nacionalidadDelegado = $request->nacionalidadDelegado;
+        $delegado->edadDelegado = $request->edadDelegado;
+
+        $delegado->save();
+        //$usuario = User::create($request->validated());
     }
 
     /**
