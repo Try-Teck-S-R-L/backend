@@ -77,6 +77,7 @@ Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@sto
 //rutas equipos
 Route::get('/equipos', 'App\Http\Controllers\EquiposController@index'); //mostrar todos los registros
 Route::post('/equipos', 'App\Http\Controllers\EquiposController@store'); //crear un registro
+Route::get('/equiposTorneo', 'App\Http\Controllers\EquiposController@index'); //mostrar todos los registros
 Route::put('/equipos/{id}', 'App\Http\Controllers\EquiposController@update'); //actualizar un registro
 Route::delete('/equipos/{id}', 'App\Http\Controllers\EquiposController@destroy'); //destruir un registro
 Route::post('/pedirequipos', [EquiposController::class, 'obtener']); //mostrar todos los registros

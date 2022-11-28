@@ -55,7 +55,7 @@ class RegistroController extends Controller
         $delegado->correoDelegado = $request->correoDelegado;
         $delegado->contraseniaDelegado = $request->contraseniaDelegado;
         $delegado->nacionalidadDelegado = $request->nacionalidadDelegado;
-        $delegado->edadDelegado = $request->edadDelegado;
+        $delegado->edadDelegado = 23;
 
         $delegado->save();
         //$usuario = User::create($request->validated());
@@ -69,7 +69,7 @@ class RegistroController extends Controller
      */
     public function show($id)
     {
-        return view('auth.register');
+        //return view('auth.register');
     }
 
     /**
