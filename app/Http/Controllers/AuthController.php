@@ -38,10 +38,11 @@ class AuthController extends Controller
     public function signup(SignUpRequest $request)
     {
 
-        /*$newUser = new User();
-        $newUser->name = $request->nombreDelegado;
-        $newUser->email = $request->correoDelegado;
-        $newUser->password = $request->password;*/
+        $newUser = new User();
+        $newUser->name = $request->name;
+        $newUser->email = $request->email;
+        $newUser->password = $request->password;
+        $newUser->role = 'delegado';
         $user = User::create($request->all());
         return $this->login($request);
     }
