@@ -15,7 +15,7 @@ class loginController extends Controller
      */
     public function index()
     {
-        //
+        //return response()->json('bienvenido');;
     }
 
     /**
@@ -39,18 +39,21 @@ class loginController extends Controller
         $credentials = $request->getCredentials();
 
         if (!Auth::validate($credentials)) {
+            return response()->json('credenciales invalidos');
             //return redirect()->to('/login')->withErrors('auth.failed');
         }
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
 
-        //return $this->authenticated($request,$user);
+        //return view('login');
+        return $this->authenticated($request, $user);
     }
 
     public function authenticated(Request $request, $user)
     {
-        return redirect('/home');
+        //return redirect('/home');
+        return response()->json('correcto');
     }
 
     /**

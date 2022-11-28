@@ -10,7 +10,8 @@
         "laravel/framework": "^9.19",
         "laravel/passport": "^11.3",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "tymon/jwt-auth": "^1.0.0-rc.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\delegados;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class DelegadosController extends Controller
@@ -54,6 +55,17 @@ class DelegadosController extends Controller
             'correoDelegado' => 'required|email',
             'contraseniaDelegado' => 'required|current_password',
         ]);
+
+        $usuario = new User();
+
+        $usuario->name = $request->nombreDelegado;
+        $usuario->email = $request->correoDelegado;
+        $usuario->password = $request->contraseniaDelegado;
+
+        $usuario->save();
+
+
+
         $delegados = new Delegados();
         $delegados->idDelegado = $request->idDelegado;
         $delegados->nombreDelegado = $request->nombreDelegado;

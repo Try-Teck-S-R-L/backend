@@ -48,17 +48,16 @@ class RegistroController extends Controller
         $usuario->save();
 
 
-        $delegado = new delegados();
+        /*$delegado = new delegados();
 
         $delegado->nombreDelegado = $request->nombreDelegado;
-        $delegado->apellidoDelegado = $request->apellidoDelegado;
-        $delegado->correoDelegado = $request->correoDelegado;
-        $delegado->contraseniaDelegado = $request->contraseniaDelegado;
+        $delegado->apellidoDelegntraseniaDelegado = $request->contraseniaDelegado;
         $delegado->nacionalidadDelegado = $request->nacionalidadDelegado;
         $delegado->edadDelegado = 23;
 
-        $delegado->save();
+        $delegado->save();*/
         //$usuario = User::create($request->validated());
+        //return view('register');
     }
 
     /**

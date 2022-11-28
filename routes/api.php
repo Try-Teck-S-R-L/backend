@@ -9,7 +9,9 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\generalController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,6 +88,7 @@ Route::post('/equipoId', [EquiposController::class, 'informacionEquipo']);
 
 
 
+
 //Route::get('/prueba2', 'App\Http\Controllers\EquipoController@prueba2');
 Route::get('/equipos{id}', 'App\Http\Controllers\EquiposController@index');
 //rutas delegados
@@ -122,3 +125,26 @@ Route::get('/categorias', 'App\Http\Controllers\CategoriasController@index'); //
 Route::post('/categorias', 'App\Http\Controllers\CategoriasController@store'); //crear un registro
 Route::put('/categorias/{id}', 'App\Http\Controllers\CategoriasController@update'); //actualizar un registro
 Route::delete('/categorias/{id}', 'App\Http\Controllers\CategoriasController@destroy'); //destruir un registro
+
+/*
+Route::post('/register ', [RegistroController::class, 'store']);
+
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    //Route::get('/login', [LoginController::class, 'index']);
+    Route::post('/login', [LoginController::class, 'store']);
+
+    Route::get('/logout', [LogoutController::class, 'logout']);
+});
+*/
+Route::post('login', [AuthController::class, 'login']);
+Route::post('signup', [AuthController::class, 'signup']);
+Route::post('logout', [AuthController::class, 'logout']);
+Route::post('refresh', [AuthController::class, 'refresh']);
+Route::post('me', [AuthController::class, 'me']);
+
+/*Route::post('login', 'AuthController@login');
+Route::post('logout', 'AuthController@logout');
+Route::post('refresh', 'AuthController@refresh');
+Route::post('me', 'AuthController@me');*/

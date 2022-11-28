@@ -22,17 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register ', function () {
-    return view('register');
-});
-Route::post('/register ',[RegistroController::class, 'store']);
 
-Route::get('/login ', function () {
-    return view('login');
-});
-Route::post('/login',[LoginController::class, 'store']);
-
-Route::get('/logout',[LogoutController::class, 'logout']);
 /*
 Route::post('/auth/verificar', [RegistroLoginController::class, 'verificar']);
 Route::get('/auth/logout', [RegistroLoginController::class, 'logout']);
