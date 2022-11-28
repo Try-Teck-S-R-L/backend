@@ -8,5 +8,8 @@
 </head>
 <body>
     <h1>LIGA MAXIBASQUET</h1>
+    @if(@Auth::user()>hasRole('user'))
+    <h2>eres un usuario no autenticado</h2>
+    @endif
 </body>
 </html>

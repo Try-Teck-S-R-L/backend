@@ -63,6 +63,7 @@ class DelegadosController extends Controller
         $delegados->nacionalidadDelegado = $request->nacionalidadDelegado;
         $delegados->edadDelegado = $request->edadDelegado;
 
+        $delegados->assignRole('delegado');
         $delegados->save();
     }
 

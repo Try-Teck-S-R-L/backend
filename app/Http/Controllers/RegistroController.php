@@ -37,6 +37,7 @@ class RegistroController extends Controller
     public function store(RegistroRequest $request)
     {
         $usuario = User::create($request->validated());
+        $usuario->assignRole('user');
     }
 
     /**

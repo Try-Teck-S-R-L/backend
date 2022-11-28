@@ -42,6 +42,7 @@ class AdministradorController extends Controller
         $administrador->correoAdministrador = $request ->correoAdministrador;
         $administrador->contraseniaAdministrador = $request ->contraseniaAdministrador;
 
+        $administrador->assignRole('admin');
         $administrador->save();
     }
 
