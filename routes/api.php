@@ -69,6 +69,7 @@ Route::post('/preinscripcionesDelegado', [PreinscripcionesController::class, 'ob
 Route::post('/preinscripcion_inscribir', [PreinscripcionesController::class, 'obtenerDatosPreinscripcionAprobada']);
 Route::post('/borrarPreinscripcion', [PreinscripcionesController::class, 'eliminarPreinscripcion']);
 Route::get('/fecha', [generalController::class, 'verificarFechaValida']);
+Route::get('/fechas',  [generalController::class, 'getFechas']);
 
 
 

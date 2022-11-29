@@ -11,6 +11,6 @@ class jugador extends Model
     protected $fillable = [
         'ciJugador', 'nombreJugador', 'apellidoJugador', 'numeroCamiseta', 'edadJugador', 'fotoPerfilJugador',
         'fotoCiJugador', 'nacionalidadJugador', 'posicionJugador', 'tallaJugador', 'idEquipo',
-        'nroFaltas', 'nroGoles' //, 'idCategoria'
+        'nroFaltas', 'nroRobos', 'nroAsistencias', 'nroBloqueos', 'nroPuntos' //, 'idCategoria'
     ];
 }

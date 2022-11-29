@@ -9,6 +9,12 @@ class generalController extends Controller
 {
     //
 
+    public function getFechas()
+    {
+        $fechas = DB::table('fechas')->get();
+
+        return $fechas;
+    }
 
     public function verificarFechaValida()
     {
