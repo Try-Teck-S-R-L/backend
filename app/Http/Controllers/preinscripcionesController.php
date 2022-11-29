@@ -75,7 +75,7 @@ class PreinscripcionesController extends Controller
             ->where('habilitado', '=', 'aprobada')
             ->join('categorias', 'preinscripcions.idCategoria', '=', 'categorias.idCategoria')
             ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
-            ->select('delegados.nombreDelegado', 'delegados.apellidoDelegado', 'preinscripcions.nombreEquipo', 'categorias.nombreCategoria')
+            ->select('delegados.nombreDelegado', 'preinscripcions.nombreEquipo', 'categorias.nombreCategoria')
             ->first();
         return $preinscripcion;
     }

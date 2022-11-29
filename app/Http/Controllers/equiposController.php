@@ -64,7 +64,7 @@ class EquiposController extends Controller
             ->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
             ->join('delegados', 'equipos.idDelegado', '=', 'delegados.idDelegado')
             ->where('idEquipo', '=', $request->idEquipo)
-            ->select('equipos.*', 'delegados.nombreDelegado', 'delegados.apellidoDelegado', 'categorias.nombreCategoria')
+            ->select('equipos.*', 'delegados.nombreDelegado', 'categorias.nombreCategoria')
             ->first();
 
         return $equipo;
