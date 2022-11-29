@@ -17,7 +17,7 @@ class EquiposController extends Controller
      */
     public function index()
     {
-        $equipo = DB::table('preinscripcions')->get();
+        $equipo = DB::table('equipos')->get();
         return $equipo;
     }
 
