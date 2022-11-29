@@ -25,6 +25,12 @@ return new class extends Migration
             $table->string('nacionalidadJugador');
             $table->string('posicionJugador');
             $table->string('tallaJugador');
+            $table->integer('nroFaltas')->default(0);
+            $table->integer('nroRobos')->default(0);
+            $table->integer('nroAsistencias')->default(0);
+            $table->integer('nroBloqueos')->default(0);
+            $table->integer('nroPuntos')->default(0);
+
 
 
             $table->timestamps();

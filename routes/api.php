@@ -55,6 +55,7 @@ Route::post('/equipo', 'App\Http\Controllers\EquiposController@store');
 Route::put('/equipo/{id}', 'App\Http\Controllers\EquiposController@update');
 Route::delete('/equipo/{id}', 'App\Http\Controllers\EquiposController@detroy');
 Route::get('/preinscripciones', 'App\Http\Controllers\PreinscripcionesController@index');
+Route::get('/todaspreinscripciones', 'App\Http\Controllers\PreinscripcionesController@todas');
 Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionesController@store');
 Route::put('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@update'); //actualizar un registro
 Route::get('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@obtenerPreinscIndiviidual');

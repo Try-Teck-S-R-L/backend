@@ -29,6 +29,16 @@ class PreinscripcionesController extends Controller
         return $preinscripciones;
     }
 
+    public function todas()
+    {
+
+        $preinscripciones = DB::table('preinscripcions')
+            ->join('delegados', 'preinscripcions.idDelegado', '=', 'delegados.idDelegado')
+            ->select('preinscripcions.*', 'delegados.nombreDelegado')
+            ->get();
+        return $preinscripciones;
+    }
+
 
 
 
