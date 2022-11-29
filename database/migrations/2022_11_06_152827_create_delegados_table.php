@@ -17,11 +17,12 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->increments('idDelegado');
             $table->string('nombreDelegado');
-            $table->string('apellidoDelegado');
+            //$table->string('apellidoDelegado');
             $table->string('correoDelegado');
-            $table->string('contraseniaDelegado');
-            $table->string('nacionalidadDelegado');
-            $table->integer('edadDelegado');
+            $table->string('estado');
+            //$table->string('contraseniaDelegado');
+            //$table->string('nacionalidadDelegado');
+            //$table->integer('edadDelegado');
             $table->timestamps();
         });
     }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SignUpRequest;
+use App\Models\delegados;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -15,7 +18,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'signup']]);
+        $this->middleware('auth:api', ['except' => ['login', 'signup', 'me', 'usuarioActual']]);
     }
 
     /**
@@ -43,7 +46,15 @@ class AuthController extends Controller
         $newUser->email = $request->email;
         $newUser->password = $request->password;
         $newUser->role = 'delegado';
-        $user = User::create($request->all());
+        $newUser->save();
+        //$user = User::create($request->all());
+
+        $delegado = new delegados();
+        $delegado->nombreDelegado = $request->name;
+        $delegado->correoDelegado = $request->email;
+        $delegado->estado = 'en espera';
+        $delegado->save();
+
         return $this->login($request);
     }
 
@@ -62,6 +73,13 @@ class AuthController extends Controller
         return response()->json(auth()->user());
     }
 
+
+    public function usuarioActual(Request $request)
+    {
+        //return Auth::user();
+        $user = JWTAuth::toUser();
+        return response()->json(compact('token', 'user'));
+    }
     /**
      * Log the user out (Invalidate the token).
      *

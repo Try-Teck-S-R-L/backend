@@ -142,7 +142,9 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('signup', [AuthController::class, 'signup']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::post('refresh', [AuthController::class, 'refresh']);
-Route::post('me', [AuthController::class, 'me']);
+Route::get('me', [AuthController::class, 'me']);
+
+Route::post('usuarioActual', [AuthController::class, 'usuarioActual']);
 
 /*Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');

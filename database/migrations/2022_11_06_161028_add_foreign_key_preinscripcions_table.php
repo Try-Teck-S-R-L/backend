@@ -18,9 +18,9 @@ return new class extends Migration
             $table->integer('idCategoria')->unsigned();
 
             $table->foreign('idDelegado')->references('idDelegado')
-            ->on('delegados');
+                ->on('delegados');
             $table->foreign('idCategoria')->references('idCategoria')
-            ->on('categorias');
+                ->on('categorias');
         });
     }
 

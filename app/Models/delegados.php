@@ -9,8 +9,7 @@ class delegados extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'idDelegado', 'nombreDelegado', 'apellidoDelegado', 'correoDelegado', 'contraseniaDelegado',
-        'nacionalidadDelegado', 'edadDelegado'
-        
+        'idDelegado', 'nombreDelegado', 'correoDelegado'
+
     ];
 }
