@@ -4,27 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\equipos;
-use App\Models\preinscripcions;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 class EquiposController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index() // devuelve todos los equipos del torneo
     {
         $equipo = DB::table('equipos')->get();
         return $equipo;
     }
 
-
-
-    public function obtenerEquipo(Request $request)
-    {
+    public function obtenerEquipo(Request $request) //obtiene la informacion del equipo correspondiente
+    {                                               // al id del delegado y de preinscripcion que recibe
         $equipo = DB::table('preinscripciones')->where(
             ['idDelegado', $request->idDelegado],
             ['idPreinscipcion', $request->idPreinscipcion]
@@ -32,34 +24,27 @@ class EquiposController extends Controller
         return $equipo;
     }
 
-    public function filtrarLista(Request $request)
-    {
+    public function equiposDelegado(Request $request) //obtiene la informacion de los equipos, categoria y delegado
+    {                                              //del id delegado que recibe
 
         $equipo = DB::table('equipos')->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
             ->where('idDelegado', '=', $request->idDelegado)
-            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.paisEquipo')->get();
+            ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.paisEquipo')
+            ->get();
         return $equipo;
     }
 
 
-
-
-
-    public function obtener(Request $request)
+    public function obtener(Request $request) // devuelve la informacion de todos los equipos y categoria del sistema
     {
-        //$equipo = Equipo::all()->where('delegado_idDelegado', Session::get('loginId'))->get();
-        //$equipo = DB::table('equipos')->get();
-        //$idAux =  Session::get('loginId');
-        //$equipo = DB::table('equipos')->where('delegado_idDelegado', $request->idDelegado)->get();
         $equipo = DB::table('equipos')->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
             ->select('equipos.idEquipo', 'equipos.nombreEquipo', 'categorias.nombreCategoria', 'equipos.paisEquipo')->get();
         return $equipo;
-        return response(['message', $request->all()]);
     }
 
 
-    public function informacionEquipo(Request $request)
-    {
+    public function informacionEquipo(Request $request) //devuelve la informacion de un equipo, su categoria y delegado
+    {                                                   //segun el id que recibe
         $equipo = DB::table('equipos')
             ->join('categorias', 'equipos.idCategoria', '=', 'categorias.idCategoria')
             ->join('delegados', 'equipos.idDelegado', '=', 'delegados.idDelegado')
@@ -70,50 +55,15 @@ class EquiposController extends Controller
         return $equipo;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request)   //guarda la informacion de un equipo en la base de datos
     {
         $preinscripcion = DB::table('preinscripcions')
             ->where('idPreinscripcion', $request->idPreinscripcion)->first();
 
-        //$request->nombreEquipo = $preinscripcion->nombreEquipo;
         $aux = $request->colorCamisetaPrincipal;
-        //validaciones jugador
         $validator = validator($request->all(), [
 
             'colorCamisetaPrincipal' => 'required',
-            //'nombreEquipo' => 'unique:preinscripcions|unique:equipos',
-            //'colorCamisetaSecundario' => ['required', Rule::include([$request->colorCamisetaPrincipal])],
             'colorCamisetaSecundario' => 'required| not_in:' . $aux,
             'logoEquipo' => 'required|image |dimensions:max_width=350,max_height=350'
         ], [
@@ -127,18 +77,11 @@ class EquiposController extends Controller
             return $validator->errors()->all();
         }
 
-
-        //return $request;
-
-
         $equipo = new equipos();
-        //$equipo->idEquipo = $request->idEquipo;
         $equipo->nombreEquipo = $preinscripcion->nombreEquipo;
         $equipo->paisEquipo = $preinscripcion->paisEquipo;
-
         $equipo->colorCamisetaPrincipal = $request->colorCamisetaPrincipal;
         $equipo->colorCamisetaSecundario = $request->colorCamisetaSecundario;
-        //$equipo->logoEquipo = $request->logoEquipo;
 
         $equipo->idDelegado = $preinscripcion->idDelegado;
         $equipo->idCategoria = $preinscripcion->idCategoria;
@@ -164,65 +107,5 @@ class EquiposController extends Controller
             ->update(array('habilitado' => 'inscrita'));
 
         $equipo->save();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $equipo = equipos::findOrFail($request->id);
-        $equipo->idEquipo = $request->idEquipo;
-        $equipo->nombreEquipo = $request->nombreEquipo;
-        $equipo->paisEquipo = $request->paisEquipo;
-
-        $equipo->logoEquipo = $request->logoEquipo;
-        $equipo->colorCamisetaPrincipal = $request->colorCamisetaPrincipal;
-        $equipo->colorCamisetaSecundario = $request->colorCamisetaSecundario;
-
-        $equipo->idDelegado = $request->idDelegado;
-        $equipo->idCategoria = $request->idCategoria;
-        $equipo->idPreinscripcion = $request->idPreinscripcion;
-
-        $equipo->save();
-        return $equipo;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-        $equipos = equipos::destroy($request->id);
-        return $equipos;
     }
 }

@@ -14,25 +14,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//rutas preincripciones
-//Route::get('/preinscripciones', 'App\Http\Controllers\PreinscripcionesController@index');
-//Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionesController@store');
-//Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obtenerEquipo']); //mostrar todos los registros
 Route::get('/jugador', 'App\Http\Controllers\JugadorController@index'); //para tener todos los registros y mostrarlos
 Route::post('/jugador', 'App\Http\Controllers\JugadorController@store'); //crear un registro
 Route::put('/jugador/{id}', 'App\Http\Controllers\JugadorController@update'); //actualizar un registro
@@ -41,12 +27,9 @@ Route::get('/categorias', 'App\Http\Controllers\CategoriasController@index'); //
 Route::post('/categorias', 'App\Http\Controllers\CategoriasController@store'); //crear un registro
 Route::get('/paises', 'App\Http\Controllers\paisController@index'); //para tener todos los registros y mostrarlos
 Route::post('/paises', 'App\Http\Controllers\paisController@store'); //crear un registro
-Route::get('/posiciones', 'App\Http\Controllers\posicionsController@index'); //para tener todos los registros y mostrarlos
-Route::post('/posiciones', 'App\Http\Controllers\posicionsController@store'); //crear un registro
-Route::get('/tallas', 'App\Http\Controllers\tallasController@index'); //para tener todos los registros y mostrarlos
-Route::post('/tallas', 'App\Http\Controllers\tallasController@store'); //crear un registro
 Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
 Route::post('/buscarjugadores', [JugadorController::class, 'obtenerJugadoresDeUnEquipo']);
+Route::get('/jugadoresTorneo', [JugadorController::class, 'obtenerJugadoresDelTorneo']);
 Route::post('/buscarJugador', [JugadorController::class, 'obtenerJugador']);
 Route::post('/borrarJugador', [JugadorController::class, 'borrarJug']);
 
@@ -54,20 +37,23 @@ Route::get('/equipo', 'App\Http\Controllers\EquiposController@index');
 Route::post('/equipo', 'App\Http\Controllers\EquiposController@store');
 Route::put('/equipo/{id}', 'App\Http\Controllers\EquiposController@update');
 Route::delete('/equipo/{id}', 'App\Http\Controllers\EquiposController@detroy');
-Route::get('/preinscripciones', 'App\Http\Controllers\PreinscripcionesController@index');
-Route::get('/todaspreinscripciones', 'App\Http\Controllers\PreinscripcionesController@todas');
-Route::post('/preinscripciones', 'App\Http\Controllers\PreinscripcionesController@store');
-Route::put('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@update'); //actualizar un registro
-Route::get('/preinscripciones/{id}', 'App\Http\Controllers\PreinscripcionesController@obtenerPreinscIndiviidual');
-Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obtenerPreinscIndividual']);
+
+
+// PREINSCRIPCION
+Route::get('/todaspreinscripciones', [PreinscripcionesController::class, 'todasPreinscripcionesTorneo']);
+Route::get('/preinscripciones/{id}', [PreinscripcionesController::class, 'obtenerPreinscIndividual']);
 Route::post('/preinscripcionGeneral', [PreinscripcionesController::class, 'obtenerPreinscGral']);
-Route::post('/aceptarpreinscripcion', [PreinscripcionesController::class, 'aceptarPreinscripcion']);
-Route::post('/rechazarpreinscripcion', [PreinscripcionesController::class, 'rechazarPreinscripcion']);
+Route::post('/preinscripcion_inscribir', [PreinscripcionesController::class, 'obtenerDatosPreinscripcionAprobada']);
 Route::post('/preinscripcionesAprobadas', [PreinscripcionesController::class, 'obtenerPreinscripcionesAprobadas']);
 Route::post('/preinscripcionesEditables', [PreinscripcionesController::class, 'obtenerPreinscripcionesEditables']);
 Route::post('/preinscripcionesDelegado', [PreinscripcionesController::class, 'obtenerPreinscripcionesDelegado']);
-Route::post('/preinscripcion_inscribir', [PreinscripcionesController::class, 'obtenerDatosPreinscripcionAprobada']);
+Route::post('/aceptarpreinscripcion', [PreinscripcionesController::class, 'aceptarPreinscripcion']);
+Route::post('/rechazarpreinscripcion', [PreinscripcionesController::class, 'rechazarPreinscripcion']);
 Route::post('/borrarPreinscripcion', [PreinscripcionesController::class, 'eliminarPreinscripcion']);
+Route::get('/preinscripciones', [PreinscripcionesController::class, 'index']);
+Route::post('/preinscripciones', [PreinscripcionesController::class, 'store']);
+
+//FECHA
 Route::get('/fecha', [generalController::class, 'verificarFechaValida']);
 Route::get('/fechas',  [generalController::class, 'getFechas']);
 
@@ -78,14 +64,11 @@ Route::get('/fechas',  [generalController::class, 'getFechas']);
 //rutas jugadores
 Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
 
-//rutas equipos
-Route::get('/equipos', 'App\Http\Controllers\EquiposController@index'); //mostrar todos los registros
-Route::post('/equipos', 'App\Http\Controllers\EquiposController@store'); //crear un registro
-Route::get('/equiposTorneo', 'App\Http\Controllers\EquiposController@index'); //mostrar todos los registros
-Route::put('/equipos/{id}', 'App\Http\Controllers\EquiposController@update'); //actualizar un registro
-Route::delete('/equipos/{id}', 'App\Http\Controllers\EquiposController@destroy'); //destruir un registro
+//EQUIPOS
+Route::post('/equipos', [EquiposController::class, 'store']); //crear un registro
+Route::get('/equiposTorneo', [EquiposController::class, 'index']); //mostrar todos los registros
 Route::post('/pedirequipos', [EquiposController::class, 'obtener']); //mostrar todos los registros
-Route::post('/filtrarequipos', [EquiposController::class, 'filtrarLista']);
+Route::post('/filtrarequipos', [EquiposController::class, 'equiposDelegado']);
 Route::post('/equipoId', [EquiposController::class, 'informacionEquipo']);
 
 
@@ -147,8 +130,3 @@ Route::post('refresh', [AuthController::class, 'refresh']);
 Route::get('me', [AuthController::class, 'me']);
 
 Route::post('usuarioActual', [AuthController::class, 'usuarioActual']);
-
-/*Route::post('login', 'AuthController@login');
-Route::post('logout', 'AuthController@logout');
-Route::post('refresh', 'AuthController@refresh');
-Route::post('me', 'AuthController@me');*/

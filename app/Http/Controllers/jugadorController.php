@@ -27,6 +27,7 @@ class JugadorController extends Controller
 
         //$url = 'http://127.0.0.1:8000/';
         $jugadores = DB::table('jugadors')
+            ->orderBy('nombreJugador')
             //->join('equipos', 'equipos.nombreEquipo', '=',  $request->idEquipo)
             //->join('categorias', 'categorias.idCategoria', 'jugadors.idCategoria')
             //->select('jugadors.*', 'categorias.nombreCategoria')
@@ -35,28 +36,30 @@ class JugadorController extends Controller
         return $jugadores;
     }
 
+    public function obtenerJugadoresDelTorneo(Request $request)
+    {
+
+        //$url = 'http://127.0.0.1:8000/';
+        $jugadores = DB::table('jugadors')
+            ->join('equipos', 'equipos.idEquipo', '=',  'jugadors.idEquipo')
+            ->orderBy('nombreJugador')
+            ->get();
+
+        return $jugadores;
+    }
+
+
 
 
     public function obtenerJugador(Request $request)
     {
 
-        //$url = 'http://127.0.0.1:8000/';
         $jugadores = DB::table('jugadors')
-            //->join('equipos', 'equipos.nombreEquipo', '=',  $request->idEquipo)
-            //->join('categorias', 'categorias.idCategoria', 'jugadors.idCategoria')
-            //->select('jugadors.*', 'categorias.nombreCategoria')
-            ->where('ciJugador', $request->ciJugador)->first();
+            ->where('ciJugador', $request->ciJugador)
+            ->join('equipos', 'equipos.idEquipo', '=',  'jugadors.idEquipo')
+            ->first();
 
         return $jugadores;
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -167,28 +170,6 @@ class JugadorController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -216,15 +197,8 @@ class JugadorController extends Controller
         return $jugador;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function borrarJug(Request $request)
     {
-
         //$jugador = jugador::destroy($id);
         $jugador = DB::table('jugadors')->where('ciJugador', $request->ciJugador)->delete();
 
