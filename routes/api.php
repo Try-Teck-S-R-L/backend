@@ -42,6 +42,7 @@ Route::delete('/equipo/{id}', 'App\Http\Controllers\EquiposController@detroy');
 // PREINSCRIPCION
 Route::get('/todaspreinscripciones', [PreinscripcionesController::class, 'todasPreinscripcionesTorneo']);
 Route::get('/preinscripciones/{id}', [PreinscripcionesController::class, 'obtenerPreinscIndividual']);
+Route::post('/preinscripcionBuscada', [PreinscripcionesController::class, 'obtenerPreinscGral']);
 Route::post('/preinscripcionGeneral', [PreinscripcionesController::class, 'obtenerPreinscGral']);
 Route::post('/preinscripcion_inscribir', [PreinscripcionesController::class, 'obtenerDatosPreinscripcionAprobada']);
 Route::post('/preinscripcionesAprobadas', [PreinscripcionesController::class, 'obtenerPreinscripcionesAprobadas']);
@@ -52,6 +53,8 @@ Route::post('/rechazarpreinscripcion', [PreinscripcionesController::class, 'rech
 Route::post('/borrarPreinscripcion', [PreinscripcionesController::class, 'eliminarPreinscripcion']);
 Route::get('/preinscripciones', [PreinscripcionesController::class, 'index']);
 Route::post('/preinscripciones', [PreinscripcionesController::class, 'store']);
+Route::post('/editarPreinscripcion', [PreinscripcionesController::class, 'update']);
+
 
 //FECHA
 Route::get('/fecha', [generalController::class, 'verificarFechaValida']);
@@ -64,6 +67,7 @@ Route::get('/fechas',  [generalController::class, 'getFechas']);
 //rutas jugadores
 Route::post('/jugadores', 'App\Http\Controllers\InscripcionJugadorController@store');
 
+
 //EQUIPOS
 Route::post('/equipos', [EquiposController::class, 'store']); //crear un registro
 Route::get('/equiposTorneo', [EquiposController::class, 'index']); //mostrar todos los registros
@@ -74,9 +78,6 @@ Route::post('/equipoId', [EquiposController::class, 'informacionEquipo']);
 
 
 
-//Route::get('/prueba2', 'App\Http\Controllers\EquipoController@prueba2');
-Route::get('/equipos{id}', 'App\Http\Controllers\EquiposController@index');
-//rutas delegados
 Route::get('/delegados', 'App\Http\Controllers\DelegadosController@index'); //mostrar todos los registros
 Route::post('/delegados', 'App\Http\Controllers\DelegadosController@store'); //crear un registro
 Route::put('/delegados/{id}', 'App\Http\Controllers\DelegadosController@update'); //actualizar un registro
@@ -111,18 +112,9 @@ Route::post('/categorias', 'App\Http\Controllers\CategoriasController@store'); /
 Route::put('/categorias/{id}', 'App\Http\Controllers\CategoriasController@update'); //actualizar un registro
 Route::delete('/categorias/{id}', 'App\Http\Controllers\CategoriasController@destroy'); //destruir un registro
 
-/*
-Route::post('/register ', [RegistroController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'index']);
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    //Route::get('/login', [LoginController::class, 'index']);
-    Route::post('/login', [LoginController::class, 'store']);
 
-    Route::get('/logout', [LogoutController::class, 'logout']);
-});
-*/
 Route::post('login', [AuthController::class, 'login']);
 Route::post('signup', [AuthController::class, 'signup']);
 Route::post('logout', [AuthController::class, 'logout']);

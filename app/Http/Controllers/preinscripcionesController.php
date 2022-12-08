@@ -170,12 +170,9 @@ class PreinscripcionesController extends Controller
 
         if ($request->fechaPreinscripcion <= $fechas->fechaLimite) {
 
-            //return 'hola';
 
             $validator = validator($request->all(), [
-                //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
-                //'nombreDelegado' => 'required',
-                //'email' => 'required|email',
+
                 'nombreEquipo' => 'required|unique:preinscripcions|unique:equipos',
                 'paisEquipo' => 'required',
                 'nroComprobante' => 'required',
@@ -200,9 +197,6 @@ class PreinscripcionesController extends Controller
 
         if ($request->fechaPreinscripcion > $fechas->fechaLimite) {
             $validator = validator($request->all(), [
-                //'idPreinscripcion' => 'bail|required|unique:preinscripcion',
-                //'nombreDelegado' => 'required',
-                //'email' => 'required|email',
                 'nombreEquipo' => 'required|unique:preinscripcions|unique:equipos',
                 'paisEquipo' => 'required',
                 'nroComprobante' => 'required',
@@ -254,5 +248,132 @@ class PreinscripcionesController extends Controller
         }
 
         $preinscripcion->save();
+    }
+
+    public function update(Request $request)
+    {
+        $preinscripcionActual = DB::table('preinscripcions')
+            ->where('idPreinscripcion', $request->idPreinscripcion)
+            ->first();
+
+        if ($request->nombreEquipo != $preinscripcionActual->nombreEquipo) {
+            $validator = validator($request->all(), [
+                'nombreEquipo' => 'required|unique:preinscripcions|unique:equipos',
+            ], [
+                'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema'
+            ]);
+
+            if ($validator->fails()) {
+                return $validator->errors()->all();
+            }
+        }
+
+        $fechasFin = DB::table('fechas')
+            ->where('id', '=', 3)
+            ->first();
+
+        $finalTorneo = $fechasFin->fechaLimite;
+
+        $fechasFin = DB::table('fechas')
+            ->where('id', '=', 1)
+            ->first();
+
+        $inicioTorneo = $fechasFin->fechaLimite;
+
+        $fechas = DB::table('fechas')
+            ->where('id', '=', 2)
+            ->first();
+
+
+        if ($request->fechaPreinscripcion <= $fechas->fechaLimite) {
+
+
+            $validator = validator($request->all(), [
+
+
+                'paisEquipo' => 'required',
+                'nroComprobante' => 'required',
+                'montoPago' => 'required| in:250',
+                'fechaPreinscripcion' => 'after:' . $inicioTorneo,
+                'idCategoria' => 'required',
+
+
+            ], [
+                'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema',
+                'montoPago' => 'El monto de pago de esta fecha debe ser 250',
+                'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones'
+            ]);
+
+            if ($validator->fails()) {
+                return $validator->errors()->all();
+            }
+        }
+
+        if ($request->fechaPreinscripcion > $fechas->fechaLimite) {
+            $validator = validator($request->all(), [
+
+                'paisEquipo' => 'required',
+                'nroComprobante' => 'required',
+                'montoPago' => 'required| in:350',
+                'fechaPreinscripcion' => 'before:' . $finalTorneo,
+                'idCategoria' => 'required',
+
+            ], [
+                'nombreEquipo.unique' => 'Este nombre ya se encuentra registrado en el sistema',
+                'montoPago' => 'El monto de pago de esta fecha debe ser 350',
+                'fechaPreinscripcion' => 'Esta fecha excede el tiempo de inscripciones'
+            ]);
+
+            if ($validator->fails()) {
+                return $validator->errors()->all();
+            }
+            //return $request;
+        }
+        $preinscripcion = new preinscripcions();
+        /*$preinscripcion->habilitado = 'en espera';
+
+
+        $preinscripcion->fechaPreinscripcion = $request->fechaPreinscripcion;
+        $preinscripcion->nombreEquipo = $request->nombreEquipo;
+        $preinscripcion->paisEquipo = $request->paisEquipo;
+        $preinscripcion->nroComprobante = $request->nroComprobante;
+        $preinscripcion->montoPago = $request->montoPago;*/
+
+
+        //$preinscripcion->idDelegado = $request->idDelegado; ----
+        $preinscripcion->idCategoria = $request->idCategoria;
+
+        DB::table('preinscripcions')
+            ->where('idPreinscripcion', $request->idPreinscripcion)
+            ->update(array(
+                'nombreEquipo' => $request->nombreEquipo,
+                'habilitado' => 'en espera',
+                'fechaPreinscripcion' => $request->fechaPreinscripcion,
+                'nombreEquipo' => $request->nombreEquipo,
+                'paisEquipo' => $request->paisEquipo,
+                'nroComprobante' => $request->nroComprobante,
+                'idCategoria' => $request->idCategoria
+            ));
+
+        if ($request->hasFile('voucherPreinscripcion')) {
+
+            $voucher = $request->file('voucherPreinscripcion');
+            $completeFileName = $request->file('voucherPreinscripcion')->getClientOriginalName();
+            $fileNameOnly = pathinfo($completeFileName, PATHINFO_FILENAME);
+            $extension = $request->file('voucherPreinscripcion')->getClientOriginalExtension();
+            $compPic = str_replace(' ', '_', $fileNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+
+            $url = 'http://127.0.0.1:8000/';
+            $carpetas = 'fotosVoucher/';
+            $path = $voucher->move($carpetas, $compPic);
+            $urlFinal = $url . '' . $path;
+            $preinscripcion->voucherPreinscripcion = $urlFinal;
+
+            DB::table('preinscripcions')
+                ->where('idPreinscripcion', $request->idPreinscripcion)
+                ->update(array(
+                    'voucherPreinscripcion' => $preinscripcion->voucherPreinscripcion
+                ));
+        }
     }
 }
