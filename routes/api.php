@@ -59,6 +59,9 @@ Route::get('/preinscripciones', [PreinscripcionesController::class, 'index']);
 Route::post('/preinscripciones', [PreinscripcionesController::class, 'store']);
 Route::post('/editarPreinscripcion', [PreinscripcionesController::class, 'update']);
 
+Route::get('image/{path}', [generalController::class, 'getImage'])->where('path', '.*');
+Route::post('image', [generalController::class, 'uploadImage']);
+
 
 //FECHA
 Route::get('/fecha', [generalController::class, 'verificarFechaValida']);

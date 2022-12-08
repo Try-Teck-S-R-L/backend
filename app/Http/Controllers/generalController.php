@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class generalController extends Controller
 {
     //
+
 
     public function getFechas()
     {
@@ -33,5 +35,18 @@ class generalController extends Controller
         }
 
         return $respuesta;
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $path = Storage::putFile('', $request->image);
+        return response()->json(['path' => $path]);
+    }
+
+    public function getImage($path)
+    {
+        $image = Storage::get($path);
+        //return $image;
+        return response($image, 200)->header('Content-Type', Storage::get($path));
     }
 }
