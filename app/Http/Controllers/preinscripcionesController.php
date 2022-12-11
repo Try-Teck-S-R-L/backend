@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class PreinscripcionesController extends Controller
 {
+
+    public function __construct()
+    {
+        /* $this->middleware(
+            'auth.role:administrador',
+            ['except' => [
+                'obtenerDatosPreinscripcionAprobada', 'obtenerPreinscripcionesAprobadas',
+                'obtenerPreinscripcionesEditables', 'obtenerPreinscripcionesDelegado', 'store', 'update'
+            ]]
+        );*/
+    }
+
     /**
      * Display a listing of the resource.
      *

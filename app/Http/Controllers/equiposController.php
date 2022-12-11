@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 class EquiposController extends Controller
 {
 
+    public function __construct()
+    {
+        //$this->middleware('auth.role:delegado');
+    }
+
+
     public function index() // devuelve todos los equipos del torneo
     {
         $equipo = DB::table('equipos')->get();
