@@ -18,7 +18,7 @@ class RoleAuthorization
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next, ...$roles)
+    /*public function handle($request, Closure $next, ...$roles)
     {
         try {
 
@@ -56,5 +56,5 @@ class RoleAuthorization
             'message' => $message ? $message : auth()->user(),
             'success' => false
         ], 401);
-    }
+    }*/
 }

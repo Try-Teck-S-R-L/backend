@@ -77,7 +77,11 @@ class AuthController extends Controller
     public function usuarioActual(Request $request)
     {
         //return Auth::user();
-        $user = JWTAuth::toUser();
+        $token = JWTAuth::parseToken();
+        //Try authenticating user       
+        $user = $token->authenticate();
+
+        //$user = JWTAuth::toUser();
         return response()->json(compact('token', 'user'));
     }
     /**
