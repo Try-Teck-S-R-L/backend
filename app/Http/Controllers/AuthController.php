@@ -7,6 +7,7 @@ use App\Models\delegados;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -45,7 +46,7 @@ class AuthController extends Controller
         $newUser->name = $request->name;
         $newUser->email = $request->email;
         $newUser->password = $request->password;
-        $newUser->role = 'espera';
+        $newUser->role = 'usuario';
         $newUser->save();
         //$user = User::create($request->all());
 
@@ -73,6 +74,16 @@ class AuthController extends Controller
         return response()->json(auth()->user());
     }
 
+
+
+    public function actualizarRol(Request $request)
+    {
+        $resultado = DB::table('users')->where(
+            'id',
+            $request->id
+        )
+            ->update(array('role' => 'espera'));
+    }
 
     public function usuarioActual(Request $request)
     {

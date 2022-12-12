@@ -99,6 +99,11 @@ Route::post('/loginDelegado', [loginController::class, 'store']);
 Route::post('/crearsolicitud', [solicitud_delegado::class, 'store']);
 Route::post('/aprobarsolicitud', [solicitud_delegado::class, 'aceptarDelegado']);
 Route::post('/rechazarsolicitud', [solicitud_delegado::class, 'rechazarDelegado']);
+Route::post('/crearsolicitud', [solicitud_delegado::class, 'store']);
+Route::post('/obtenertodassolicitudes', [solicitud_delegado::class, 'index']);
+Route::get('/solicitudesespera', [solicitud_delegado::class, 'solicitudesEnEspera']);
+Route::post('/infosolicitud', [solicitud_delegado::class, 'obtenerInfoSolicitud']);
+
 
 //rutas administrador
 Route::get('/admin', 'App\Http\Controllers\AdministradorController@index'); //mostrar todos los registros
@@ -135,6 +140,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('signup', [AuthController::class, 'signup']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::post('refresh', [AuthController::class, 'refresh']);
+Route::post('actualizarRol', [AuthController::class, 'actualizarRol']);
 Route::get('me', [AuthController::class, 'me']);
 
 
