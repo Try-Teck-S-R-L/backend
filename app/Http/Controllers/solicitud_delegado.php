@@ -35,7 +35,7 @@ class solicitud_delegado extends Controller
     public function store(Request $request)
     {
 
-        $validator = validator($request->all(), [
+        /*$validator = validator($request->all(), [
 
             'id' => 'unique:solicitud_delegado'
 
@@ -45,7 +45,7 @@ class solicitud_delegado extends Controller
 
         if ($validator->fails()) {
             return $validator->errors()->all();
-        }
+        }*/
 
         $user = DB::table('users')
             ->where('users.id', '=', $request->id)
@@ -89,7 +89,7 @@ class solicitud_delegado extends Controller
 
         $delegado  = DB::table('delegados')->insert(
             array(
-                'id' => $preins->id,
+                'idDelegado' => $preins->id,
                 'nombreDelegado' => $preins->nombreDelegado,
                 'correoDelegado' => $preins->correoDelegado,
                 'estado' => 'habilitado'

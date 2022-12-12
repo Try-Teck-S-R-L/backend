@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('solicitud_delegado', function (Blueprint $table) {
-            $table->id();
+            $table->string('id');
             $table->string('nombreDelegado');
             //$table->string('apellidoDelegado');
             $table->string('correoDelegado');
