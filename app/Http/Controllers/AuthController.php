@@ -45,15 +45,15 @@ class AuthController extends Controller
         $newUser->name = $request->name;
         $newUser->email = $request->email;
         $newUser->password = $request->password;
-        $newUser->role = 'delegado';
+        $newUser->role = 'espera';
         $newUser->save();
         //$user = User::create($request->all());
 
-        $delegado = new delegados();
+        /*$delegado = new delegados();
         $delegado->nombreDelegado = $request->name;
         $delegado->correoDelegado = $request->email;
         $delegado->estado = 'en espera';
-        $delegado->save();
+        $delegado->save();*/
 
         return $this->login($request);
     }

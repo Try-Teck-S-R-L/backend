@@ -10,6 +10,7 @@ use App\Http\Controllers\generalController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\solicitud_delegado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -93,6 +94,12 @@ Route::post('/registrarDelegado', [RegistroController::class, 'store']);
 Route::post('/loginDelegado', [loginController::class, 'store']);
 
 
+//Solicitudes_del
+
+Route::post('/crearsolicitud', [solicitud_delegado::class, 'store']);
+Route::post('/aprobarsolicitud', [solicitud_delegado::class, 'aceptarDelegado']);
+Route::post('/rechazarsolicitud', [solicitud_delegado::class, 'rechazarDelegado']);
+
 //rutas administrador
 Route::get('/admin', 'App\Http\Controllers\AdministradorController@index'); //mostrar todos los registros
 Route::post('/admin', 'App\Http\Controllers\AdministradorController@store'); //crear un registro
@@ -122,10 +129,13 @@ Route::delete('/categorias/{id}', 'App\Http\Controllers\CategoriasController@des
 
 
 
+
+
 Route::post('login', [AuthController::class, 'login']);
 Route::post('signup', [AuthController::class, 'signup']);
 Route::post('logout', [AuthController::class, 'logout']);
 Route::post('refresh', [AuthController::class, 'refresh']);
 Route::get('me', [AuthController::class, 'me']);
+
 
 Route::post('usuarioActual', [AuthController::class, 'usuarioActual']);
